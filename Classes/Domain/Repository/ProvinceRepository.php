@@ -33,6 +33,11 @@
  */
 class Tx_Buechertransport_Domain_Repository_ProvinceRepository extends Tx_Extbase_Persistence_Repository {
 
+	/**
+	 * flush
+	 *
+	 * @return
+	 */
 	public function flush() {
 		$query = $this->createQuery();
 		$query->statement('TRUNCATE TABLE `tx_buechertransport_domain_model_province`');

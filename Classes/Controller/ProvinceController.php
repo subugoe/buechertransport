@@ -129,6 +129,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 
 	/**
 	 * action import
+	 *
 	 * @param boolean $flushDB Shall the database be flushed or updated?
 	 * @param Tx_Buechertransport_Command_ImportCommandController $obj
 	 * @return boolean

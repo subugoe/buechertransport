@@ -29,15 +29,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		)
 );
 
-
-// Scheduler for importing existing data
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Tx_Buechertransport_Service_ImportTask'] = array(
-	'extension' => $_EXTKEY,
-	'title' => '(Alt-)Daten importieren',
-	'description' => '(Alte) Daten ins Repository importieren'
-);
-
-	/* not correctly working solution for cli_mode (scheduler) */
+// Extbase-Scheduler for importing existing data
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Tx_Buechertransport_Command_ImportCommandController';
 
 ?>
