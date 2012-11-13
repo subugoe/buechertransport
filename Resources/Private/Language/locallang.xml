@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the Büchertransportdienst extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_buechertransport_domain_model_province">The Province</label>
+			<label index="tx_buechertransport_domain_model_province.name">Name of the Province</label>
+			<label index="tx_buechertransport_domain_model_province.description">Description of the Province</label>
+			<label index="tx_buechertransport_domain_model_province.cities">Related Cities</label>
+			<label index="tx_buechertransport_domain_model_city">The City of the libraries</label>
+			<label index="tx_buechertransport_domain_model_city.name">Name of the City</label>
+			<label index="tx_buechertransport_domain_model_city.libraries">Related Libraries</label>
+			<label index="tx_buechertransport_domain_model_library">The Library</label>
+			<label index="tx_buechertransport_domain_model_library.name">Name of the Library</label>
+			<label index="tx_buechertransport_domain_model_library.sigel">Sigel of the Library</label>
+			<label index="tx_buechertransport_domain_model_library.distributioncentre">The related DistributionCentre (City)</label>
+		</languageKey>
+	</data>
+</T3locallang>

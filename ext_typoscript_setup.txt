@@ -1,0 +1,5 @@
+plugin.tx_buechertransport {
+	persistence {
+		storagePid = 1800
+	}
+}
