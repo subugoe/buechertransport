@@ -87,9 +87,10 @@ class Tx_Buechertransport_Domain_Model_LibraryTest extends Tx_Extbase_Tests_Unit
 	/**
 	 * @test
 	 */
-	public function getDistributioncentreReturnsInitialValueForTx_Buechertransport_Domain_Model_City() { 
+	public function getDistributioncentreReturnsInitialValueForObjectStorageContainingTx_Buechertransport_Domain_Model_City() { 
+		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->assertEquals(
-			NULL,
+			$newObjectStorage,
 			$this->fixture->getDistributioncentre()
 		);
 	}
@@ -97,12 +98,46 @@ class Tx_Buechertransport_Domain_Model_LibraryTest extends Tx_Extbase_Tests_Unit
 	/**
 	 * @test
 	 */
-	public function setDistributioncentreForTx_Buechertransport_Domain_Model_CitySetsDistributioncentre() { 
-		$dummyObject = new Tx_Buechertransport_Domain_Model_City();
-		$this->fixture->setDistributioncentre($dummyObject);
+	public function setDistributioncentreForObjectStorageContainingTx_Buechertransport_Domain_Model_CitySetsDistributioncentre() { 
+		$distributioncentre = new Tx_Buechertransport_Domain_Model_City();
+		$objectStorageHoldingExactlyOneDistributioncentre = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneDistributioncentre->attach($distributioncentre);
+		$this->fixture->setDistributioncentre($objectStorageHoldingExactlyOneDistributioncentre);
 
 		$this->assertSame(
-			$dummyObject,
+			$objectStorageHoldingExactlyOneDistributioncentre,
+			$this->fixture->getDistributioncentre()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function addDistributioncentreToObjectStorageHoldingDistributioncentre() {
+		$distributioncentre = new Tx_Buechertransport_Domain_Model_City();
+		$objectStorageHoldingExactlyOneDistributioncentre = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneDistributioncentre->attach($distributioncentre);
+		$this->fixture->addDistributioncentre($distributioncentre);
+
+		$this->assertEquals(
+			$objectStorageHoldingExactlyOneDistributioncentre,
+			$this->fixture->getDistributioncentre()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeDistributioncentreFromObjectStorageHoldingDistributioncentre() {
+		$distributioncentre = new Tx_Buechertransport_Domain_Model_City();
+		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$localObjectStorage->attach($distributioncentre);
+		$localObjectStorage->detach($distributioncentre);
+		$this->fixture->addDistributioncentre($distributioncentre);
+		$this->fixture->removeDistributioncentre($distributioncentre);
+
+		$this->assertEquals(
+			$localObjectStorage,
 			$this->fixture->getDistributioncentre()
 		);
 	}

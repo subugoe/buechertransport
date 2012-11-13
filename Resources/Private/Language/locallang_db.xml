@@ -10,7 +10,7 @@
 			<label index="tx_buechertransport_domain_model_province">Province</label>
 			<label index="tx_buechertransport_domain_model_province.name">Name</label>
 			<label index="tx_buechertransport_domain_model_province.description">Description</label>
-			<label index="tx_buechertransport_domain_model_province.cities">Cities</label>
+			<label index="tx_buechertransport_domain_model_province.cities">Reachable Cities</label>
 
 			<label index="tx_buechertransport_domain_model_city">City</label>
 			<label index="tx_buechertransport_domain_model_city.name">Name</label>
@@ -18,8 +18,26 @@
 
 			<label index="tx_buechertransport_domain_model_library">Library</label>
 			<label index="tx_buechertransport_domain_model_library.name">Name</label>
+			<label index="tx_buechertransport_domain_model_library.sigel">Abbreviation</label>
+			<label index="tx_buechertransport_domain_model_library.distributioncentre">Distribution centre</label>
+
+		</languageKey>
+
+		<languageKey index="de" type="array">
+
+			<label index="tx_buechertransport_domain_model_province">Bundeland</label>
+			<label index="tx_buechertransport_domain_model_province.name">Name</label>
+			<label index="tx_buechertransport_domain_model_province.description">Beschreibung</label>
+			<label index="tx_buechertransport_domain_model_province.cities">Erreichbare Städte</label>
+
+			<label index="tx_buechertransport_domain_model_city">Stadt</label>
+			<label index="tx_buechertransport_domain_model_city.name">Name</label>
+			<label index="tx_buechertransport_domain_model_city.libraries">Bibliotheken</label>
+
+			<label index="tx_buechertransport_domain_model_library">Bibliothek</label>
+			<label index="tx_buechertransport_domain_model_library.name">Name</label>
 			<label index="tx_buechertransport_domain_model_library.sigel">Sigel</label>
-			<label index="tx_buechertransport_domain_model_library.distributioncentre">Distributioncentre</label>
+			<label index="tx_buechertransport_domain_model_library.distributioncentre">Verteilerzentrum</label>
 
 		</languageKey>
 	</data>

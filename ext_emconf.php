@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Büchertransportdienst',
-	'description' => '',
+	'description' => 'Verwaltung des Büchertransportdienstes',
 	'category' => 'plugin',
 	'author' => 'Dominic Simm',
 	'author_email' => 'dominic.simm@sub.uni-goettingen.de',
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '',
+	'version' => '0.1.2',
 	'constraints' => array(
 		'depends' => array(
 			'extbase' => '1.3',

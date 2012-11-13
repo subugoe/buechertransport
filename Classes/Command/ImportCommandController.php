@@ -70,19 +70,19 @@ class Tx_Buechertransport_Command_ImportCommandController extends Tx_Extbase_MVC
 		$this->configurationManager = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager');
 		t3lib_div::devLog('Import-Task: Configuration-Manager instantiated.' , 'buechertransport', -1);
 		$configuration = array(
-							'extensionName' => 'buechertransport',
-							'pluginName' => 'Scheduler',
-							'settings' => '< plugin.tx_buechertransport',
-							'controller' => 'Province',
-							'switchableControllerActions' => array(
-								 'Province' => array('actions' => 'import, create, update, delete'),
-								 'City' => array('actions' => 'create, update, delete'),
-								 'Library' => array('actions' => 'create, update, delete')
-				   			),
-							'persistence' => array(
-								'storagePid' => 1800
-							)
-						);
+			'extensionName' => 'buechertransport',
+			'pluginName' => 'Scheduler',
+			'settings' => '< plugin.tx_buechertransport',
+			'controller' => 'Province',
+			'switchableControllerActions' => array(
+				 'Province' => array('actions' => 'import, create, update, delete'),
+				 'City' => array('actions' => 'create, update, delete'),
+				 'Library' => array('actions' => 'create, update, delete')
+   			),
+			'persistence' => array(
+				'storagePid' => 1800
+			)
+		);
 		$this->configurationManager->setConfiguration($configuration); 
 	}
 
