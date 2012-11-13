@@ -1,0 +1,12 @@
+2012-11-13 - 0.1.2 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* added backend translations
+	* added backend icons, header image
+	* improved import performance (removed unnecessary repository-calls)
+	* added documentation/manual under doc
+	* restructed models (added mm-relations)
+
+2012-11-13 - 0.1.1 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* Bugfix: Removed lazy loading of province cities (Scheduler: Repository-Update-Problem)
+
+2012-11-12 - 0.1.0 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* initial import

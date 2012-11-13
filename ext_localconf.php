@@ -4,19 +4,19 @@ if (!defined('TYPO3_MODE')) {
 }
 
 Tx_Extbase_Utility_Extension::configurePlugin(
-	$_EXTKEY,
-	'Buechertransport',
-	array(
-		'Province' => 'list, show',
-		
-	),
-	// non-cacheable actions
-	array(
-		'Province' => 'create, update, delete',
-		'City' => 'create, update, delete',
-		'Library' => 'create, update, delete',
-		
-	)
+		$_EXTKEY,
+		'Buechertransport',
+		array(
+			'Province' => 'list, show',
+			
+		),
+		// non-cacheable actions
+		array(
+			'Province' => 'create, update, delete',
+			'City' => 'create, update, delete',
+			'Library' => 'create, update, delete',
+			
+		)
 );
 
 Tx_Extbase_Utility_Extension::configurePlugin(

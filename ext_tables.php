@@ -34,7 +34,7 @@ t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Büchertransp
 						'endtime' => 'endtime',
 					),
 					'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Province.php',
-					'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_buechertransport_domain_model_province.gif'
+					'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_buechertransport_domain_model_province.png'
 				),
 			);
 
@@ -61,7 +61,7 @@ t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Büchertransp
 						'endtime' => 'endtime',
 					),
 					'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/City.php',
-					'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_buechertransport_domain_model_city.gif'
+					'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_buechertransport_domain_model_city.png'
 				),
 			);
 
@@ -88,7 +88,7 @@ t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Büchertransp
 						'endtime' => 'endtime',
 					),
 					'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Library.php',
-					'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_buechertransport_domain_model_library.gif'
+					'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_buechertransport_domain_model_library.png'
 				),
 			);
 
