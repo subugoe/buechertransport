@@ -1,0 +1,78 @@
+Aachen	Bibliothek der Technischen Hochschule	82
+ 	Öffentliche Bibliothek	52
+ 	Fachhochschulbibliothek Aachen	A 96
+Andernach	Stadtbücherei	977
+Bad Kreuznach	Stadtbücherei	356
+Bad Neuenahr	Stadtbücherei	978
+Bielefeld	Universitätsbibliothek	361
+ 	Stadtbibliothek	131
+ 	Fachhochschulbibliothek	Bi 10
+Bochum	Universitätsbibliothek	294
+ 	Bibliothek des Ruhrgebietes	Bm 3
+ 	Fachhochschulbibliothek	Bm 40
+ 	Stadtbücherei	132
+Bonn	Universitäts- und Landesbibliothek	5
+ 	Deutsche Zentralbibliothek der Landbauwissenschaft	98
+ 	Stadtbücherei	369
+Bornheim / Rhl.	Bibliothek St. Albert, Walberberg (s. Köln)	KN28
+Detmold	Lippische Landesbibliothek	51
+Dortmund	Universitätsbibliothek	290
+ 	Stadt- und Landesbibliothek	60
+ 	Inst. f. Zeitungsforschung	DM11
+ 	Fachhochschulbibliothek	Dm13
+Düsseldorf	Universitäts- und Landesbibliothek	61
+ 	Fachhochschulbibliothek	Dü62
+ 	Stadtbüchereien/Zentralbibl.	362
+ 	Bibliothek des Vereins Deutscher Eisenhüttenleute	Dü 6
+Duisburg	Universitätsbibliothek	464
+ 	Stadtbibliothek	136
+Essen	Universitätsbibliothek u. Fachbibl. Med	465/465M
+ 	Stadtbibliothek	64
+Frankenthal	Stadtbibliothek	716
+Gelsenkirchen	Fachhochschulbibliothek	1010
+Hagen	Universitätsbibliothek der Fernuniversität	708
+ 	Stadtbücherei	142
+ 	Bibliothek der Fachhochschule Südwestfalen	Hag 4
+Iserlohn	s. Hagen	 
+Jülich	Zentralbibliothek des Forschungszentrums Jülich	Jül 1
+Kaiserslautern	Universitätsbibliothek	386
+ 	Pfalzbibliothek (LGA)	Kai 1
+Koblenz	Rheinische Landesbibliothek	929
+ 	Universitätsbibliothek	Kob 7
+Köln	Universitäts- und Stadtbibliothek	38
+ 	Deutsche Zentralbibliothek der Medizin	38 M
+ 	Zentralbibliothek der Sportwissenschaften	Kn 41
+ 	Fachhochschulbibliothek	832
+ 	Stadtbibliothek	380
+ 	Germania Judaica	Kn 125
+ 	Erzbischöfliche Diözesan- und Dombibliothek	Kn 28
+ 	Hochschulbibliothekszentrum NRW	500
+Landau	Stadtbibliothek	837
+ 	Universitätsbibliothek	Lan 1
+Lemgo	Fachhochschulbibliothek	743
+Ludwigshafen	Fachhochschulbibliothek	1116
+Mainz	s. Hessen	
+Mönchengladbach	Stadtbibliothek	260
+ 	Fachhochschulbibliothek	829
+Montabaur	Stadtbibliothek	1131
+Münster	Universitäts- und Landesbibliothek	6
+ 	Fachhochschulbibliothek	836
+ 	Stadtbücherei	447
+Neustadt	Staatl. Büchereistelle	1071
+Neuwied	Stadtbibliothek	980
+Paderborn	Universitätsbibliothek	466
+ 	Stadtbibliothek	736
+ 	Erzbischöfliche Akademische Bibliothek	211
+Pirmasens	Stadtbibliothek	298
+Remagen	Fachhochschulbibliothek Koblenz	1105
+Siegen	Universitätsbibliothek	467
+ 	Stadtbücherei	453
+Speyer	Pfälz. Landesbibliothek	107
+Trier	Universitätsbibliothek	385
+ 	Stadtbibliothek	121
+ 	Bibliothek des Priesterseminars	Tr 2
+ 	Fachhochschulbibliothek	Tr 5
+Worms	s. Hessen	
+Wuppertal	Universitätsbibliothek	468
+ 	Stadtbibliothek	62
+Zweibrücken	Bibliothek Bipontina	Zw 1

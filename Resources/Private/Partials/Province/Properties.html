@@ -12,7 +12,32 @@
 			<f:translate key="tx_buechertransport_domain_model_province.description" />
 		</td>
 		<td>
-			{province.description}
+			<f:format.html>{province.description}</f:format.html>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_buechertransport_domain_model_province.cities" />
+		</td>
+		<td>
+			<table>
+				<tr>
+					<th><f:translate key="tx_buechertransport_domain_model_city.name" /></th>
+					<th><f:translate key="tx_buechertransport_domain_model_library.name" /></th>
+					<th><f:translate key="tx_buechertransport_domain_model_library.sigel" /></th>
+				</tr>
+
+			<f:for each="{province.cities}" as="city">
+				<f:for each="{city.libraries}" as="library">
+				<tr>
+					<td><f:link.action action="show" arguments="{city : city}"> {city.name}</f:link.action></td>
+					<td><f:link.action action="show" arguments="{library : library}"> {library.name}</f:link.action></td>
+					<td>{library.sigel}</td>
+				</tr>
+				</f:for>
+			</f:for>
+			</table>
+		</td>
+	</tr>
+
 </table>

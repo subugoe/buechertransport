@@ -1,0 +1,6 @@
+Borstel	Forschungszentrum	Bst 1
+Hamburg	Staats- und Universitätsbibliothek	18
+ 	Universitätsbibliothek der Universität der Bundeswehr	705
+ 	Universitätsbibliothek der TU Hamburg-Harburg	830
+ 	Zentralbibliothek für Wirtschaftswissenschaften (ZBW)	206 H
+ 	Infozentrum HafenCity Universität	1373

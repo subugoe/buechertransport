@@ -1,0 +1,12 @@
+Berlin	Staatsbibliothek	1, 1a
+ 	UB der Freien Universität	188
+ 	UB der Techn. Universität	83
+ 	UB der Humboldt-Universität	11
+ 	Akademie d. Wissenschaften	B 4
+ 	Zentral- u. Landesbibl., STB	109
+ 	Ibero-Amerikanisches Institut	204
+ 	Bildungsgesch. Forschung	B 478
+ 	Med. Bibl.-CVK der Charité	578/3
+ 	Bibl. d. Hochschule d. Künste	B 170
+ 	Staatl. Inst. f. Musikforschung	B 763
+ 	HB f. Technik u. Wirtschaft	523

@@ -39,12 +39,14 @@ class Tx_Buechertransport_Utility_ImportUtility {
 			'bayern' => 'Bayern',
 			'berlin' => 'Berlin',
 			'brandenburg' => 'Brandenburg',
+			'bremen' => 'Bremen',
 			'bw' => 'Baden-Würtemberg',
 			'hamburg' => 'Hamburg',
 			'hessen' => 'Hessen',
 			'mvp' => 'Mecklenburg-Vorpommern',
 			'niedersachsen' => 'Niedersachsen',
 			'nrw' => 'Nordrhein-Westfalen',
+			'rheinland' => 'Rheinland-Pfalz',
 			'saarland' => 'Saarland',
 			'sachsen' => 'Sachsen',
 			'sachsenanhalt' => 'Sachsen-Anhalt',
@@ -102,11 +104,9 @@ class Tx_Buechertransport_Utility_ImportUtility {
 			for ($i=0; $i<ceil(sizeof($arr)/4); $i++) {
 				$bias = 4*$i;
 				$csv[$i] = $arr[$bias] . ';' . $arr[$bias+1] . ';' . $arr[$bias+2] . ';' . $arr[$bias+3];
-				// print_r($csv[$i]);
 			}
 			$data = implode("\n", $csv);
 			file_put_contents($file . '.csv', $data);
-			// print_r($data);
 		}
 		return 0;
 

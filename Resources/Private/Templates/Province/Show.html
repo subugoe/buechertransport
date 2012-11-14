@@ -12,10 +12,10 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Single View for Province</h1>
+<h2>Einzelansicht</h2>
 
 <f:flashMessages />
 <f:render partial="Province/Properties" arguments="{province:province}" />
-<f:link.action action="list">Back to list</f:link.action><br />
-<f:link.action action="new">New Province</f:link.action>
+<f:link.action action="list"><f:translate key="tx_buechertransport_template_backToList" /></f:link.action><br />
+<!-- <f:link.action action="new">New Province</f:link.action> -->
 </f:section>

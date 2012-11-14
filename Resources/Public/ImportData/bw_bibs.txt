@@ -1,0 +1,34 @@
+Donaueschingen	Fürstenbergische Hofbibliothek	50
+Freiburg	PH	Frei 129
+ 	Universitätsbibliothek	25
+Heidelberg	Universitätsbibliothek	16
+ 	Krebsforschung	He 78
+ 	PH	He 76
+Hohenheim	s. Stuttgart-Hohenheim	 
+Karlsruhe	Landesbibliothek	31
+ 	Landeskirchl. Bibliothek	Ka 13
+ 	Staatl. Kunsthalle	Ka 23
+ 	Bad. Landesmuseum	Ka 23 a
+ 	Bundesgerichtshof	208
+ 	Bundesverfassungsgericht	Ka 26
+ 	Hochschulbibliothek	Ka 751
+ 	BFA f. Ernährung	Ka 51
+ 	Forschungszentrum	Ka 85
+ 	Universitätsbibliothek	90
+Konstanz	Universitätsbibliothek	352
+ 	FHB	Kon 4
+ 	Wessenberg-Bibl.	146
+Mannheim	Universitätsbibliothek	180
+ 	Fachhochschulbibl.	953
+ 	Reiß-Museum	Mh 28
+ 	Berufsakademie	Mh 35
+ 	Landesmuseum Technik und Arbeit	Mh 34
+Marbach	Dt. Literaturarchiv	Mar 1
+Reutlingen	Hochschulbibliothek	Rt 2
+ 	Stadtbibliothek	293
+Stuttgart	Universitätsbibliothek	93
+ 	Landesbibliothek	24
+ 	Inst. F. Auslandsbeziehungen	212
+Stuttg.-Hohenheim	Universitätsbibliothek	100
+Tübingen	Universitätsbibliothek	21
+Ulm	Universitätsbibliothek	289
