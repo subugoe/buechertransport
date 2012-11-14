@@ -24,22 +24,22 @@
  * ************************************************************* */
 
 /**
- * Importer für die (Alt-)Daten
+ * Importer for the (old) buechertransport data
  *
  * @author Dominic Simm <simm@sub.uni-goettingen.de>
- * @package Buechertransport
- * @subpackage Command
+ * @package buechertransport
+ * @subpackage command
  */
 
 /**
- * A dummy Command Controller with a noop command which simply echoes the argument
+ * Command Controller with the import command; reads the (old) CSV-data and puts it into the database / repositories
  */
 class Tx_Buechertransport_Command_ImportCommandController extends Tx_Extbase_MVC_Controller_CommandController {
  
 	/**
 	* Importer command
 	*
-	* Imports all the old data into the database (extbase repositories) 
+	* Imports all the old csv-data into the database (extbase repositories) 
 	* @param string $msg Message to be printed
 	* @return boolean
 	*/

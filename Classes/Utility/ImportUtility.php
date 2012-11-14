@@ -27,7 +27,7 @@
 /**
  * Helper-Class for importing old data
  *
- * @version $Id: ImportUtility.php 1590 2012-11-12 17:38:19Z simm $
+ * @version $Id: ImportUtility.php 0.1.3 2012-11-12 17:38:19Z simm $
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -83,10 +83,10 @@ class Tx_Buechertransport_Utility_ImportUtility {
 			if (($handle = fopen($this->path . $file, "r")) !== FALSE) {
 			    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
 					array_push($csv, array(
-						'city' => $data[0],
-						'libr' => $data[1],
-						'abbr' => $data[2],
-						'dist' => $data[3]
+						'city' => trim($data[0]),
+						'libr' => trim($data[1]),
+						'abbr' => trim($data[2]),
+						'dist' => trim($data[3])
 					));
 			    }
 			    fclose($handle);

@@ -194,16 +194,21 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 						$lib = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_Library');
 						$lib->setName($line['libr']);
 						$lib->setSigel($line['abbr']);
-						// if ($distCentre = $obj->cityRepository->findByName($line['dist']))	{
-						// 	;
-						// }	else 	{
-						// 	$distCentre = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_City');
-						// 	$distCentre->setName($line['dist']);
-						// 	$obj->cityRepository->add($city);
-						// }
-						// $lib->setDistributioncentre($distCentre);
-
 						t3lib_div::devLog('Import-Task: Library attributes set.' , 'buechertransport', -1);
+
+						// if ($distCentre = $obj->cityRepository->findByName($line['dist']))	{
+						if ($distCentre = $cities[$line['dist']])	{
+							;
+						}	else 	{
+							$distCentre = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_City');
+							$distCentre->setName($line['dist']);
+							$obj->cityRepository->add($distCentre);
+							$cities[$line['libr']] = $distCentre;
+							t3lib_div::devLog('Import-Task: Added new distCentre ' . $line['dist'] . ' to CityRepository.' , 'buechertransport', -1);
+						}
+						$lib->addDistributioncentre($distCentre);
+						t3lib_div::devLog('Import-Task: Library attributes set.' , 'buechertransport', -1);
+
 						$obj->libraryRepository->add($lib);
 						t3lib_div::devLog('Import-Task: Added to LibraryRepository.' , 'buechertransport', -1);
 						$city->addLibrary($lib);

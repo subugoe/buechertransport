@@ -1,7 +1,12 @@
-2012-11-13 - 0.1.3 - Dominic Simm <simm@sub.uni-goettingen.de>
+2012-11-14 - 0.1.4 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* added helper class to produce nav-menu
+	* added distCentre to importer
+
+2012-11-14 - 0.1.3 - Dominic Simm <simm@sub.uni-goettingen.de>
 	* added further translations
 	* changed show / list view
 	* added build files
+
 2012-11-13 - 0.1.2 - Dominic Simm <simm@sub.uni-goettingen.de>
 	* added backend translations
 	* added backend icons, header image
