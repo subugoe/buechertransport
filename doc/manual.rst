@@ -21,11 +21,122 @@ TYPOSCRIPT
 ==========
 includeLibs.user_buechertransport = EXT:buechertransport/Resources/Private/Scripts/BuecherTransportScripts.php
 
-### Buechertransport-Navigation ###
-# [PIDinRootline = 1799]
-[globalVar = TSFE:id = 1802]  # PageID Extension
-lib.navNeu = USER
+### Breadcrumb-Navigation: Buechertransport ###
+[globalVar = GP:tx_buechertransport_buechertransport|province > 0]
+  lib.rootline.10.special.range = 0|-1
+  lib.rootline.20 = RECORDS
+  lib.rootline.20 {
+    tables = tx_buechertransport_domain_model_province
+    source.data = GP:tx_buechertransport_buechertransport|province
+    conf {
+      tx_buechertransport_domain_model_province >
+      tx_buechertransport_domain_model_province = TEXT
+      tx_buechertransport_domain_model_province.field = name
+      tx_buechertransport_domain_model_province.typolink {
+        parameter.data = TSFE:id
+        addQueryString = 1
+      }
+    }
+    wrap = <li>|</li>
+  }
+[end]
+
+
+### Haupt-Navigation: Buechertransport ###
+[PIDinRootline = 1799] # RootID vom Buechertransport
+lib.navNeu = COA
 lib.navNeu {
-  userFunc = user_buechertransport->provinces
+  # Setzt obersten Menüpunkt 
+  # Legt Einstiegspunkt fest {$startseitenId}
+  wrap = <div class="submenu">|</div>
+  10 = TEXT
+  10 {
+    typolink {
+      parameter = {$startseitenId}
+      ATagParams = class="submenu-trigger"
+    }
+    wrapItemAndSub = <li>|</li>
+    wrap = <ul id="menu1" class="submenu-l1 expand"><li>|
+  }
+  # Setzt 2. Menüpunkt
+  # Relativ zu PIDinRootline
+  15 = TEXT
+  15 {
+    wrap = <li class="submenu-l1 selected">|</li>
+    data = leveltitle:2
+    value = {page:title}
+    insertData = 1
+    typolink {
+      parameter.data = leveluid:2
+      ATagParams = class="submenu-highlight-parent submenu-trigger"
+    }
+  }
+    
+  # Setzt komplettes Menü ab Position 3.
+  20 = HMENU
+  20 {
+    entryLevel = 2
+    1 < lib.navInterface.1 # Ebene 0
+    2 < lib.leihVerkehr    # Ebene 1
+  }
+  30 = TEXT
+  30 {
+    wrap = </li></ul>
+  }
+}
+[global] 
+
+### Buechertransport-Helper ###
+[PIDinRootline = 1799] # RootID vom Buechertransport
+lib.leihVerkehr = TMENU
+lib.leihVerkehr {
+   wrap = <ul class="submenu-l2 js">|</ul>  
+   # Übermittelt Untermenü-Array ($menuArr) an User-Function
+   # wenn Unterseiten exisitieren!
+   itemArrayProcFunc = user_buechertransport->provinces
+   noBlur = 1
+   expAll = 1
+   NO = 1
+   NO {
+      wrapItemAndSub = <li>|</li>
+      additionalParams.cObject = COA
+      additionalParams.cObject {
+      10 = COA
+      10 {
+         wrap = &tx_buechertransport_buechertransport[province]=|
+         10 = TEXT
+         10.field = id
+      }
+      20 = COA
+      20 {
+         wrap = &tx_buechertransport_buechertransport[action]=|
+         10 = TEXT
+         10.value = show
+       }
+       30 = COA
+       30 {
+          wrap = &tx_buechertransport_buechertransport[controller]=|
+          10 = TEXT
+          10.value = Province
+       }
+       rawUrlEncode = 1
+     } 
+   }
+   CUR = 1
+   CUR {
+     wrapItemAndSub = <li class="submenu-selected">|</li>
+     ATagParams = class="submenu-highlight"
+   }
+   ACT = 1
+   ACT {
+     wrapItemAndSub = <li class="submenu-selected">|</li>
+     ATagParams = class="submenu-highlight"
+   }
+   ACTIFSUB = 1
+   ACTIFSUB {
+     wrapItemAndSub = <li>|</li>
+     ATagParams = class="submenu-l2-actifsub"
+   }
 }
 [global]
+  

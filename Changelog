@@ -1,3 +1,7 @@
+2012-11-18 - 0.1.5 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* added Typoscript to include navigation and breadcrumb
+	* modified userFunction [navigation helper class]
+
 2012-11-14 - 0.1.4 - Dominic Simm <simm@sub.uni-goettingen.de>
 	* added helper class to produce nav-menu
 	* added distCentre to importer
