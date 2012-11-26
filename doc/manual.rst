@@ -42,58 +42,15 @@ includeLibs.user_buechertransport = EXT:buechertransport/Resources/Private/Scrip
 [end]
 
 
-### Haupt-Navigation: Buechertransport ###
-[PIDinRootline = 1799] # RootID vom Buechertransport
-lib.navNeu = COA
-lib.navNeu {
-  # Setzt obersten Menüpunkt 
-  # Legt Einstiegspunkt fest {$startseitenId}
-  wrap = <div class="submenu">|</div>
-  10 = TEXT
-  10 {
-    typolink {
-      parameter = {$startseitenId}
-      ATagParams = class="submenu-trigger"
-    }
-    wrapItemAndSub = <li>|</li>
-    wrap = <ul id="menu1" class="submenu-l1 expand"><li>|
-  }
-  # Setzt 2. Menüpunkt
-  # Relativ zu PIDinRootline
-  15 = TEXT
-  15 {
-    wrap = <li class="submenu-l1 selected">|</li>
-    data = leveltitle:2
-    value = {page:title}
-    insertData = 1
-    typolink {
-      parameter.data = leveluid:2
-      ATagParams = class="submenu-highlight-parent submenu-trigger"
-    }
-  }
-    
-  # Setzt komplettes Menü ab Position 3.
-  20 = HMENU
-  20 {
-    entryLevel = 2
-    1 < lib.navInterface.1 # Ebene 0
-    2 < lib.leihVerkehr    # Ebene 1
-  }
-  30 = TEXT
-  30 {
-    wrap = </li></ul>
-  }
-}
-[global] 
-
-### Buechertransport-Helper ###
-[PIDinRootline = 1799] # RootID vom Buechertransport
+### Buechertransport-Navigation ###
+[PIDinRootline = 1799]
 lib.leihVerkehr = TMENU
 lib.leihVerkehr {
+   
    wrap = <ul class="submenu-l2 js">|</ul>  
    # Übermittelt Untermenü-Array ($menuArr) an User-Function
-   # wenn Unterseiten exisitieren!
-   itemArrayProcFunc = user_buechertransport->provinces
+   # Falls Unterseiten exisitieren!
+   itemArrayProcFunc = user_buechertransport->provinces 
    noBlur = 1
    expAll = 1
    NO = 1
@@ -121,22 +78,62 @@ lib.leihVerkehr {
        }
        rawUrlEncode = 1
      } 
+     useCacheHash = 1
    }
-   CUR = 1
-   CUR {
-     wrapItemAndSub = <li class="submenu-selected">|</li>
-     ATagParams = class="submenu-highlight"
-   }
+#   CUR = 1
+#   CUR {
+#     wrapItemAndSub = <li class="submenu-selected">|</li>
+#     ATagParams = class="submenu-highlight"
+#   }
    ACT = 1
    ACT {
      wrapItemAndSub = <li class="submenu-selected">|</li>
      ATagParams = class="submenu-highlight"
    }
-   ACTIFSUB = 1
-   ACTIFSUB {
-     wrapItemAndSub = <li>|</li>
-     ATagParams = class="submenu-l2-actifsub"
-   }
 }
 [global]
-  
+
+##### Büchertransport #######
+[PIDinRootline = 1799]
+lib.navNeu = COA
+lib.navNeu {
+  # Setzt obersten Menüpunkt 
+  # Legt Einstiegspunkt fest {$startseitenId}
+  wrap = <div class="submenu">|</div>
+  10 = TEXT
+  10 {
+    typolink {
+      parameter = {$startseitenId}
+      ATagParams = class="submenu-trigger"
+    }
+    wrapItemAndSub = <li>|</li>
+    wrap = <ul id="menu1" class="submenu-l1 expand"><li>|
+  }
+
+  # Setzt 2. Menüpunkt
+  # Relativ zu PIDinRootline
+  15 = TEXT
+  15 {
+    wrap = <li class="submenu-l1 selected">|</li>
+    data = leveltitle:2
+    value = {page:title}
+    insertData = 1
+    typolink {
+      parameter.data = leveluid:2
+      ATagParams = class="submenu-highlight-parent submenu-trigger"
+    }
+  }
+    
+  # Setzt komplettes Menü ab Position 3.
+  20 = HMENU
+  20 {
+    entryLevel = 2
+    1 < lib.navInterface.1
+    2 < lib.leihVerkehr    
+  }
+  30 = TEXT
+  30 {
+    wrap = </li></ul>
+  }
+}
+[global]

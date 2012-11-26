@@ -12,7 +12,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		),
 		// non-cacheable actions
 		array(
-			'Province' => 'create, update, delete',
+			'Province' => 'show, create, update, delete',
 			'City' => 'create, update, delete',
 			'Library' => 'create, update, delete',
 			

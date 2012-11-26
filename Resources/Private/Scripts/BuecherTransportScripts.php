@@ -33,6 +33,8 @@ require_once(PATH_tslib . 'class.tslib_pibase.php');
  */
 class user_buechertransport extends tslib_pibase {
 
+	public $pi_checkCHash = TRUE;		
+
 	/**
 	 * Returns a menu-string/array of all provinces 
 	 *
@@ -43,8 +45,11 @@ class user_buechertransport extends tslib_pibase {
 	// public function provinces($content = '', $conf = array()) {
 	public function provinces($menuArr, $conf) {
 
-		global $TSFE;
-		$this->page_id = $GLOBALS['TSFE']->id;
+		// global $TSFE;
+		// $this->page_id = $GLOBALS['TSFE']->id;
+	
+		// Caching abschalten
+		$this->pi_USER_INT_obj = 0;
 
 		// Get the provinces
 		$results = $this->getProvinces();
@@ -56,7 +61,7 @@ class user_buechertransport extends tslib_pibase {
 			foreach ($results as $key => $province) {
 				$menuArr[$key]['title'] = $province['name'];
 				$menuArr[$key]['id'] = $province['uid'];
-				$menuArr[$key]['uid'] = $this->page_id;	
+				$menuArr[$key]['uid'] = $menuArr[0]['pid'];	
 				$menuArr[$key]['ITEM_STATE'] = 'NO';
 				if ($curPage == $province['uid']) {
 					$menuArr[$key]['ITEM_STATE'] = 'ACT';
@@ -67,6 +72,7 @@ class user_buechertransport extends tslib_pibase {
 		// echo count($menuArr) . ' ';
 		// echo "<pre>";
 		// print_r($menuArr);
+		// // print_r($conf);
 		// echo "</pre>";
 		// print_r("<br>");
 

@@ -63,10 +63,12 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 	/**
 	 * action show
 	 *
-	 * @param $province
+	 * @param Tx_Buechertransport_Domain_Model_Province $province
+	 * @dontvalidate $province
 	 * @return void
 	 */
 	public function showAction(Tx_Buechertransport_Domain_Model_Province $province) {
+		t3lib_div::devLog('Show: Successful action call.' , 'buechertransport', -1);
 		$this->view->assign('province', $province);
 	}
 
@@ -145,6 +147,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 			t3lib_div::devLog('Import-Task: Keine CSV-Dateien.' , 'buechertransport', 3);			
 		}
 
+		// Empty SQL-tables
 		if($flushDB)	{
 			$obj->provinceRepository->flush();
 			$obj->cityRepository->flush();
@@ -156,6 +159,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 			}
 		}
 
+		// Add imported data
 		$cities = array(); $libs = array();
 		foreach ($files as $key => $file) {
 			$name = explode('.', $file);
@@ -223,7 +227,6 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 					}
 				// }
 			}
-			// $obj->provinceRepository->update($province);
 			// break;
 		}
 		$obj->persistenceManager->persistAll();
