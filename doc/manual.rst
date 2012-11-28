@@ -11,11 +11,12 @@ Anzeige des Büchertransportdienstes mit seinen Leihverkehrsregionen im Frontend
 Installation 
 ============
 * Bilddateien für Fachknoten (Header- und Title-Bild) über Dateimanager in ``/fileadmin/media/bilder/Seitenkopf/`` hochladen
-* Erstellen der Seiten: Neuen Knoten mit Unterseiten anlegen; im globalen Template die Root::PageID des Knotens zu den Fachknoten hinzufügen und TypoScript von unten einbinden
+* Erstellen der Seiten: Neuen Knoten mit Unterseiten anlegen; im globalen Template die Root::PageID des Knotens zu den Fachknoten hinzufügen und TypoScript [Menüs] von unten einbinden
 * Installation der ``buechertransport`` Extension
 * Hinzufügen des Frontend-Plugins auf der entsprechenden Seite
 * Anlegen des SysFolder für den Büchertransportdienst und Angabe der ID ``plugin.tx_buechertransport.persistence.storagePid = 1800`` (z.B.) in ``Configuration/TypoScript/constants.txt``
 * Extbase-Scheduler einrichten: Büchertransport::Import für Datenimport manuell laufen lassen
+
 
 TYPOSCRIPT
 ==========
@@ -42,54 +43,54 @@ includeLibs.user_buechertransport = EXT:buechertransport/Resources/Private/Scrip
 [end]
 
 
-### Buechertransport-Navigation ###
+### Buechertransport-Subnavigation ###
 [PIDinRootline = 1799]
 lib.leihVerkehr = TMENU
 lib.leihVerkehr {
-   
-   wrap = <ul class="submenu-l2 js">|</ul>  
-   # Übermittelt Untermenü-Array ($menuArr) an User-Function
-   # Falls Unterseiten exisitieren!
-   itemArrayProcFunc = user_buechertransport->provinces 
-   noBlur = 1
-   expAll = 1
-   NO = 1
-   NO {
-      wrapItemAndSub = <li>|</li>
-      additionalParams.cObject = COA
-      additionalParams.cObject {
+  wrap = <ul class="submenu-l2 js">|</ul>  
+  # Übermittelt Untermenü-Array ($menuArr) an User-Function
+  # Falls Unterseiten exisitieren!
+  itemArrayProcFunc = user_buechertransport->provinces 
+  noBlur = 1
+  expAll = 1
+  NO = 1
+  NO {
+    wrapItemAndSub = <li>|</li>
+    additionalParams.cObject = COA
+    additionalParams.cObject {
       10 = COA
       10 {
-         wrap = &tx_buechertransport_buechertransport[province]=|
-         10 = TEXT
-         10.field = id
+        wrap = &tx_buechertransport_buechertransport[province]=|
+        10 = TEXT
+        10.field = id
       }
       20 = COA
       20 {
-         wrap = &tx_buechertransport_buechertransport[action]=|
-         10 = TEXT
-         10.value = show
-       }
-       30 = COA
-       30 {
-          wrap = &tx_buechertransport_buechertransport[controller]=|
-          10 = TEXT
-          10.value = Province
-       }
-       rawUrlEncode = 1
-     } 
-     useCacheHash = 1
-   }
-#   CUR = 1
-#   CUR {
-#     wrapItemAndSub = <li class="submenu-selected">|</li>
-#     ATagParams = class="submenu-highlight"
-#   }
-   ACT = 1
-   ACT {
-     wrapItemAndSub = <li class="submenu-selected">|</li>
-     ATagParams = class="submenu-highlight"
-   }
+        wrap = &tx_buechertransport_buechertransport[action]=|
+        10 = TEXT
+        10.value = show
+      }
+      30 = COA
+      30 {
+        wrap = &tx_buechertransport_buechertransport[controller]=|
+        10 = TEXT
+        10.value = Province
+      }
+      40 = COA
+      40 {
+        wrap = &cHash=|
+        10 = TEXT
+        10.field = cHash
+      }
+      rawUrlEncode = 1
+    } 
+    # useCacheHash = 1
+  }
+  ACT = 1
+  ACT {
+    wrapItemAndSub = <li class="submenu-selected">|</li>
+    ATagParams = class="submenu-highlight"
+  }
 }
 [global]
 

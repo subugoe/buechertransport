@@ -48,8 +48,11 @@ class user_buechertransport extends tslib_pibase {
 		// global $TSFE;
 		// $this->page_id = $GLOBALS['TSFE']->id;
 	
-		// Caching abschalten
-		$this->pi_USER_INT_obj = 0;
+		// Turn off caching
+		// $this->pi_USER_INT_obj = 0;
+
+		// Inheritage of title image => without effect
+		// $menuArr[0]['tx_nkwsubmenu_picture_follow'] = 1;
 
 		// Get the provinces
 		$results = $this->getProvinces();
@@ -66,9 +69,20 @@ class user_buechertransport extends tslib_pibase {
 				if ($curPage == $province['uid']) {
 					$menuArr[$key]['ITEM_STATE'] = 'ACT';
 				}
+				// Calculate cHash
+				$link = $this->pi_linkTP($province['name'], $urlParameters = array('tx_buechertransport_buechertransport[action]' => 'show', 'tx_buechertransport_buechertransport[controller]' => 'Province', 'tx_buechertransport_buechertransport[province]' => $province['uid']), $cache = 1, $altPageId = 0);
+				$urlParameters = explode('&amp;', $link);
+				// Assumes that last param is cHash
+				preg_match('/^cHash=([a-z0-9]+)/', $urlParameters[count($urlParameters)-1], $reg_result);
+				$menuArr[$key]['cHash'] = $reg_result[1];
+				// foreach ($urlParameters as $key => $param) {
+				// 	// echo $param . "<br>";
+				// 	if (preg_match('/^cHash=([a-z0-9]+)/', $param, $reg_result)
+				// 		$menuArr[$key]['cHash'] = $reg_result[1];
+				// }
 			}
 		}
-		
+
 		// echo count($menuArr) . ' ';
 		// echo "<pre>";
 		// print_r($menuArr);
