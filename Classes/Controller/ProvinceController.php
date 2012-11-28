@@ -168,7 +168,8 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 			t3lib_div::devLog('Import-Task: Set successful province name.' , 'buechertransport', -1); //, array($importer::$provinces, $name));
 			$obj->provinceRepository->add($province);
 			
-			$csv = $importer->readCSV($file);
+			// $csv = $importer->readBibsCSV($file);
+			$csv = $importer->readReachableCSV($file);
 			t3lib_div::devLog("Import-Task: CSV-Datei $file gelesen." , 'buechertransport', -1); //, $csv);
 			// break;
 

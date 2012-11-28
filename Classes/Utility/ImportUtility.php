@@ -40,7 +40,7 @@ class Tx_Buechertransport_Utility_ImportUtility {
 			'berlin' => 'Berlin',
 			'brandenburg' => 'Brandenburg',
 			'bremen' => 'Bremen',
-			'bw' => 'Baden-Würtemberg',
+			'bw' => 'Baden-Württemberg',
 			'hamburg' => 'Hamburg',
 			'hessen' => 'Hessen',
 			'mvp' => 'Mecklenburg-Vorpommern',
@@ -65,6 +65,7 @@ class Tx_Buechertransport_Utility_ImportUtility {
 		if ($handle = opendir($this->path)) {
 		    while (false !== ($file = readdir($handle))) {
 		        if ($file != "." && $file != ".." && preg_match('/.csv$/', $file)) {
+		        // if ($file != "." && $file != ".." && preg_match('/_bibs.txt.csv$/', $file)) {
 		            array_push($dir, $file);
 		        }
 		    }
@@ -76,7 +77,7 @@ class Tx_Buechertransport_Utility_ImportUtility {
 	/* Assumes that the CSV-files have four rows
 	 * city; library; signature; distribution-centre
 	 */
-	public function readCSV($file) {
+	public function readReachableCSV($file, $separator = ';') {
 
 		$csv = array();
 		if (file_exists($this->path . $file)) {
@@ -87,6 +88,27 @@ class Tx_Buechertransport_Utility_ImportUtility {
 						'libr' => trim($data[1]),
 						'abbr' => trim($data[2]),
 						'dist' => trim($data[3])
+					));
+			    }
+			    fclose($handle);
+			}		
+		}
+		return $csv;
+	}
+
+	/* Assumes that the CSV-files have three rows
+	 * city; library; signature;
+	 */
+	public function readBibsCSV($file, $separator = ';') {
+
+		$csv = array();
+		if (file_exists($this->path . $file)) {
+			if (($handle = fopen($this->path . $file, "r")) !== FALSE) {
+			    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+					array_push($csv, array(
+						'city' => trim($data[0]),
+						'libr' => trim($data[1]),
+						'abbr' => trim($data[2]),
 					));
 			    }
 			    fclose($handle);
