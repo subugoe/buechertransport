@@ -40,8 +40,10 @@ class Tx_Buechertransport_Domain_Repository_ProvinceRepository extends Tx_Extbas
 	 */
 	public function flush() {
 		$query = $this->createQuery();
-		$query->statement('TRUNCATE TABLE `tx_buechertransport_domain_model_province`');
+		$query->statement('TRUNCATE TABLE `tx_buechertransport_province_city_mm`');
 		$query->getQuerySettings()->setReturnRawQueryResult(true);
+		$query->execute();
+		$query->statement('TRUNCATE TABLE `tx_buechertransport_domain_model_province`');
 		return $query->execute();
 	}
 

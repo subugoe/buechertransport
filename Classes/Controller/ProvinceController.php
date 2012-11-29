@@ -140,6 +140,8 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 		
 		$importer = t3lib_div::makeInstance('Tx_Buechertransport_Utility_ImportUtility');
 		t3lib_div::devLog('Import-Task: Successful action call.' , 'buechertransport', -1);
+		
+		// Get CSV-files 
 		$files = $importer->getCSVFiles();
 		if(($num = count($files)) > 0)	{			
 			t3lib_div::devLog("Import-Task: $num CSV-Dateien gefunden." , 'buechertransport', -1); //, $files);
@@ -152,85 +154,82 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 			$obj->provinceRepository->flush();
 			$obj->cityRepository->flush();
 			$obj->libraryRepository->flush();
-			if(count($obj->provinceRepository->getRemovedObjects()) > 0)	{
-				t3lib_div::devLog('Import-Task: Truncating successful.' , 'buechertransport', -1);
-			}	else 	{
-				t3lib_div::devLog('Import-Task: Truncating failed.' , 'buechertransport', 3);
-			}
+			t3lib_div::devLog('Import-Task: Truncated tables.' , 'buechertransport', 0);
 		}
 
-		// Add imported data
+		// Import data into the database 
 		$cities = array(); $libs = array();
 		foreach ($files as $key => $file) {
-			$name = explode('.', $file);
-			$province = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_Province');
-			$province->setName($importer::$provinces[$name[0]]);
-			t3lib_div::devLog('Import-Task: Set successful province name.' , 'buechertransport', -1); //, array($importer::$provinces, $name));
-			$obj->provinceRepository->add($province);
-			
-			// $csv = $importer->readBibsCSV($file);
-			$csv = $importer->readReachableCSV($file);
-			t3lib_div::devLog("Import-Task: CSV-Datei $file gelesen." , 'buechertransport', -1); //, $csv);
-			// break;
+
+			$bib = ''; $csv = ''; 
+			if(preg_match('/_bibs.txt.csv$/', $file))	{
+				$bib = $importer->readBibsCSV($file);
+				// t3lib_div::devLog("Import-Task: CSV-Datei $file gelesen." , 'buechertransport', -1, $bib);
+
+				$name = explode('_', $file);	// get province name
+				$province = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_Province');
+				$province->setName($importer::$provinces[$name[0]]);
+				$obj->provinceRepository->add($province);
+			}	else {
+				$csv = $importer->readReachableCSV($file);
+				// t3lib_div::devLog("Import-Task: CSV-Datei $file gelesen." , 'buechertransport', -1, $csv);
+			}
 
 			// Split data into several classes (province, city, library)
-			foreach ($csv as $ln => $line) {
+			// Add Cities and Libraries
+			foreach ($bib as $ln => $line) {
 				$city = NULL;
 				if (!in_array($line['city'], array_keys($cities)))	{
-				// if (count($city = $obj->cityRepository->findByName($line['city'])) == 0)	{					
-					// array_push($cities, $line['city']);
 					$city = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_City');
 					$city->setName($line['city']);
 					$obj->cityRepository->add($city);
 					$province->addCity($city);
-					t3lib_div::devLog('Import-Task: City ' . $line['city'] . ' added.' , 'buechertransport', -1);
+					// t3lib_div::devLog('Import-Task: City ' . $line['city'] . ' added.' , 'buechertransport', -1);
 					$cities[$line['city']] = $city;
 				}	else 	{
-					// $city = $obj->cityRepository->findByName($line['city']);	// very slow
 					$city = $cities[$line['city']];
-					$province->addCity($city);
-					t3lib_div::devLog('Import-Task: City ' . $line['city'] . ' found in Repository.' , 'buechertransport', -1);
 				}
 
-				// if ($city instanceof Tx_Buechertransport_Domain_Model_City)	{
-					if (!in_array($line['libr'], array_keys($libs)))	{
-					// if (count($lib = $obj->libraryRepository->findByName($line['libr'])) == 0)	{
-					// 	array_push($libs, $line['libr']);
-						$lib = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_Library');
-						$lib->setName($line['libr']);
-						$lib->setSigel($line['abbr']);
-						t3lib_div::devLog('Import-Task: Library attributes set.' , 'buechertransport', -1);
+				if (!in_array($line['abbr'], array_keys($libs)))	{
+					$lib = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_Library');
+					$lib->setName($line['libr']);
+					$lib->setSigel($line['abbr']);
+					// t3lib_div::devLog('Import-Task: Library attributes set.' , 'buechertransport', -1);
 
-						// if ($distCentre = $obj->cityRepository->findByName($line['dist']))	{
-						if ($distCentre = $cities[$line['dist']])	{
-							;
-						}	else 	{
-							$distCentre = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_City');
-							$distCentre->setName($line['dist']);
-							$obj->cityRepository->add($distCentre);
-							$cities[$line['libr']] = $distCentre;
-							t3lib_div::devLog('Import-Task: Added new distCentre ' . $line['dist'] . ' to CityRepository.' , 'buechertransport', -1);
-						}
-						$lib->addDistributioncentre($distCentre);
-						t3lib_div::devLog('Import-Task: Library attributes set.' , 'buechertransport', -1);
-
-						$obj->libraryRepository->add($lib);
-						t3lib_div::devLog('Import-Task: Added to LibraryRepository.' , 'buechertransport', -1);
-						$city->addLibrary($lib);
-						t3lib_div::devLog('Import-Task: Library attached to city.' , 'buechertransport', -1);
-						// $obj->cityRepository->update($city);
-						// t3lib_div::devLog('Import-Task: Library ' . $line['libr'] . ' added.' , 'buechertransport', -1);
-						$libs[$line['libr']] = $lib;
-					}	else 	{
-						$lib = $libs[$line['libr']];
-						$city->addLibrary($lib);
-						t3lib_div::devLog('Import-Task: Library attached to city.' , 'buechertransport', -1);
-					}
-				// }
+					$obj->libraryRepository->add($lib);
+					// t3lib_div::devLog('Import-Task: Added to LibraryRepository.' , 'buechertransport', -1);
+					$city->addLibrary($lib);
+					// t3lib_div::devLog('Import-Task: Library attached to city.' , 'buechertransport', -1);
+					$libs[$line['abbr']] = $lib;
+				}
 			}
-			// break;
+
+			// Add distribution centres
+			foreach ($csv as $ln => $line) {
+				// Does the library exist
+				if (in_array($line['abbr'], array_keys($libs)))	{
+					// Does the city exist
+					if (!in_array($line['dist'], array_keys($cities)))	{
+						$distCentre = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_City');
+						$distCentre->setName($line['dist']);
+						$obj->cityRepository->add($distCentre);
+						$cities[$line['dist']] = $distCentre;
+						// t3lib_div::devLog('Import-Task: Added new distCentre ' . $line['dist'] . ' to CityRepository.' , 'buechertransport', -1);
+					}	else 	{
+						$distCentre = $cities[$line['dist']];
+						// t3lib_div::devLog('Import-Task: Found distCentre ' . $line['dist'] . ' in CityRepository.' , 'buechertransport', -1);
+					}
+					if ( ($lib = $libs[$line['abbr']]) != NULL)	{;
+						// t3lib_div::devLog('Import-Task: '. $line['abbr'] .' : Get Library object.' , 'buechertransport', -1, array($lib));
+						$lib->addDistributioncentre($distCentre);
+						// t3lib_div::devLog('Import-Task: DistCentre '. $line['abbr'] .' added to Library.' , 'buechertransport', -1);
+					}
+				}
+			}
 		}
+		// Store everything to database
 		$obj->persistenceManager->persistAll();
+		t3lib_div::devLog("Import-Task: Provinces, Cities and Libraries stored." , 'buechertransport', -1, array($cities, $libs));
 
 		// $obj->flashMessageContainer->add('Your data has been successfully imported.');
 		return true;

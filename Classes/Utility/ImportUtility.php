@@ -65,20 +65,24 @@ class Tx_Buechertransport_Utility_ImportUtility {
 		if ($handle = opendir($this->path)) {
 		    while (false !== ($file = readdir($handle))) {
 		        if ($file != "." && $file != ".." && preg_match('/.csv$/', $file)) {
-		        // if ($file != "." && $file != ".." && preg_match('/_bibs.txt.csv$/', $file)) {
-		            array_push($dir, $file);
+			        if (preg_match('/_bibs.txt.csv$/', $file)) {
+			            array_unshift($dir, $file);
+					}	else 	{
+			            array_push($dir, $file);
+					}
 		        }
 		    }
 		    closedir($handle);
-		}		
+		}
 		return $dir;
 	}
 	
-	/* Assumes that the CSV-files have four rows
-	 * city; library; signature; distribution-centre
+	/* All libraries in the province
+	 * Assumes that the CSV-files have three rows
+	 * city; library; signature;
 	 */
-	public function readReachableCSV($file, $separator = ';') {
-
+	public function readBibsCSV($file) {
+		$pattern = '/([A-Za-zÄäÖöÜü]+)([0-9]+)|([0-9]+)([A-Za-zÄäÖöÜü]+)/';
 		$csv = array();
 		if (file_exists($this->path . $file)) {
 			if (($handle = fopen($this->path . $file, "r")) !== FALSE) {
@@ -86,8 +90,7 @@ class Tx_Buechertransport_Utility_ImportUtility {
 					array_push($csv, array(
 						'city' => trim($data[0]),
 						'libr' => trim($data[1]),
-						'abbr' => trim($data[2]),
-						'dist' => trim($data[3])
+						'abbr' => preg_replace($pattern, '$1 $2', trim($data[2])),
 					));
 			    }
 			    fclose($handle);
@@ -96,11 +99,12 @@ class Tx_Buechertransport_Utility_ImportUtility {
 		return $csv;
 	}
 
-	/* Assumes that the CSV-files have three rows
-	 * city; library; signature;
+	/* All libraries, that are reachable from the province
+	 * Assumes that the CSV-files have four rows
+	 * city; library; signature; distribution-centre
 	 */
-	public function readBibsCSV($file, $separator = ';') {
-
+	public function readReachableCSV($file) {
+		$pattern = '/([A-Za-zÄäÖöÜü]+)([0-9]+)|([0-9]+)([A-Za-zÄäÖöÜü]+)/';
 		$csv = array();
 		if (file_exists($this->path . $file)) {
 			if (($handle = fopen($this->path . $file, "r")) !== FALSE) {
@@ -108,7 +112,8 @@ class Tx_Buechertransport_Utility_ImportUtility {
 					array_push($csv, array(
 						'city' => trim($data[0]),
 						'libr' => trim($data[1]),
-						'abbr' => trim($data[2]),
+						'abbr' => preg_replace($pattern, '$1 $2', trim($data[2])),
+						'dist' => trim($data[3])
 					));
 			    }
 			    fclose($handle);

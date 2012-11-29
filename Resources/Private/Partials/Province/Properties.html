@@ -1,3 +1,4 @@
+{namespace helper=Tx_Buechertransport_ViewHelpers}
 <table class="tx-buechertransport" >
 	<tr>
 		<td>
@@ -32,7 +33,7 @@
 				<tr>
 					<td><f:link.action action="show" arguments="{city : city}"> {city.name}</f:link.action></td>
 					<td><f:link.action action="show" arguments="{library : library}"> {library.name}</f:link.action></td>
-					<td>{library.sigel}</td>
+					<td><f:link.external uri="http://dispatch.opac.d-nb.de/DB=1.2/SET=1/TTL=1/CMD?ACT=SRCHA&IKT=8521&SRT=LST_os&TRM={helper:url(param:library.sigel)}" target="_blank">{library.sigel}</f:link.external></td>
 				</tr>
 				</f:for>
 			</f:for>

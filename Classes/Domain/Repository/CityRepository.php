@@ -40,8 +40,10 @@ class Tx_Buechertransport_Domain_Repository_CityRepository extends Tx_Extbase_Pe
 	 */
 	public function flush() {
 		$query = $this->createQuery();
-		$query->statement('TRUNCATE TABLE `tx_buechertransport_domain_model_city`');
+		$query->statement('TRUNCATE TABLE `tx_buechertransport_city_library_mm`');
 		$query->getQuerySettings()->setReturnRawQueryResult(true);
+		$query->execute();
+		$query->statement('TRUNCATE TABLE `tx_buechertransport_domain_model_city`');
 		return $query->execute();
 	}
 

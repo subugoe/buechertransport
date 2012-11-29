@@ -50,7 +50,7 @@ class Tx_Buechertransport_Command_ImportCommandController extends Tx_Extbase_MVC
 		$this->setupFramework();
 		// Control the configuration [CONFIGURATION_TYPE_FRAMEWORK, CONFIGURATION_TYPE_SETTINGS, CONFIGURATION_TYPE_FULL_TYPOSCRIPT]
 		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-		t3lib_div::devLog('Import-Task: Got ExtbaseFrameworkConfiguration.' , 'buechertransport', -1, $extbaseFrameworkConfiguration);
+		t3lib_div::devLog('Import-Task: Got ExtbaseFrameworkConfiguration.' , 'buechertransport', -1); //, $extbaseFrameworkConfiguration);
 
 		$this->initRepositories();
 		t3lib_div::devLog('Import-Task: Repositories initialized.' , 'buechertransport', -1);
