@@ -57,6 +57,13 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	protected $cities;
 
 	/**
+	 * Related Cities
+	 *
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City>
+	 */
+	protected $reachables;
+
+	/**
 	 * __construct
 	 *
 	 * @return void
@@ -78,6 +85,8 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 		 * You may modify the constructor of this class instead
 		 */
 		$this->cities = new Tx_Extbase_Persistence_ObjectStorage();
+		
+		$this->reachables = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
 	/**
@@ -155,6 +164,45 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	 */
 	public function setCities(Tx_Extbase_Persistence_ObjectStorage $cities) {
 		$this->cities = $cities;
+	}
+
+	/**
+	 * Adds a City
+	 *
+	 * @param Tx_Buechertransport_Domain_Model_City $reachable
+	 * @return void
+	 */
+	public function addReachable(Tx_Buechertransport_Domain_Model_City $reachable) {
+		$this->reachables->attach($reachable);
+	}
+
+	/**
+	 * Removes a City
+	 *
+	 * @param Tx_Buechertransport_Domain_Model_City $reachableToRemove The City to be removed
+	 * @return void
+	 */
+	public function removeReachable(Tx_Buechertransport_Domain_Model_City $reachableToRemove) {
+		$this->reachables->detach($reachableToRemove);
+	}
+
+	/**
+	 * Returns the reachables
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $reachables
+	 */
+	public function getReachables() {
+		return $this->reachables;
+	}
+
+	/**
+	 * Sets the reachables
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $reachables
+	 * @return void
+	 */
+	public function setReachables(Tx_Extbase_Persistence_ObjectStorage $reachables) {
+		$this->reachables = $reachables;
 	}
 
 }

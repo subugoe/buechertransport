@@ -52,7 +52,7 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	/**
 	 * The related DistributionCentre (City)
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City>
+	 * @var Tx_Buechertransport_Domain_Model_City
 	 */
 	protected $distributioncentre;
 
@@ -110,38 +110,13 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	 * @return void
 	 */
 	protected function initStorageObjects() {
-		/**
-		 * Do not modify this method!
-		 * It will be rewritten on each save in the extension builder
-		 * You may modify the constructor of this class instead
-		 */
-		$this->distributioncentre = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-
-	/**
-	 * Adds a City
-	 *
-	 * @param Tx_Buechertransport_Domain_Model_City $distributioncentre
-	 * @return void
-	 */
-	public function addDistributioncentre(Tx_Buechertransport_Domain_Model_City $distributioncentre) {
-		$this->distributioncentre->attach($distributioncentre);
-	}
-
-	/**
-	 * Removes a City
-	 *
-	 * @param Tx_Buechertransport_Domain_Model_City $distributioncentreToRemove The City to be removed
-	 * @return void
-	 */
-	public function removeDistributioncentre(Tx_Buechertransport_Domain_Model_City $distributioncentreToRemove) {
-		$this->distributioncentre->detach($distributioncentreToRemove);
+		// empty
 	}
 
 	/**
 	 * Returns the distributioncentre
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $distributioncentre
+	 * @return Tx_Buechertransport_Domain_Model_City $distributioncentre
 	 */
 	public function getDistributioncentre() {
 		return $this->distributioncentre;
@@ -150,10 +125,10 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	/**
 	 * Sets the distributioncentre
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $distributioncentre
+	 * @param Tx_Buechertransport_Domain_Model_City $distributioncentre
 	 * @return void
 	 */
-	public function setDistributioncentre(Tx_Extbase_Persistence_ObjectStorage $distributioncentre) {
+	public function setDistributioncentre(Tx_Buechertransport_Domain_Model_City $distributioncentre) {
 		$this->distributioncentre = $distributioncentre;
 	}
 

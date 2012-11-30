@@ -26,6 +26,7 @@
 					<th><f:translate key="tx_buechertransport_domain_model_city.name" /></th>
 					<th><f:translate key="tx_buechertransport_domain_model_library.name" /></th>
 					<th><f:translate key="tx_buechertransport_domain_model_library.sigel" /></th>
+					<th><f:translate key="tx_buechertransport_domain_model_library.distributioncentre" /></th>
 				</tr>
 
 			<f:for each="{province.cities}" as="city">
@@ -34,6 +35,7 @@
 					<td><f:link.action action="show" arguments="{city : city}"> {city.name}</f:link.action></td>
 					<td><f:link.action action="show" arguments="{library : library}"> {library.name}</f:link.action></td>
 					<td><f:link.external uri="http://dispatch.opac.d-nb.de/DB=1.2/SET=1/TTL=1/CMD?ACT=SRCHA&IKT=8521&SRT=LST_os&TRM={helper:url(param:library.sigel)}" target="_blank">{library.sigel}</f:link.external></td>
+					<td>{library.distributioncentre.name}</td>
 				</tr>
 				</f:for>
 			</f:for>

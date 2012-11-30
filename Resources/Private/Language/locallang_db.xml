@@ -10,7 +10,8 @@
 			<label index="tx_buechertransport_domain_model_province">Province</label>
 			<label index="tx_buechertransport_domain_model_province.name">Name</label>
 			<label index="tx_buechertransport_domain_model_province.description">Description</label>
-			<label index="tx_buechertransport_domain_model_province.cities">Reachable Cities</label>
+			<label index="tx_buechertransport_domain_model_province.cities">Cities</label>
+			<label index="tx_buechertransport_domain_model_province.reachables">Reachables</label>
 
 			<label index="tx_buechertransport_domain_model_city">City</label>
 			<label index="tx_buechertransport_domain_model_city.name">Name</label>

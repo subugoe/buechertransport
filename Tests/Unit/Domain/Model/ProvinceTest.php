@@ -142,5 +142,63 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 		);
 	}
 	
+	/**
+	 * @test
+	 */
+	public function getReachablesReturnsInitialValueForObjectStorageContainingTx_Buechertransport_Domain_Model_City() { 
+		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->assertEquals(
+			$newObjectStorage,
+			$this->fixture->getReachables()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setReachablesForObjectStorageContainingTx_Buechertransport_Domain_Model_CitySetsReachables() { 
+		$reachable = new Tx_Buechertransport_Domain_Model_City();
+		$objectStorageHoldingExactlyOneReachables = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneReachables->attach($reachable);
+		$this->fixture->setReachables($objectStorageHoldingExactlyOneReachables);
+
+		$this->assertSame(
+			$objectStorageHoldingExactlyOneReachables,
+			$this->fixture->getReachables()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function addReachableToObjectStorageHoldingReachables() {
+		$reachable = new Tx_Buechertransport_Domain_Model_City();
+		$objectStorageHoldingExactlyOneReachable = new Tx_Extbase_Persistence_ObjectStorage();
+		$objectStorageHoldingExactlyOneReachable->attach($reachable);
+		$this->fixture->addReachable($reachable);
+
+		$this->assertEquals(
+			$objectStorageHoldingExactlyOneReachable,
+			$this->fixture->getReachables()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeReachableFromObjectStorageHoldingReachables() {
+		$reachable = new Tx_Buechertransport_Domain_Model_City();
+		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$localObjectStorage->attach($reachable);
+		$localObjectStorage->detach($reachable);
+		$this->fixture->addReachable($reachable);
+		$this->fixture->removeReachable($reachable);
+
+		$this->assertEquals(
+			$localObjectStorage,
+			$this->fixture->getReachables()
+		);
+	}
+	
 }
 ?>

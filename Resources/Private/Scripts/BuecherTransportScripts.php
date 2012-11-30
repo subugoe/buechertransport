@@ -116,7 +116,31 @@ class user_buechertransport extends tslib_pibase {
 	 *
 	 * @return array
 	 */
-	protected function getProvinces() {
+	public function getProvince($uid) {
+
+		$query = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'uid, name',
+			'tx_buechertransport_domain_model_province',
+			' deleted=0 AND hidden=0 AND uid=' .  intval($uid),
+			'',
+			'name ASC',
+			''
+		);
+
+		if ($row = mysql_fetch_assoc($query)) {
+			return $row;
+		}	else 	{
+			return NULL;
+		}
+
+	}
+
+	/**
+	 * Returns an array of all provinces
+	 *
+	 * @return array
+	 */
+	public function getProvinces() {
 
 		$query = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'uid, name',

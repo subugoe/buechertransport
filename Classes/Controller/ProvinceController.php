@@ -68,7 +68,39 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 	 * @return void
 	 */
 	public function showAction(Tx_Buechertransport_Domain_Model_Province $province) {
+		$this->view->assign('province', $province);
+	}
+
+	/**
+	 * action showReachables
+	 *
+	 * @param Tx_Buechertransport_Domain_Model_Province $province
+	 * @dontvalidate $province
+	 * @return void
+	 */
+	public function showReachablesAction(Tx_Buechertransport_Domain_Model_Province $province) {
+		$this->view->assign('province', $province);
+	}
+
+	/**
+	 * action showMap
+	 *
+	 * @param Tx_Buechertransport_Domain_Model_Province $province
+	 * @dontvalidate $province
+	 * @return void
+	 */
+	public function showMapAction(Tx_Buechertransport_Domain_Model_Province $province) {
 		t3lib_div::devLog('Show: Successful action call.' , 'buechertransport', -1);
+
+		  // include JQUERY
+		  // checks if t3jquery is loaded
+		if (t3lib_extMgm::isLoaded('t3jquery')) {
+		  require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
+		  $path_to_lib = tx_t3jquery::getJqJSBE();
+		  $script_to_lib = tx_t3jquery::getJqJSBE(true);
+		}
+
+
 		$this->view->assign('province', $province);
 	}
 
@@ -158,10 +190,10 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 		}
 
 		// Import data into the database 
-		$cities = array(); $libs = array();
+		$provinces = array(); $cities = array(); $libs = array();
 		foreach ($files as $key => $file) {
 
-			$bib = ''; $csv = ''; 
+			$bib = ''; $csv = ''; $province = NULL;
 			if(preg_match('/_bibs.txt.csv$/', $file))	{
 				$bib = $importer->readBibsCSV($file);
 				// t3lib_div::devLog("Import-Task: CSV-Datei $file gelesen." , 'buechertransport', -1, $bib);
@@ -170,7 +202,10 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 				$province = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_Province');
 				$province->setName($importer::$provinces[$name[0]]);
 				$obj->provinceRepository->add($province);
+				$provinces[$importer::$provinces[$name[0]]] = $province;
 			}	else {
+				$name = explode('.', $file);	// get province name
+				$province = $provinces[$importer::$provinces[$name[0]]];
 				$csv = $importer->readReachableCSV($file);
 				// t3lib_div::devLog("Import-Task: CSV-Datei $file gelesen." , 'buechertransport', -1, $csv);
 			}
@@ -204,11 +239,24 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 				}
 			}
 
-			// Add distribution centres
+			// Add reachable cities and  distribution centres
 			foreach ($csv as $ln => $line) {
-				// Does the library exist
+				
+				// Add reachable cities
+				if ($province != NULL)	{
+					t3lib_div::devLog('Import-Task: Province object exists.' , 'buechertransport', -1);
+					// Does the city exist					
+					if (in_array($line['city'], array_keys($cities)))	{
+						t3lib_div::devLog('Import-Task: City object found.' , 'buechertransport', -1);
+						$city = $cities[$line['city']];
+						$province->addReachable($city);
+						t3lib_div::devLog('Import-Task: City ' . $line['city'] . ' added to Reachables.' , 'buechertransport', -1);
+					}
+				}
+				
+				// Does the library exist				
 				if (in_array($line['abbr'], array_keys($libs)))	{
-					// Does the city exist
+					// Does the distribition city exist
 					if (!in_array($line['dist'], array_keys($cities)))	{
 						$distCentre = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Model_City');
 						$distCentre->setName($line['dist']);
@@ -221,7 +269,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 					}
 					if ( ($lib = $libs[$line['abbr']]) != NULL)	{;
 						// t3lib_div::devLog('Import-Task: '. $line['abbr'] .' : Get Library object.' , 'buechertransport', -1, array($lib));
-						$lib->addDistributioncentre($distCentre);
+						$lib->setDistributioncentre($distCentre);
 						// t3lib_div::devLog('Import-Task: DistCentre '. $line['abbr'] .' added to Library.' , 'buechertransport', -1);
 					}
 				}

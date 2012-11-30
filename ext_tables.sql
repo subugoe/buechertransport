@@ -9,6 +9,7 @@ CREATE TABLE tx_buechertransport_domain_model_province (
 	name varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
 	cities int(11) unsigned DEFAULT '0' NOT NULL,
+	reachables int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -47,6 +48,9 @@ CREATE TABLE tx_buechertransport_domain_model_city (
 
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
+
+	province int(11) unsigned DEFAULT '0' NOT NULL,
+	province1 int(11) unsigned DEFAULT '0' NOT NULL,
 
 	name varchar(255) DEFAULT '' NOT NULL,
 	libraries int(11) unsigned DEFAULT '0' NOT NULL,
@@ -89,9 +93,11 @@ CREATE TABLE tx_buechertransport_domain_model_library (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
+	city int(11) unsigned DEFAULT '0' NOT NULL,
+
 	name varchar(255) DEFAULT '' NOT NULL,
 	sigel varchar(255) DEFAULT '' NOT NULL,
-	distributioncentre int(11) unsigned DEFAULT '0' NOT NULL,
+	distributioncentre int(11) unsigned DEFAULT '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -124,40 +130,21 @@ CREATE TABLE tx_buechertransport_domain_model_library (
 );
 
 #
-# Table structure for table 'tx_buechertransport_province_city_mm'
+# Table structure for table 'tx_buechertransport_domain_model_city'
 #
-CREATE TABLE tx_buechertransport_province_city_mm (
-	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
-	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+CREATE TABLE tx_buechertransport_domain_model_city (
 
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
+	province  int(11) unsigned DEFAULT '0' NOT NULL,
+
+	province1  int(11) unsigned DEFAULT '0' NOT NULL,
+
 );
 
 #
-# Table structure for table 'tx_buechertransport_city_library_mm'
+# Table structure for table 'tx_buechertransport_domain_model_library'
 #
-CREATE TABLE tx_buechertransport_city_library_mm (
-	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
-	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+CREATE TABLE tx_buechertransport_domain_model_library (
 
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
-);
+	city  int(11) unsigned DEFAULT '0' NOT NULL,
 
-#
-# Table structure for table 'tx_buechertransport_library_city_mm'
-#
-CREATE TABLE tx_buechertransport_library_city_mm (
-	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
-	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
 );

@@ -11,6 +11,7 @@
 			<label index="name.description">Name of the Province</label>
 			<label index="description.description">Description of the Province</label>
 			<label index="cities.description">Related Cities</label>
+			<label index="reachables.description">Related Cities</label>
 		</languageKey>
 	</data>
 </T3locallang>

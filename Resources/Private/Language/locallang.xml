@@ -10,6 +10,8 @@
 			<label index="tx_buechertransport_domain_model_province.name">Name of the Province</label>
 			<label index="tx_buechertransport_domain_model_province.description">Description of the Province</label>
 			<label index="tx_buechertransport_domain_model_province.cities">Related Cities</label>
+			<label index="tx_buechertransport_domain_model_province.reachables">Reachable Cities</label>
+			<label index="tx_buechertransport_domain_model_province.maps">Transport ways</label>
 			<label index="tx_buechertransport_domain_model_city">The City of the libraries</label>
 			<label index="tx_buechertransport_domain_model_city.name">Name of the City</label>
 			<label index="tx_buechertransport_domain_model_city.libraries">Related Libraries</label>
@@ -18,21 +20,22 @@
 			<label index="tx_buechertransport_domain_model_library.sigel">Abbreviation of the Library</label>
 			<label index="tx_buechertransport_domain_model_library.distributioncentre">The related DistributionCentre (City)</label>
 			<label index="tx_buechertransport_template_backToList">Back to list</label>
-
 		</languageKey>
 
 		<languageKey index="de" type="array">
 			<label index="tx_buechertransport_domain_model_province">Die Leihverkehrsregion</label>
 			<label index="tx_buechertransport_domain_model_province.name">Leihverkehrsregion</label>
 			<label index="tx_buechertransport_domain_model_province.description">Beschreibung</label>
-			<label index="tx_buechertransport_domain_model_province.cities">Erreichbare Bibliotheken</label>
-			<label index="tx_buechertransport_domain_model_city">The City of the libraries</label>
-			<label index="tx_buechertransport_domain_model_city.name">Name der Stadt</label>
+			<label index="tx_buechertransport_domain_model_province.cities">Angeschlossene Bibliotheken</label>
+			<label index="tx_buechertransport_domain_model_province.reachables">Deutschlandweit erreichbare Bibliotheken</label>
+			<label index="tx_buechertransport_domain_model_province.maps">Transportwege</label>
+			<label index="tx_buechertransport_domain_model_city">Die Stadt der Bibliotheken</label>
+			<label index="tx_buechertransport_domain_model_city.name">Stadt</label>
 			<label index="tx_buechertransport_domain_model_city.libraries">Zugehörige Bibliotheken</label>
 			<label index="tx_buechertransport_domain_model_library">Die Bibliothek</label>
-			<label index="tx_buechertransport_domain_model_library.name">Name der Bibliothek</label>
-			<label index="tx_buechertransport_domain_model_library.sigel">Sigel der Bibliothek</label>
-			<label index="tx_buechertransport_domain_model_library.distributioncentre">Das Verteilerzentrum (Stadt)</label>
+			<label index="tx_buechertransport_domain_model_library.name">Bibliothek</label>
+			<label index="tx_buechertransport_domain_model_library.sigel">Sigel</label>
+			<label index="tx_buechertransport_domain_model_library.distributioncentre">Verteilerzentrum</label>
 			<label index="tx_buechertransport_template_backToList">Zurück zur Übersicht</label>
 		</languageKey>
 

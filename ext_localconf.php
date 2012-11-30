@@ -7,7 +7,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		$_EXTKEY,
 		'Buechertransport',
 		array(
-			'Province' => 'list, show',
+			'Province' => 'list, show, showReachables, showMap',
 			
 		),
 		// non-cacheable actions
@@ -31,5 +31,9 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 
 // Extbase-Scheduler for importing existing data
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Tx_Buechertransport_Command_ImportCommandController';
+
+// Hooks
+$TYPO3_CONF_VARS['EXTCONF']['nkwsubmenu']['extendTOC'][$_EXTKEY] = 'EXT:'.$_EXTKEY.'/Classes/Utility/SidebarUtility.php:Tx_Buechertransport_Utility_SidebarUtility->hookFunc';
+// $TYPO3_CONF_VARS['EXTCONF']['nkwsubmenu']['addImages'][$_EXTKEY] = 'EXT:'.$_EXTKEY.'/pi1/class.tx_patenschaften_pi1.php:tx_patenschaften_pi1->hookPicFunc';
 
 ?>
