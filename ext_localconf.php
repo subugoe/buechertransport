@@ -36,4 +36,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = '
 $TYPO3_CONF_VARS['EXTCONF']['nkwsubmenu']['extendTOC'][$_EXTKEY] = 'EXT:'.$_EXTKEY.'/Classes/Utility/SidebarUtility.php:Tx_Buechertransport_Utility_SidebarUtility->hookFunc';
 // $TYPO3_CONF_VARS['EXTCONF']['nkwsubmenu']['addImages'][$_EXTKEY] = 'EXT:'.$_EXTKEY.'/pi1/class.tx_patenschaften_pi1.php:tx_patenschaften_pi1->hookPicFunc';
 
+// EID
+$TYPO3_CONF_VARS['FE']['eID_include'][$_EXTKEY] = 'EXT:' . $_EXTKEY . '/Resources/Public/eId/maps.php';
+
 ?>

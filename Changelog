@@ -1,3 +1,18 @@
+2012-12-04 - 0.1.9 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* added jQuery-TableSorter
+	
+2012-11-30 - 0.1.8 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* changed importer to import only all cities and libraries of a region added DNB-'Sigel' link
+	* implemented sidebar hook; corrected importer to add also reachable cities; changed persistence model from m:n to 1:n
+
+2012-11-28 - 0.1.7 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* added province dependence-files
+	* added cHash to navigation links
+
+2012-11-26 - 0.1.6 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* repaired navigation links [added correct pid]
+	* [Bug] caching problem
+
 2012-11-18 - 0.1.5 - Dominic Simm <simm@sub.uni-goettingen.de>
 	* added Typoscript to include navigation and breadcrumb
 	* modified userFunction [navigation helper class]

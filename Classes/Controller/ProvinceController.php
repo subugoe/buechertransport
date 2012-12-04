@@ -95,9 +95,9 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 		  // include JQUERY
 		  // checks if t3jquery is loaded
 		if (t3lib_extMgm::isLoaded('t3jquery')) {
-		  require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
-		  $path_to_lib = tx_t3jquery::getJqJSBE();
-		  $script_to_lib = tx_t3jquery::getJqJSBE(true);
+			require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
+			$path_to_lib = tx_t3jquery::getJqJSBE();
+			$script_to_lib = tx_t3jquery::getJqJSBE(true);
 		}
 
 
