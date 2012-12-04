@@ -12,7 +12,15 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-
+<link href="{f:uri.resource(path:'CSS/style.css')}" rel="stylesheet" />
+<script type="text/javascript" src="{f:uri.resource(path:'Javascript/jquery.tablesorter.min.js')}"></script>
+<script type="text/javascript">
+$(document).ready(function() 
+    { 
+        $("#libraries").tablesorter(); 
+    } 
+); 
+</script>
 <!-- <h2><f:translate key="tx_buechertransport_domain_model_province.name" />: {province.name}</h2> -->
 
 <f:flashMessages />

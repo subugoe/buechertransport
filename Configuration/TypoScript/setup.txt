@@ -17,7 +17,7 @@ plugin.tx_buechertransport._CSS_DEFAULT_STYLE (
 
 	.tx-buechertransport table {
 		border-collapse:separate;
-		border-spacing:10px;
+		border-spacing:2px;
 	}
 
 	.tx-buechertransport table th {

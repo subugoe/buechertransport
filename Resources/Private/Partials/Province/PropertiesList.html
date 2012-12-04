@@ -4,22 +4,25 @@
 <f:format.html>{province.description}</f:format.html>
 
 <h3><f:translate key="tx_buechertransport_domain_model_province.cities" /></h3>
-<table class="tx-buechertransport" >
-	<tr>
+<table id="libraries" class="tx-buechertransport tablesorter" >
+	<thead><tr>
 		<th><f:translate key="tx_buechertransport_domain_model_city.name" /></th>
 		<th><f:translate key="tx_buechertransport_domain_model_library.name" /></th>
 		<th><f:translate key="tx_buechertransport_domain_model_library.sigel" /></th>
 		<th><f:translate key="tx_buechertransport_domain_model_library.distributioncentre" /></th>
-	</tr>
-
+	</tr></thead>
+	<tbody>
 <f:for each="{province.cities}" as="city">
-	<f:for each="{city.libraries}" as="library">
-	<tr>
-		<td><f:link.action action="show" arguments="{city : city}"> {city.name}</f:link.action></td>
-		<td><f:link.action action="show" arguments="{library : library}"> {library.name}</f:link.action></td>
+	<f:for each="{city.libraries}" as="library" iteration="Iterator">
+	<tr class="{f:if(condition: Iterator.isEven, then: 'even')}">
+<!-- 	<td><f:link.action action="show" arguments="{city : city}"> {city.name}</f:link.action></td>
+		<td><f:link.action action="show" arguments="{library : library}"> {library.name}</f:link.action></td>-->
+ 		<td>{city.name}</td>
+		<td>{library.name}</td>
 		<td><f:link.external uri="http://dispatch.opac.d-nb.de/DB=1.2/SET=1/TTL=1/CMD?ACT=SRCHA&IKT=8521&SRT=LST_os&TRM={helper:url(param:library.sigel)}" target="_blank">{library.sigel}</f:link.external></td>
 		<td>{library.distributioncentre.name}</td>
 	</tr>
 	</f:for>
 </f:for>
+	</tbody>
 </table>
