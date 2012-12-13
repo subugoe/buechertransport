@@ -18,14 +18,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <link href="{f:uri.resource(path:'CSS/maps.css')}" rel="stylesheet" />
 
-<script type="text/javascript" src="{f:uri.resource(path:'Javascript/geoxml3_kmlStr.js')}"></script>
-<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=de"></script> -->
 <script type="text/javascript" src="http://www.google.com/jsapi"></script> 
 <script type="text/javascript" src="{f:uri.resource(path:'Javascript/maps.js')}"></script>
 
 <!-- Initialize --> 
 <script type="text/javascript"> 
-// globals
+// Globals
 var map = null;
 var infoWindow = null;
 var geoXml = null;
@@ -38,203 +36,146 @@ var gpolygons = [];
 
 // Fusion Table data ID
 var FT_TableID = 420419;
-var CountryName = "Germany"; // "United States of America";
+var CountryName = "Germany";
+var ProvinceName = "{province.name}";
 
 google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
-
-function  createSidebar() {
-	// set the query using the parameters
-	var FT_Query2 = "SELECT 'name_0', 'name_1', 'kml_4326' FROM " + FT_TableID + " WHERE name_0 = '" + CountryName + "' ORDER by 'name_1'";
-	document.getElementById("FTquery2").innerHTML = FT_Query2; 
-  	var queryText = encodeURIComponent(FT_Query2);
-  	// alert("createSidebar query="+FT_Query2);
-  	var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
-  
-	//set the callback function
-	query.send(getData);
-}
-// Set a callback to run when the Google Visualization API is loaded.
-google.setOnLoadCallback(createSidebar);
 </script>
-
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
-var FTresponse = null;
-
-myLatLng = new google.maps.LatLng(37.422104808,-122.0838851);
 // these set the initial center, zoom and maptype for the map 
 // if it is not specified in the query string
-var lat = 37.422104808;
-var lng = -122.0838851;
-var zoom = 18;
+var lat = 51.5383520;
+var lng = 9.92968990;
+myLatLng = new google.maps.LatLng(lat, lng);
+
 var maptype = google.maps.MapTypeId.ROADMAP;
-
-// If there are any parameters at eh end of the URL, they will be in  location.search
-// looking something like  "?marker=3"
-
-// skip the first character, we are not interested in the "?"
-var query = location.search.substring(1);
-
-// split the rest at each "&" character to give a list of  "argname=value"  pairs
-var pairs = query.split("&");
-for (var i=0; i<pairs.length; i++) {
-	// break each pair at the first "=" to obtain the argname and value
-	var pos = pairs[i].indexOf("=");
-	var argname = pairs[i].substring(0,pos).toLowerCase();
-	var value = pairs[i].substring(pos+1);
-	if (argname == "country") {CountryName = unescape(value);}
-	value = pairs[i].substring(pos+1).toLowerCase();
-
-	// process each possible argname  -  use unescape() if theres any chance of spaces
-	if (argname == "geocode") {geocodeTheCountry = (value != "false");}
-	if (argname == "id") {id = unescape(value);}
-	if (argname == "filename") {filename = unescape(value);}
-	if (argname == "marker") {index = parseFloat(value);}
-	if (argname == "lat") {lat = parseFloat(value);}
-	if (argname == "lng") {lng = parseFloat(value);}
-	if (argname == "zoom") {
-		zoom = parseInt(value);
-		myGeoXml3Zoom = false;
-	}
-	if (argname == "type") {
-	// from the v3 documentation 8/24/2010
-	// HYBRID This map type displays a transparent layer of major streets on satellite images. 
-	// ROADMAP This map type displays a normal street map. 
-	// SATELLITE This map type displays satellite images. 
-	// TERRAIN This map type displays maps with physical features such as terrain and vegetation. 
-		if (value == "m") {maptype = google.maps.MapTypeId.ROADMAP;}
-		if (value == "k") {maptype = google.maps.MapTypeId.SATELLITE;}
-		if (value == "h") {maptype = google.maps.MapTypeId.HYBRID;}
-		if (value == "t") {maptype = google.maps.MapTypeId.TERRAIN;}
-	}
-}
-if (!isNaN(lat) && !isNaN(lng)) {
-	myLatLng = new google.maps.LatLng(lat, lng);
-}
-infoWindow = new google.maps.InfoWindow();
-
-//define callback function, this is called when the results are returned
-function getData(response) {
-if (!response) {
-  alert('no response');
-  return;
-}
-if (response.isError()) {
-  alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-  return;
-} 
-  FTresponse = response;
-  //for more information on the response object, see the documentation
-  //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
-  numRows = response.getDataTable().getNumberOfRows();
-  numCols = response.getDataTable().getNumberOfColumns();
-  
-  //concatenate the results into a string, you can build a table here
-  fusiontabledata = "<table><tr>";
-//  for(i = 0; i < numCols; i++) {
-    fusiontabledata += "<th>" + response.getDataTable().getColumnLabel(1) + "</th>";
-//   }
-  fusiontabledata += "</tr><tr>";
-  
-  for(i = 0; i < numRows; i++) {
-//    for(j = 0; j < numCols; j++) {
-   /*
-   var kml =  response.getDataTable().getValue(i,2);
-   geoXml.parseKmlString("<Placemark>"+kml+"</Placemark>");
-   */    
-      fusiontabledata += "<td><a href='javascript:myFTclick("+i+")'>"+response.getDataTable().getValue(i, 1) + "</a></td>";
-//    }
-    fusiontabledata += "</tr><tr>";
-  }
-  fusiontabledata += "</table>"  
-  //display the results on the page
-  document.getElementById('sidebar').innerHTML = fusiontabledata;
-}
-
-function infoWindowContent(name, description) {
-   content =   '<div class="FT_infowindow"><h3>' + name + 
-               '</h3><div>' + description + '</div></div>';
-   return content;
-}
-function myFTclick(row) {
-   var description = FTresponse.getDataTable().getValue(row,0);
-   var name = FTresponse.getDataTable().getValue(row,1);
-   if (!gpolygons[row]) {
-     var kml =  FTresponse.getDataTable().getValue(row,2);
-     // create a geoXml3 parser for the click handlers
-     var geoXml = new geoXML3.parser({
-                    map: map,
-		    zoom: false,
-                    infoWindow: infoWindow,
-                    singleInfoWindow: true
-                });
-
-     geoXml.parseKmlString("<Placemark>"+kml+"</Placemark>");
-     geoXml.docs[0].gpolygons[0].setMap(null);
-     gpolygons[row] = geoXml.docs[0].gpolygons[0].bounds.getCenter();
-   }
-   var position = gpolygons[row];
-/*
-   var lat =  FTresponse.getDataTable().getValue(row,4);
-   var lng =  FTresponse.getDataTable().getValue(row,5);
-   var position = new google.maps.LatLng(lat, lng);
-*/
-   // Set up and create the infowindow
-   if (!infoWindow) infoWindow = new google.maps.InfoWindow({});
-   infoWindow.setOptions({
-      content: infoWindowContent(name, description),
-      pixelOffset: new google.maps.Size(0, 2),
-      position: position
-    });
-    // Infowindow-opening event handler
-    infoWindow.open(map);
-}
+var zoom = 17;
 
 function initialize() {
-  myOptions = {
-               zoom: zoom,
-               center: myLatLng,
-               // zoom: 5,
-               // center: myLatlng,
-               mapTypeId: maptype
-              };
+	// Set map configuration
+	myOptions = {
+		'zoom': zoom,
+		'center': myLatLng,
+		'mapTypeId': maptype
+	};
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-  map = new google.maps.Map(document.getElementById("map_canvas"),
-                            myOptions);
-
-  var geocoder = new google.maps.Geocoder();
-    if (geocoder && geocodeTheCountry) {
-      geocoder.geocode( { 'address': CountryName+" Country"}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-          map.setCenter(results[0].geometry.location);
-          map.fitBounds(results[0].geometry.viewport);
-          } else {
-            alert("No results found");
-          }
-        } else {
-          alert("Geocode was not successful for the following reason: " + status);
-        }
-      });
+	// Render Province centered map
+	var provinceCoord = '';
+	var geocoder = new google.maps.Geocoder();
+	if (geocoder && geocodeTheCountry) {
+		// geocoder.geocode( { 'address': CountryName + " Country" }, function(results, status) {
+		geocoder.geocode( { 'address': ProvinceName + " State" }, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+					map.setCenter(results[0].geometry.location);
+					map.fitBounds(results[0].geometry.viewport);
+					provinceCoord = results[0].geometry.location;
+				} else {
+					alert("No results found");
+				}
+			} else {
+				alert("Geocode was not successful for the following reason: " + status);
+			}
+		});
     }
 
-var FT_Query = "SELECT 'kml_4326' FROM "+FT_TableID+" WHERE 'name_0' = '"+CountryName+"';";
-var FT_Options = { suppressInfoWindows: true, query:FT_Query };
-// alert("FTquery="+FT_Query);
-document.getElementById("FTquery").innerHTML = FT_Query; 
-  layer = new google.maps.FusionTablesLayer(FT_TableID, FT_Options);
-  layer.setMap(map);
+	// Render FusionTableLayer for Highlighting
+	// Simple map presentation
+	// var FT_Query = "SELECT 'kml_4326' FROM " + FT_TableID + " WHERE 'name_0' = '" + CountryName + "' AND 'name_1' = '" + ProvinceName + "';";
+	// var FT_Options = { suppressInfoWindows: true, query: FT_Query};
+	// layer = new google.maps.FusionTablesLayer(FT_TableID, FT_Options);
+	// layer.setMap(map);
 
-  google.maps.event.addListener(layer, "click", function(event) {
-    infoWindow.close();
-// alert("click:"+event.latLng+","+event.infoWindowHtml);
-    infoWindow.setContent(infoWindowContent(event.row.name_1.value,event.row.name_0.value));
-    infoWindow.setPosition(event.latLng);
-    infoWindow.open(map);
-  });
+	// Map presentation with highlighted polygons
+	layer = new google.maps.FusionTablesLayer({
+	  suppressInfoWindows: true, 
+	  query: {
+	    'select': 'kml_4326',
+	    'from': FT_TableID //'19lLpgsKdJRHL2O4fNmJ406ri9JtpIIk8a-AchA'
+	  },
+	  styles: [{
+	    polygonOptions: {
+	      'fillColor': "#FFFFFF",
+	      'fillOpacity': .01,
+	      'strokeColor': "#666666",
+	      'strokeOpacity': .01,
+	      'strokeWeight': 0
+	    }
+	  }, {
+	    where: "'name_1' = '" + ProvinceName + "'",
+	    polygonOptions: {
+	      'fillColor': "#93A8CF", 
+	      'fillOpacity': 0.1,
+	      'strokeColor': "#1A3771",
+	      'strokeOpacity': 0.5,
+	      'strokeWeight': 5,
+	    }
+	  }]
+	});
+	layer.setMap(map);
+
+	// Necessary arrays
+	city = []; latlng = []; line = []; lineCoordinates = []; marker = [];
+	var lineSymbol = {
+		// 'path': google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+		'path': 'M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z',
+		'fillColor': '#333',
+		'fillOpacity': 0.8,
+		'scale': 1,
+ 		'rotation': 90,
+	};
+	var polyOptions = {
+		strokeColor: '#333333',
+		strokeOpacity: 1.0,
+		strokeWeight: 2
+	}
+<f:for each="{province.reachables}" as="city" iteration="Iterator">
+	// Set marker
+	city[{Iterator.index}] = "{city.name}";
+	geocoder.geocode( { 'address': city[{Iterator.index}] + " City" }, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+				latlng[{Iterator.index}] = results[0].geometry.location;
+				marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': city[{Iterator.index}] + {Iterator.index} });
+
+				// Draw line
+				lineCoordinates[{Iterator.index}] = [
+			  		provinceCoord,
+			  		latlng[{Iterator.index}]
+				];
+				line[{Iterator.index}] = new google.maps.Polyline({
+					'path': lineCoordinates[{Iterator.index}],
+					'icons': [{
+						'icon': lineSymbol,
+						'offset': '100%'
+					}],
+					'map': map
+				});
+				line[{Iterator.index}].setOptions(polyOptions);
+			}
+		}
+	});
+</f:for>
+
+ //   // Set up and create the infowindow
+	// if (!infoWindow) infoWindow = new google.maps.InfoWindow({});
+	// infoWindow.setOptions({
+	// 	content: infoWindowContent(name, description),
+	// 	pixelOffset: new google.maps.Size(0, 2),
+	// 	position: position
+	// });
+	// // Infowindow-opening event handler
+	// infoWindow.open(map);
 
 
-	// createSidebar();
+	// google.maps.event.addListener(layer, "click", function(event) {
+	// 	infoWindow.close();
+	// 	infoWindow.setContent(infoWindowContent(event.row.name_1.value, event.row.name_0.value));
+	// 	infoWindow.setPosition(event.latLng);
+	// 	infoWindow.open(map);
+	// });
 }
 </script>
 
@@ -250,12 +191,12 @@ document.getElementById("FTquery").innerHTML = FT_Query;
 	<tr><td>
     	<div id="map_canvas"></div>
 	</td></tr>
-	<tr><td>
+<!-- 	<tr><td>
 		<div id="sidebar" style="width:300px;height:600px; overflow:auto"></div>
 	</td></tr>
 	<tr><td><div id="FTquery"></div></td></tr>
 	<tr><td><div id="FTquery2"></div></td></tr>
-</table>
+ --></table>
 
 
 
