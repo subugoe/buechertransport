@@ -1,3 +1,11 @@
+2012-12-13 - 0.2.0 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* Added GeocodeCommandController for scheduled geocode-addition
+	* Added field 'geocode' to city-model
+	* Changed reachable cities relation in Province-model to m:n
+	* Changed GMaps-template for automated direction inclusion
+	* [Feature] Added FusionTable Support for Province Borders
+	* Added Google Maps support for presentation of 'Transportwege'
+
 2012-12-04 - 0.1.9 - Dominic Simm <simm@sub.uni-goettingen.de>
 	* added jQuery-TableSorter
 	
