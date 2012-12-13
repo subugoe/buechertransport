@@ -124,11 +124,6 @@ $TCA['tx_buechertransport_domain_model_city'] = array(
 				'type' => 'passthrough',
 			),
 		),
-		'province1' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
 	),
 );
 

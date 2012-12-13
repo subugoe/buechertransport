@@ -162,7 +162,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 	}
 
 	/**
-	 * action import
+	 * Scheduler action: import
 	 *
 	 * @param boolean $flushDB Shall the database be flushed or updated?
 	 * @param Tx_Buechertransport_Command_ImportCommandController $obj
@@ -281,6 +281,85 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 
 		// $obj->flashMessageContainer->add('Your data has been successfully imported.');
 		return true;
+	}
+
+
+	/**
+	 * Scheduler action: geocode
+	 *
+	 * @param Tx_Buechertransport_Command_ImportCommandController $obj
+	 * @return boolean
+	 */
+	public function geocodeAction(Tx_Buechertransport_Command_ImportCommandController &$obj) {
+		$success = FALSE;
+		$addresses = array();
+		$datamap = array();
+		$nkwlib = new tx_nkwlib();
+
+		// Get all entries with empty geocodecache-field
+		$rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			"uid, name",
+			"tx_buechertransport_domain_model_city",
+			"geocode = '' " . t3lib_Befunc::BEenableFields('tx_buechertransport_domain_model_city') . t3lib_Befunc::deleteClause('tx_buechertransport_domain_model_city'), "", "uid ASC", ""
+		);
+
+		$tce = t3lib_div::makeInstance('t3lib_TCEmain');
+		t3lib_div::loadTCA('buechertransport');
+		if (!empty($rows)) {
+			foreach ($rows as $row) {
+				// Get latlng
+				$address = $row["name"];
+				if (empty($addresses[$address]))	{
+					$geo = $nkwlib->geocodeAddress($address);
+					if ($geo["status"] == "OK")	{
+						$lat = $geo["results"][0]["geometry"]["location"]["lat"];
+						$lng = $geo["results"][0]["geometry"]["location"]["lng"];
+						$coords = $lat . ',' . $lng;
+						$datamap['tx_buechertransport_domain_model_city'][$row['uid']] = array(
+							'geocode' => $coords
+						);
+						$addresses[$address] = $coords;
+						$success = TRUE;
+					}	else	{
+						$datamap['tx_buechertransport_domain_model_city'][$row['uid']] = array(
+							'geocode' => ''
+						);
+					}
+				}	else	{
+					$datamap['tx_buechertransport_domain_model_city'][$row['uid']] = array(
+							'geocode' => $addresses[$address]
+					);
+					$success = TRUE;
+				}
+			}
+#			$nkwlib->dprint($datamap);
+
+/*			if (!empty($rows)) {
+				$tce = t3lib_div::makeInstance('t3lib_TCEmain');
+				foreach ($rows as $field) {
+					$datamap['tt_address'][$field['uid']] = array(
+						'tx_dsschedgmaps_geocodecache' => 'undefined',
+					);
+				}
+			}
+			$tce->start($datamap,array());
+			$tce->process_datamap();
+			$success = TRUE;
+*/
+
+			$tce->stripslashes_values = 0;
+			$tce->start($datamap, array());
+			$tce->process_datamap();
+			
+			if(count($tce->errorLog) != 0)	{
+				$nkwlib->dprint($tce->errorLog);	
+			}
+			unset($datamap);
+		}	else	{	// Error: Log the task
+			t3lib_div::devLog('[scheduler: Google Maps: Address cache]: Fail. Database already up-to-date.', 'dsschedgmaps', 3);
+		}
+
+		return $success;
 	}
 
 }

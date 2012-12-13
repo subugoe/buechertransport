@@ -138,7 +138,7 @@ function initialize() {
 		if (status == google.maps.GeocoderStatus.OK) {
 			if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
 				latlng[{Iterator.index}] = results[0].geometry.location;
-				marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': city[{Iterator.index}] + {Iterator.index} });
+				marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': city[{Iterator.index}]});
 
 				// Draw line
 				lineCoordinates[{Iterator.index}] = [
@@ -159,7 +159,7 @@ function initialize() {
 	});
 </f:for>
 
- //   // Set up and create the infowindow
+	// // Set up and create the infowindow
 	// if (!infoWindow) infoWindow = new google.maps.InfoWindow({});
 	// infoWindow.setOptions({
 	// 	content: infoWindowContent(name, description),
@@ -168,18 +168,10 @@ function initialize() {
 	// });
 	// // Infowindow-opening event handler
 	// infoWindow.open(map);
-
-
-	// google.maps.event.addListener(layer, "click", function(event) {
-	// 	infoWindow.close();
-	// 	infoWindow.setContent(infoWindowContent(event.row.name_1.value, event.row.name_0.value));
-	// 	infoWindow.setPosition(event.latLng);
-	// 	infoWindow.open(map);
-	// });
 }
 </script>
 
-<h2>Kartenansicht: <f:translate key="tx_buechertransport_domain_model_province.maps" /></h2>
+<h2>Kartenansicht: <f:translate key="tx_buechertransport_domain_model_province.maps" /> von {province.name}</h2>
 
 <f:flashMessages />
 
@@ -191,12 +183,7 @@ function initialize() {
 	<tr><td>
     	<div id="map_canvas"></div>
 	</td></tr>
-<!-- 	<tr><td>
-		<div id="sidebar" style="width:300px;height:600px; overflow:auto"></div>
-	</td></tr>
-	<tr><td><div id="FTquery"></div></td></tr>
-	<tr><td><div id="FTquery2"></div></td></tr>
- --></table>
+</table>
 
 
 
