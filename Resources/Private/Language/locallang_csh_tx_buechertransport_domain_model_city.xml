@@ -9,6 +9,7 @@
 	<languageKey index="default" type="array">
 	   
 			<label index="name.description">Name of the City</label>
+			<label index="geocode.description">Geocode of the City</label>
 			<label index="libraries.description">Related Libraries</label>
 		</languageKey>
 	</data>

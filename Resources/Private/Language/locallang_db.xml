@@ -16,6 +16,7 @@
 			<label index="tx_buechertransport_domain_model_city">City</label>
 			<label index="tx_buechertransport_domain_model_city.name">Name</label>
 			<label index="tx_buechertransport_domain_model_city.libraries">Libraries</label>
+			<label index="tx_buechertransport_domain_model_city.geocode">Geocode</label>
 
 			<label index="tx_buechertransport_domain_model_library">Library</label>
 			<label index="tx_buechertransport_domain_model_library.name">Name</label>
@@ -34,6 +35,7 @@
 			<label index="tx_buechertransport_domain_model_city">Stadt</label>
 			<label index="tx_buechertransport_domain_model_city.name">Name</label>
 			<label index="tx_buechertransport_domain_model_city.libraries">Bibliotheken</label>
+			<label index="tx_buechertransport_domain_model_city.geocode">Koordinaten</label>
 
 			<label index="tx_buechertransport_domain_model_library">Bibliothek</label>
 			<label index="tx_buechertransport_domain_model_library.name">Name</label>

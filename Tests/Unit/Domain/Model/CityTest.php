@@ -70,6 +70,23 @@ class Tx_Buechertransport_Domain_Model_CityTest extends Tx_Extbase_Tests_Unit_Ba
 	/**
 	 * @test
 	 */
+	public function getGeocodeReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setGeocodeForStringSetsGeocode() { 
+		$this->fixture->setGeocode('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getGeocode()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
 	public function getLibrariesReturnsInitialValueForObjectStorageContainingTx_Buechertransport_Domain_Model_Library() { 
 		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->assertEquals(

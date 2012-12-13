@@ -37,29 +37,30 @@
 class Tx_Buechertransport_Command_GeocodeCommandController extends Tx_Extbase_MVC_Controller_CommandController {
  
 	/**
-	* Importer command
+	* Geocoder command
 	*
-	* Imports all the old csv-data into the database (extbase repositories) 
+	* Adds to all cities their geo-coordinates
+	* @param string $msg Message to be printed
 	* @return boolean
 	*/
-	public function GeocodeCommand() {
+	public function GeocodeCommand($msg) {
 		t3lib_div::devLog('Geocode-Task: Successful scheduler call.' , 'buechertransport', -1);
 		$success = false;
 
 		$this->setupFramework();
 		// Control the configuration [CONFIGURATION_TYPE_FRAMEWORK, CONFIGURATION_TYPE_SETTINGS, CONFIGURATION_TYPE_FULL_TYPOSCRIPT]
 		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-		t3lib_div::devLog('Import-Task: Got ExtbaseFrameworkConfiguration.' , 'buechertransport', -1); //, $extbaseFrameworkConfiguration);
+		t3lib_div::devLog('Geocode-Task: Got ExtbaseFrameworkConfiguration.' , 'buechertransport', -1); //, $extbaseFrameworkConfiguration);
 
 		$this->initRepositories();
-		t3lib_div::devLog('Import-Task: Repositories initialized.' , 'buechertransport', -1);
+		t3lib_div::devLog('Geocode-Task: Repositories initialized.' , 'buechertransport', -1);
 
 		$provinceObj = t3lib_div::makeInstance('Tx_Buechertransport_Controller_ProvinceController');
-		t3lib_div::devLog('Import-Task: ProvinceController instantiated.' , 'buechertransport', -1);
+		t3lib_div::devLog('Geocode-Task: ProvinceController instantiated.' , 'buechertransport', -1);
 
 		$success = $provinceObj->geocodeAction($this);
 		if (!$success) {
-			t3lib_div::devLog('Buechertransport::Import-Task: Problem during execution. Stopping.' , 'buechertransport', 3);
+			t3lib_div::devLog('Buechertransport::Geocode-Task: Problem during execution. Stopping.' , 'buechertransport', 3);
 		}
 
 		return $success;
@@ -67,7 +68,7 @@ class Tx_Buechertransport_Command_GeocodeCommandController extends Tx_Extbase_MV
 
 	protected function setupFramework()     {
 		$this->configurationManager = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager');
-		t3lib_div::devLog('Import-Task: Configuration-Manager instantiated.' , 'buechertransport', -1);
+		t3lib_div::devLog('Geocode-Task: Configuration-Manager instantiated.' , 'buechertransport', -1);
 		$configuration = array(
 			'extensionName' => 'buechertransport',
 			'pluginName' => 'Scheduler',

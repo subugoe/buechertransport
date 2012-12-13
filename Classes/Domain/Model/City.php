@@ -49,6 +49,13 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	protected $libraries;
 
 	/**
+	 * Geocode of the City
+	 *
+	 * @var string
+	 */
+	protected $geocode;
+
+	/**
 	 * __construct
 	 *
 	 * @return void
@@ -128,6 +135,25 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	 */
 	public function setLibraries(Tx_Extbase_Persistence_ObjectStorage $libraries) {
 		$this->libraries = $libraries;
+	}
+
+	/**
+	 * Returns the geocode
+	 *
+	 * @return string $geocode
+	 */
+	public function getGeocode() {
+		return $this->geocode;
+	}
+
+	/**
+	 * Sets the geocode
+	 *
+	 * @param string $geocode
+	 * @return void
+	 */
+	public function setGeocode($geocode) {
+		$this->geocode = $geocode;
 	}
 
 }

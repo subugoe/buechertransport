@@ -15,6 +15,7 @@
 			<label index="tx_buechertransport_domain_model_city">The City of the libraries</label>
 			<label index="tx_buechertransport_domain_model_city.name">Name of the City</label>
 			<label index="tx_buechertransport_domain_model_city.libraries">Related Libraries</label>
+			<label index="tx_buechertransport_domain_model_city.geocode">Geocode</label>
 			<label index="tx_buechertransport_domain_model_library">The Library</label>
 			<label index="tx_buechertransport_domain_model_library.name">Name of the Library</label>
 			<label index="tx_buechertransport_domain_model_library.sigel">Abbreviation of the Library</label>
@@ -32,6 +33,7 @@
 			<label index="tx_buechertransport_domain_model_city">Die Stadt der Bibliotheken</label>
 			<label index="tx_buechertransport_domain_model_city.name">Stadt</label>
 			<label index="tx_buechertransport_domain_model_city.libraries">Zugehörige Bibliotheken</label>
+			<label index="tx_buechertransport_domain_model_city.geocode">Koordinaten</label>
 			<label index="tx_buechertransport_domain_model_library">Die Bibliothek</label>
 			<label index="tx_buechertransport_domain_model_library.name">Bibliothek</label>
 			<label index="tx_buechertransport_domain_model_library.sigel">Sigel</label>
