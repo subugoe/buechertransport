@@ -1,3 +1,6 @@
+2012-12-14 - 0.2.1 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* Added fields 'lat','lng' to city-model
+
 2012-12-13 - 0.2.0 - Dominic Simm <simm@sub.uni-goettingen.de>
 	* Added GeocodeCommandController for scheduled geocode-addition
 	* Added field 'geocode' to city-model

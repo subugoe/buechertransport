@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_buechertransport_domain_model_city'] = array(
 	'ctrl' => $TCA['tx_buechertransport_domain_model_city']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, geocode, libraries',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, geocode, lat, lng, libraries',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, geocode, libraries,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, geocode, lat, lng, libraries,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -105,6 +105,24 @@ $TCA['tx_buechertransport_domain_model_city'] = array(
 		'geocode' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xml:tx_buechertransport_domain_model_city.geocode',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'lat' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xml:tx_buechertransport_domain_model_city.lat',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'lng' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xml:tx_buechertransport_domain_model_city.lng',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,

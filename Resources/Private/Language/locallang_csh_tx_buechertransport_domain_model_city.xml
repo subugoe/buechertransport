@@ -10,6 +10,8 @@
 	   
 			<label index="name.description">Name of the City</label>
 			<label index="geocode.description">Geocode of the City</label>
+			<label index="lat.description">Latitude of the City</label>
+			<label index="lng.description">Longitude of the City</label>
 			<label index="libraries.description">Related Libraries</label>
 		</languageKey>
 	</data>

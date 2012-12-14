@@ -15,6 +15,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <fed:script src="typo3conf/ext/buechertransport/Resources/Public/Javascript/maps.js" /> -->
 
 <f:section name="main">
+{namespace helper=Tx_Buechertransport_ViewHelpers}
 
 <link href="{f:uri.resource(path:'CSS/maps.css')}" rel="stylesheet" />
 
@@ -62,16 +63,13 @@ function initialize() {
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
 	// Render Province centered map
-	var provinceCoord = '';
 	var geocoder = new google.maps.Geocoder();
 	if (geocoder && geocodeTheCountry) {
-		// geocoder.geocode( { 'address': CountryName + " Country" }, function(results, status) {
-		geocoder.geocode( { 'address': ProvinceName + " State" }, function(results, status) {
+		geocoder.geocode( { 'address': CountryName + " Country" }, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
 					map.setCenter(results[0].geometry.location);
 					map.fitBounds(results[0].geometry.viewport);
-					provinceCoord = results[0].geometry.location;
 				} else {
 					alert("No results found");
 				}
@@ -131,15 +129,18 @@ function initialize() {
 		strokeOpacity: 1.0,
 		strokeWeight: 2
 	}
-<f:for each="{province.reachables}" as="city" iteration="Iterator">
+
+	var provinceCoord = '';
+	if (geocoder && geocodeTheCountry) {
+		geocoder.geocode( { 'address': ProvinceName + " State" }, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+					provinceCoord = results[0].geometry.location;
+<f:for each="{helper:outliers(reachables:province.reachables, province:province)}" as="city" iteration="Iterator">
 	// Set marker
 	city[{Iterator.index}] = "{city.name}";
-	// geocoder.geocode( { 'address': city[{Iterator.index}] + " City" }, function(results, status) {
-	// 	if (status == google.maps.GeocoderStatus.OK) {
-	// 		if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-	latlng[{Iterator.index}] = "{city.geocode}";
+	latlng[{Iterator.index}] = new google.maps.LatLng("{city.lat}", "{city.lng}");
 	marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': city[{Iterator.index}]});
-
 	// Draw line
 	lineCoordinates[{Iterator.index}] = [
   		provinceCoord,
@@ -154,10 +155,15 @@ function initialize() {
 		'map': map
 	});
 	line[{Iterator.index}].setOptions(polyOptions);
-	// 		}
-	// 	}
-	// });
 </f:for>
+				} else {
+					alert("No results found");
+				}
+			} else {
+				alert("Geocode was not successful for the following reason: " + status);
+			}
+		});
+    }
 
 	// // Set up and create the infowindow
 	// if (!infoWindow) infoWindow = new google.maps.InfoWindow({});

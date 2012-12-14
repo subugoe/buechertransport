@@ -87,6 +87,40 @@ class Tx_Buechertransport_Domain_Model_CityTest extends Tx_Extbase_Tests_Unit_Ba
 	/**
 	 * @test
 	 */
+	public function getLatReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setLatForStringSetsLat() { 
+		$this->fixture->setLat('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getLat()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getLngReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setLngForStringSetsLng() { 
+		$this->fixture->setLng('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getLng()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
 	public function getLibrariesReturnsInitialValueForObjectStorageContainingTx_Buechertransport_Domain_Model_Library() { 
 		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->assertEquals(
