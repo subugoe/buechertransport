@@ -285,12 +285,12 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 
 
 	/**
-	 * Scheduler action: geocode
+	 * Scheduler action: geocodeCities
 	 *
 	 * @param Tx_Buechertransport_Command_GeocodeCommandController $obj
 	 * @return boolean
 	 */
-	public function geocodeAction(Tx_Buechertransport_Command_GeocodeCommandController &$obj) {
+	public function geocodeCityAction(Tx_Buechertransport_Command_GeocodeCommandController &$obj) {
 		t3lib_div::devLog('Geocode-Task: Success action call' , 'buechertransport', -1);
 
 		$success = FALSE;
@@ -334,6 +334,81 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 				// Already geocoded
 				}	else	{
 					$datamap['tx_buechertransport_domain_model_city'][$row['uid']] = array(
+						'geocode' => $addresses[$address]['geocode'],
+						'lat' => $addresses[$address]['lat'],
+						'lng' => $addresses[$address]['lng']
+					);
+					$success = TRUE;
+				}
+			}
+			t3lib_div::devLog('Geocode-Task: All geocodes retrieved.' , 'buechertransport', -1);
+
+			// Insert transmit datamap into database 
+			$tce->stripslashes_values = 0;
+			$tce->start($datamap, array());
+			$tce->process_datamap();
+			t3lib_div::devLog('Geocode-Task: Datamap process -> Database update successful.' , 'buechertransport', -1);
+			
+			if(count($tce->errorLog) != 0)	{
+				$nkwlib->dprint($tce->errorLog);	
+			}
+			unset($datamap);
+		}	else	{	// Error: Log the task
+			t3lib_div::devLog('Geocode-Task:: Fail. Database already up-to-date.', 'buechertransport', 3);
+		}
+		return $success;
+	}
+
+	/**
+	 * Scheduler action: geocodeProvinces
+	 *
+	 * @param Tx_Buechertransport_Command_GeocodeCommandController $obj
+	 * @return boolean
+	 */
+	public function geocodeProvinceAction(Tx_Buechertransport_Command_GeocodeCommandController &$obj) {
+		t3lib_div::devLog('Geocode-Task: Success action call' , 'buechertransport', -1);
+
+		$success = FALSE;
+		$addresses = array();
+		$datamap = array();
+		$nkwlib = new tx_nkwlib();
+		t3lib_div::devLog('Geocode-Task: Successful nkwlib instantiation' , 'buechertransport', -1);
+
+		// Get all entries with empty geocodecache-field
+		$rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			"uid, name",
+			"tx_buechertransport_domain_model_province",
+			"geocode = '' OR lat = '' OR lng = '' " . t3lib_Befunc::BEenableFields('tx_buechertransport_domain_model_city') . t3lib_Befunc::deleteClause('tx_buechertransport_domain_model_city'), "", "uid ASC", ""
+		);
+
+		$tce = t3lib_div::makeInstance('t3lib_TCEmain');
+		t3lib_div::devLog('Geocode-Task: Successful TCE instantiation' , 'buechertransport', -1);
+		t3lib_div::loadTCA('buechertransport');
+		t3lib_div::devLog('Geocode-Task: Loaded Successful TCA' , 'buechertransport', -1);
+
+		if (!empty($rows)) {
+			foreach ($rows as $row) {
+				$address = $row["name"];
+				if (empty($addresses[$address]))	{
+					$geo = $nkwlib->geocodeAddress($address);
+					if ($geo["status"] == "OK")	{
+						$lat = $geo["results"][0]["geometry"]["location"]["lat"];
+						$lng = $geo["results"][0]["geometry"]["location"]["lng"];
+						$coords = $lat . ',' . $lng;
+						$datamap['tx_buechertransport_domain_model_province'][$row['uid']] = array(
+							'geocode' => $coords, 'lat' => $lat, 'lng' => $lng
+						);
+						$addresses[$address] = array('geocode' => $coords, 'lat' => $lat, 'lng' => $lng);
+						$success = TRUE;
+					}	else	{
+						$datamap['tx_buechertransport_domain_model_province'][$row['uid']] = array(
+							'geocode' => '', 'lat' => '', 'lng' => ''
+						);
+						t3lib_div::devLog('Geocode-Task: ' . $row['name'] . 'could not be geocoded.' , 'buechertransport', 3);
+					}
+				// Already geocoded
+				}	else	{
+					$datamap['tx_buechertransport_domain_model_province'][$row['uid']] = array(
 						'geocode' => $addresses[$address]['geocode'],
 						'lat' => $addresses[$address]['lat'],
 						'lng' => $addresses[$address]['lng']

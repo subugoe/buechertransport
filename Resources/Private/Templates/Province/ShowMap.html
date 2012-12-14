@@ -120,11 +120,16 @@ function initialize() {
 		'path': 'M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z',
 		'fillColor': '#F00',
 		'fillOpacity': 0.8,
-		'scale': 0.6,
+		'scale': 0.8,
  		'rotation': 90,
 	};
 	var polyOptions = {
 		strokeColor: '#F00',
+		strokeOpacity: .5,
+		strokeWeight: 2
+	}
+	var polyOptionsTwo = {
+		strokeColor: '#090',
 		strokeOpacity: .5,
 		strokeWeight: 2
 	}
@@ -136,7 +141,7 @@ function initialize() {
 				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
 					provinceCoord = results[0].geometry.location;
 // <for each="{helper:outliers(reachables:province.reachables, province:province)}" as="city" iteration="Iterator">
-<f:for each="{province.reachabledistributioncentres}" as="city" iteration="Iterator">
+<f:for each="{province.globaldistributioncentres}" as="city" iteration="Iterator">
 	// Set marker
 	city[{Iterator.index}] = "{city.name}";
 	latlng[{Iterator.index}] = new google.maps.LatLng("{city.lat}", "{city.lng}");
@@ -150,7 +155,7 @@ function initialize() {
 		'path': lineCoordinates[{Iterator.index}],
 		'icons': [{
 			'icon': lineSymbol,
-			'offset': '96%'
+			'offset': '66%'
 		}],
 		'map': map
 	});
@@ -164,6 +169,29 @@ function initialize() {
 			}
 		});
     }
+
+	// Draw Göttingen connections
+	provinceCoord = myLatLng;
+<f:for each="{province.specificreachablecities}" as="city" iteration="Iterator">
+	// Set marker
+	city[{Iterator.index}] = "{city.name}";
+	latlng[{Iterator.index}] = new google.maps.LatLng("{city.lat}", "{city.lng}");
+	marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': city[{Iterator.index}], 'icon': image});
+	// Draw line
+	lineCoordinates[{Iterator.index}] = [
+  		provinceCoord,
+  		latlng[{Iterator.index}]
+	];
+	line[{Iterator.index}] = new google.maps.Polyline({
+		'path': lineCoordinates[{Iterator.index}],
+		'icons': [{
+			'icon': lineSymbol,
+			'offset': '66%'
+		}],
+		'map': map
+	});
+	line[{Iterator.index}].setOptions(polyOptionsTwo);
+</f:for>
 
 	// // Set up and create the infowindow
 	// if (!infoWindow) infoWindow = new google.maps.InfoWindow({});

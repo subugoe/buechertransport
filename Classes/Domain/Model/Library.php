@@ -57,6 +57,13 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	protected $distributioncentre;
 
 	/**
+	 * The hosting City (City)
+	 *
+	 * @var Tx_Buechertransport_Domain_Model_City
+	 */
+	protected $city;
+
+	/**
 	 * Returns the name
 	 *
 	 * @return string $name
@@ -131,6 +138,17 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	public function setDistributioncentre(Tx_Buechertransport_Domain_Model_City $distributioncentre) {
 		$this->distributioncentre = $distributioncentre;
 	}
+
+	/**
+	 * Returns the city
+	 *
+	 * @return Tx_Buechertransport_Domain_Model_City $city
+	 */
+	public function getCity() {
+		return $this->city;
+	}
+
+
 
 }
 ?>

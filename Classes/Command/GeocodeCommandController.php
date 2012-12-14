@@ -58,7 +58,8 @@ class Tx_Buechertransport_Command_GeocodeCommandController extends Tx_Extbase_MV
 		$provinceObj = t3lib_div::makeInstance('Tx_Buechertransport_Controller_ProvinceController');
 		t3lib_div::devLog('Geocode-Task: ProvinceController instantiated.' , 'buechertransport', -1);
 
-		$success = $provinceObj->geocodeAction($this);
+		$success = $provinceObj->geocodeCityAction($this);
+		$success = $provinceObj->geocodeProvinceAction($this);
 		if (!$success) {
 			t3lib_div::devLog('Buechertransport::Geocode-Task: Problem during execution. Stopping.' , 'buechertransport', 3);
 		}

@@ -70,6 +70,13 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	protected $lng;
 
 	/**
+	 * Province of the City
+	 *
+	 * @var Tx_Buechertransport_Domain_Model_Province
+	 */
+	protected $province;
+
+	/**
 	 * __construct
 	 *
 	 * @return void
@@ -206,6 +213,15 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	 */
 	public function setLng($lng) {
 		$this->lng = $lng;
+	}
+
+	/**
+	 * Returns the province
+	 *
+	 * @return Tx_Buechertransport_Domain_Model_Province $province
+	 */
+	public function getProvince() {
+		return $this->province;
 	}
 
 }
