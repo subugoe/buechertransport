@@ -205,5 +205,48 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 		$this->reachables = $reachables;
 	}
 
+	/**
+	 * Returns the Distributioncentres of the Province
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $distCentres
+	 */
+	public function getDistributioncentres() {
+		$addedCities = array();
+		$distCentres = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		foreach ($this->cities as $city) {
+		   	foreach ($city->getLibraries() as $lib) {
+		   		$name = $lib->getDistributioncentre()->getName();
+		   		if (!in_array($name, $addedCities)) {
+			   		$distCentres->attach($lib->getDistributioncentre());
+			   		array_push($lib->getDistributioncentre(), $addedCities);
+		   		}
+		   	}
+		}  
+		return $distCentres;
+	}
+
+	/**
+	 * Returns the Distributioncentres of the reachable Provinces
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $distCentres
+	 */
+	public function getReachableDistributioncentres() {
+		$addedCities = array();
+		$distCentres = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		foreach ($this->reachables as $city) {
+		   	foreach ($city->getLibraries() as $lib) {
+		   		if ($lib->getDistributioncentre() != NULL) {
+			   		$name = $lib->getDistributioncentre()->getName();
+			   		if (!in_array($name, $addedCities)) {
+				   		$distCentres->attach($lib->getDistributioncentre());
+				   		array_push($lib->getDistributioncentre(), $addedCities);
+			   		}
+				} 
+		   	}
+		}  
+		return $distCentres;
+	}
+
+
 }
 ?>

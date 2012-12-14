@@ -44,14 +44,12 @@ google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']})
 </script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
-// these set the initial center, zoom and maptype for the map 
-// if it is not specified in the query string
+// Set the initial center, zoom and maptype for the map 
 var lat = 51.5383520;
 var lng = 9.92968990;
 myLatLng = new google.maps.LatLng(lat, lng);
-
 var maptype = google.maps.MapTypeId.ROADMAP;
-var zoom = 17;
+var zoom = 6;
 
 function initialize() {
 	// Set map configuration
@@ -69,7 +67,7 @@ function initialize() {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
 					map.setCenter(results[0].geometry.location);
-					map.fitBounds(results[0].geometry.viewport);
+					// map.fitBounds(results[0].geometry.viewport);
 				} else {
 					alert("No results found");
 				}
@@ -116,17 +114,18 @@ function initialize() {
 
 	// Necessary arrays
 	city = []; latlng = []; line = []; lineCoordinates = []; marker = [];
+	var image = "typo3conf/ext/buechertransport/Resources/Public/Icons/tx_buechertransport_domain_model_library.png";
 	var lineSymbol = {
 		// 'path': google.maps.SymbolPath.FORWARD_CLOSED_ARROW
 		'path': 'M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z',
-		'fillColor': '#333',
+		'fillColor': '#F00',
 		'fillOpacity': 0.8,
-		'scale': 1,
+		'scale': 0.6,
  		'rotation': 90,
 	};
 	var polyOptions = {
-		strokeColor: '#333333',
-		strokeOpacity: 1.0,
+		strokeColor: '#F00',
+		strokeOpacity: .5,
 		strokeWeight: 2
 	}
 
@@ -136,11 +135,12 @@ function initialize() {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
 					provinceCoord = results[0].geometry.location;
-<f:for each="{helper:outliers(reachables:province.reachables, province:province)}" as="city" iteration="Iterator">
+// <for each="{helper:outliers(reachables:province.reachables, province:province)}" as="city" iteration="Iterator">
+<f:for each="{province.reachabledistributioncentres}" as="city" iteration="Iterator">
 	// Set marker
 	city[{Iterator.index}] = "{city.name}";
 	latlng[{Iterator.index}] = new google.maps.LatLng("{city.lat}", "{city.lng}");
-	marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': city[{Iterator.index}]});
+	marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': city[{Iterator.index}], 'icon': image});
 	// Draw line
 	lineCoordinates[{Iterator.index}] = [
   		provinceCoord,
@@ -150,7 +150,7 @@ function initialize() {
 		'path': lineCoordinates[{Iterator.index}],
 		'icons': [{
 			'icon': lineSymbol,
-			'offset': '100%'
+			'offset': '96%'
 		}],
 		'map': map
 	});
