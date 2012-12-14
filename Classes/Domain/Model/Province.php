@@ -64,6 +64,27 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	protected $reachables;
 
 	/**
+	 * Geocode of the Province
+	 *
+	 * @var string
+	 */
+	protected $geocode;
+
+	/**
+	 * Latitude of the Province
+	 *
+	 * @var float
+	 */
+	protected $lat;
+
+	/**
+	 * Longitude of the Province
+	 *
+	 * @var float
+	 */
+	protected $lng;
+
+	/**
 	 * __construct
 	 *
 	 * @return void
@@ -297,6 +318,62 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 		return $provinces;
 	}
 
+	/**
+	 * Returns the geocode
+	 *
+	 * @return string $geocode
+	 */
+	public function getGeocode() {
+		return $this->geocode;
+	}
+
+	/**
+	 * Sets the geocode
+	 *
+	 * @param string $geocode
+	 * @return void
+	 */
+	public function setGeocode($geocode) {
+		$this->geocode = $geocode;
+	}
+
+	/**
+	 * Returns the lat
+	 *
+	 * @return float $lat
+	 */
+	public function getLat() {
+		return $this->lat;
+	}
+
+	/**
+	 * Sets the lat
+	 *
+	 * @param float $lat
+	 * @return void
+	 */
+	public function setLat($lat) {
+		$this->lat = $lat;
+	}
+
+	/**
+	 * Returns the lng
+	 *
+	 * @return float $lng
+	 */
+	public function getLng() {
+		return $this->lng;
+	}
+
+	/**
+	 * Sets the lng
+	 *
+	 * @param float $lng
+	 * @return void
+	 */
+	public function setLng($lng) {
+		$this->lng = $lng;
+	}
 
 }
 ?>

@@ -100,7 +100,6 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 			$script_to_lib = tx_t3jquery::getJqJSBE(true);
 		}
 
-
 		$this->view->assign('province', $province);
 	}
 
@@ -168,7 +167,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 	 * @param Tx_Buechertransport_Command_ImportCommandController $obj
 	 * @return boolean
 	 */
-	public function importAction($flushDB = false, Tx_Buechertransport_Command_ImportCommandController &$obj) {
+	public function importAction($flushDB, Tx_Buechertransport_Command_ImportCommandController &$obj) {
 		
 		$importer = t3lib_div::makeInstance('Tx_Buechertransport_Utility_ImportUtility');
 		t3lib_div::devLog('Import-Task: Successful action call.' , 'buechertransport', -1);
@@ -283,7 +282,6 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 		return true;
 	}
 
-
 	/**
 	 * Scheduler action: geocodeCities
 	 *
@@ -378,7 +376,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 		$rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			"uid, name",
 			"tx_buechertransport_domain_model_province",
-			"geocode = '' OR lat = '' OR lng = '' " . t3lib_Befunc::BEenableFields('tx_buechertransport_domain_model_city') . t3lib_Befunc::deleteClause('tx_buechertransport_domain_model_city'), "", "uid ASC", ""
+			"geocode = '' OR lat = '' OR lng = '' " . t3lib_Befunc::BEenableFields('tx_buechertransport_domain_model_province') . t3lib_Befunc::deleteClause('tx_buechertransport_domain_model_province'), "", "uid ASC", ""
 		);
 
 		$tce = t3lib_div::makeInstance('t3lib_TCEmain');
@@ -435,4 +433,5 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 	}
 
 }
+
 ?>

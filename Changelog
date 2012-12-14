@@ -1,3 +1,6 @@
+2012-12-14 - 0.2.4 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* Added fields 'geocode', lat' and 'lng' to province-model
+
 2012-12-14 - 0.2.3 - Dominic Simm <simm@sub.uni-goettingen.de>
 	* Added GeocodeCommandController-action for scheduled geocode-addition for provinces
 

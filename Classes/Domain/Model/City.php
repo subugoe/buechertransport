@@ -34,6 +34,13 @@
 class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
+	 * Province of the City
+	 *
+	 * @var Tx_Buechertransport_Domain_Model_Province
+	 */
+	protected $province;
+
+	/**
 	 * Name of the City
 	 *
 	 * @var string
@@ -47,13 +54,6 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	 * @var string
 	 */
 	protected $geocode;
-
-	/**
-	 * Related Libraries
-	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_Library>
-	 */
-	protected $libraries;
 
 	/**
 	 * Latitude of the City
@@ -70,11 +70,11 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	protected $lng;
 
 	/**
-	 * Province of the City
+	 * Related Libraries
 	 *
-	 * @var Tx_Buechertransport_Domain_Model_Province
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_Library>
 	 */
-	protected $province;
+	protected $libraries;
 
 	/**
 	 * __construct

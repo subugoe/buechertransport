@@ -34,6 +34,13 @@
 class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
+	 * The hosting City (City)
+	 *
+	 * @var Tx_Buechertransport_Domain_Model_City
+	 */
+	protected $city;
+
+	/**
 	 * Name of the Library
 	 *
 	 * @var string
@@ -55,13 +62,6 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	 * @var Tx_Buechertransport_Domain_Model_City
 	 */
 	protected $distributioncentre;
-
-	/**
-	 * The hosting City (City)
-	 *
-	 * @var Tx_Buechertransport_Domain_Model_City
-	 */
-	protected $city;
 
 	/**
 	 * Returns the name
@@ -147,8 +147,6 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	public function getCity() {
 		return $this->city;
 	}
-
-
 
 }
 ?>

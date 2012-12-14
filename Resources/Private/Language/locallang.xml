@@ -9,6 +9,9 @@
 			<label index="tx_buechertransport_domain_model_province">The Province</label>
 			<label index="tx_buechertransport_domain_model_province.name">Name of the Province</label>
 			<label index="tx_buechertransport_domain_model_province.description">Description of the Province</label>
+			<label index="tx_buechertransport_domain_model_province.geocode">Geocode of the Province</label>
+			<label index="tx_buechertransport_domain_model_province.lat">Latitude of the Province</label>
+			<label index="tx_buechertransport_domain_model_province.lng">Longitude of the Province</label>
 			<label index="tx_buechertransport_domain_model_province.cities">Related Cities</label>
 			<label index="tx_buechertransport_domain_model_province.reachables">Reachable Cities</label>
 			<label index="tx_buechertransport_domain_model_city">The City of the libraries</label>

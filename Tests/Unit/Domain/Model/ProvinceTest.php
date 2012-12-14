@@ -87,6 +87,67 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	/**
 	 * @test
 	 */
+	public function getGeocodeReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setGeocodeForStringSetsGeocode() { 
+		$this->fixture->setGeocode('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getGeocode()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getLatReturnsInitialValueForFloat() { 
+		$this->assertSame(
+			0.0,
+			$this->fixture->getLat()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setLatForFloatSetsLat() { 
+		$this->fixture->setLat(3.14159265);
+
+		$this->assertSame(
+			3.14159265,
+			$this->fixture->getLat()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getLngReturnsInitialValueForFloat() { 
+		$this->assertSame(
+			0.0,
+			$this->fixture->getLng()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setLngForFloatSetsLng() { 
+		$this->fixture->setLng(3.14159265);
+
+		$this->assertSame(
+			3.14159265,
+			$this->fixture->getLng()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
 	public function getCitiesReturnsInitialValueForObjectStorageContainingTx_Buechertransport_Domain_Model_City() { 
 		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->assertEquals(

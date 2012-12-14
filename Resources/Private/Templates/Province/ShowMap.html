@@ -115,10 +115,17 @@ function initialize() {
 	// Necessary arrays
 	city = []; latlng = []; line = []; lineCoordinates = []; marker = [];
 	var image = "typo3conf/ext/buechertransport/Resources/Public/Icons/tx_buechertransport_domain_model_library.png";
+	var imageTwo = "typo3conf/ext/buechertransport/Resources/Public/Icons/tx_buechertransport_domain_model_province.png";
 	var lineSymbol = {
-		// 'path': google.maps.SymbolPath.FORWARD_CLOSED_ARROW
 		'path': 'M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z',
 		'fillColor': '#F00',
+		'fillOpacity': 0.8,
+		'scale': 0.8,
+ 		'rotation': 90,
+	};
+	var lineSymbolTwo = {
+		'path': 'M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z',
+		'fillColor': '#090',
 		'fillOpacity': 0.8,
 		'scale': 0.8,
  		'rotation': 90,
@@ -171,12 +178,12 @@ function initialize() {
     }
 
 	// Draw Göttingen connections
-	provinceCoord = myLatLng;
-<f:for each="{province.specificreachablecities}" as="city" iteration="Iterator">
+    province = []; provinceCoord = myLatLng;
+<f:for each="{province.specificreachableprovinces}" as="prov" iteration="Iterator">
 	// Set marker
-	city[{Iterator.index}] = "{city.name}";
-	latlng[{Iterator.index}] = new google.maps.LatLng("{city.lat}", "{city.lng}");
-	marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': city[{Iterator.index}], 'icon': image});
+	province[{Iterator.index}] = "{prov.name}";
+	latlng[{Iterator.index}] = new google.maps.LatLng("{prov.lat}", "{prov.lng}");
+	marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': province[{Iterator.index}], 'icon': imageTwo});
 	// Draw line
 	lineCoordinates[{Iterator.index}] = [
   		provinceCoord,
@@ -185,8 +192,8 @@ function initialize() {
 	line[{Iterator.index}] = new google.maps.Polyline({
 		'path': lineCoordinates[{Iterator.index}],
 		'icons': [{
-			'icon': lineSymbol,
-			'offset': '66%'
+			'icon': lineSymbolTwo,
+			'offset': '96%'
 		}],
 		'map': map
 	});

@@ -8,6 +8,9 @@ CREATE TABLE tx_buechertransport_domain_model_province (
 
 	name varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
+	geocode varchar(255) DEFAULT '' NOT NULL,
+	lat double(11,2) DEFAULT '0.00' NOT NULL,
+	lng double(11,2) DEFAULT '0.00' NOT NULL,
 	cities int(11) unsigned DEFAULT '0' NOT NULL,
 	reachables int(11) unsigned DEFAULT '0' NOT NULL,
 

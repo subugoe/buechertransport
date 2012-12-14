@@ -10,6 +10,9 @@
 	   
 			<label index="name.description">Name of the Province</label>
 			<label index="description.description">Description of the Province</label>
+			<label index="geocode.description">Geocode of the Province</label>
+			<label index="lat.description">Latitude of the Province</label>
+			<label index="lng.description">Longitude of the Province</label>
 			<label index="cities.description">Related Cities</label>
 			<label index="reachables.description">Related Cities</label>
 		</languageKey>

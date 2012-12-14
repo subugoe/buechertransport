@@ -16,7 +16,7 @@ Installation
 * Hinzufügen des Frontend-Plugins auf der entsprechenden Seite
 * Anlegen des SysFolder für den Büchertransportdienst und Angabe der ID ``plugin.tx_buechertransport.persistence.storagePid = 1800`` (z.B.) in ``Configuration/TypoScript/constants.txt``
 * Extbase-Scheduler einrichten: Büchertransport::Import für Datenimport manuell laufen lassen
-
+* Extbase-Scheduler einrichten: Büchertransport::Geocode für das Laden der Geocodes von Bundesländern und Städten manuell laufen lassen
 
 TYPOSCRIPT
 ==========
