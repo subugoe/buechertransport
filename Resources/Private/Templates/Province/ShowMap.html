@@ -33,10 +33,10 @@ var myLatLng = null;
 var myOptions = null;
 var mapCenter = null;
 var geocodeTheCountry = true;
-var gpolygons = [];
+// var gpolygons = [];
 
 // Fusion Table data ID
-var FT_TableID = 420419;
+var FT_TableID = 420419; //'19lLpgsKdJRHL2O4fNmJ406ri9JtpIIk8a-AchA'
 var CountryName = "Germany";
 var ProvinceName = "{province.name}";
 
@@ -47,9 +47,9 @@ google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']})
 // Set the initial center, zoom and maptype for the map 
 var lat = 51.5383520;
 var lng = 9.92968990;
-myLatLng = new google.maps.LatLng(lat, lng);
 var maptype = google.maps.MapTypeId.ROADMAP;
 var zoom = 6;
+myLatLng = new google.maps.LatLng(lat, lng);
 
 function initialize() {
 	// Set map configuration
@@ -89,7 +89,7 @@ function initialize() {
 	  suppressInfoWindows: true, 
 	  query: {
 	    'select': 'kml_4326',
-	    'from': FT_TableID //'19lLpgsKdJRHL2O4fNmJ406ri9JtpIIk8a-AchA'
+	    'from': FT_TableID
 	  },
 	  styles: [{
 	    polygonOptions: {
@@ -114,32 +114,32 @@ function initialize() {
 
 	// Necessary arrays
 	city = []; latlng = []; line = []; lineCoordinates = []; marker = [];
-	var image = "typo3conf/ext/buechertransport/Resources/Public/Icons/tx_buechertransport_domain_model_library.png";
-	var imageTwo = "typo3conf/ext/buechertransport/Resources/Public/Icons/tx_buechertransport_domain_model_province.png";
-	var lineSymbol = {
+	var imageLib = "typo3conf/ext/buechertransport/Resources/Public/Icons/tx_buechertransport_domain_model_library.png";
+	var imageProvince = "typo3conf/ext/buechertransport/Resources/Public/Icons/tx_buechertransport_domain_model_province.png";
+	var lineSymbolLib = {
 		'path': 'M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z',
 		'fillColor': '#F00',
 		'fillOpacity': 0.8,
 		'scale': 0.8,
  		'rotation': 90,
 	};
-	var lineSymbolTwo = {
+	var lineSymbolProvince = {
 		'path': 'M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z',
 		'fillColor': '#090',
 		'fillOpacity': 0.8,
 		'scale': 0.8,
  		'rotation': 90,
 	};
-	var polyOptions = {
-		strokeColor: '#F00',
-		strokeOpacity: .5,
-		strokeWeight: 2
-	}
-	var polyOptionsTwo = {
-		strokeColor: '#090',
-		strokeOpacity: .5,
-		strokeWeight: 2
-	}
+	var polyOptionsLib = {
+		'strokeColor': '#F00',
+		'strokeOpacity': .5,
+		'strokeWeight': 2
+	};
+	var polyOptionsProvince = {
+		'strokeColor': '#090',
+		'strokeOpacity': .5,
+		'strokeWeight': 2
+	};
 
 	var provinceCoord = '';
 	if (geocoder && geocodeTheCountry) {
@@ -147,12 +147,11 @@ function initialize() {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
 					provinceCoord = results[0].geometry.location;
-// <for each="{helper:outliers(reachables:province.reachables, province:province)}" as="city" iteration="Iterator">
 <f:for each="{province.globaldistributioncentres}" as="city" iteration="Iterator">
 	// Set marker
 	city[{Iterator.index}] = "{city.name}";
 	latlng[{Iterator.index}] = new google.maps.LatLng("{city.lat}", "{city.lng}");
-	marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': city[{Iterator.index}], 'icon': image});
+	marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': city[{Iterator.index}], 'icon': imageLib});
 	// Draw line
 	lineCoordinates[{Iterator.index}] = [
   		provinceCoord,
@@ -161,12 +160,12 @@ function initialize() {
 	line[{Iterator.index}] = new google.maps.Polyline({
 		'path': lineCoordinates[{Iterator.index}],
 		'icons': [{
-			'icon': lineSymbol,
+			'icon': lineSymbolLib,
 			'offset': '66%'
 		}],
 		'map': map
 	});
-	line[{Iterator.index}].setOptions(polyOptions);
+	line[{Iterator.index}].setOptions(polyOptionsLib);
 </f:for>
 				} else {
 					alert("No results found");
@@ -177,13 +176,13 @@ function initialize() {
 		});
     }
 
-	// Draw Göttingen connections
+	// Draw SUB Göttingen province connections
     province = []; provinceCoord = myLatLng;
 <f:for each="{province.specificreachableprovinces}" as="prov" iteration="Iterator">
 	// Set marker
 	province[{Iterator.index}] = "{prov.name}";
 	latlng[{Iterator.index}] = new google.maps.LatLng("{prov.lat}", "{prov.lng}");
-	marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': province[{Iterator.index}], 'icon': imageTwo});
+	marker[{Iterator.index}] = new google.maps.Marker({'position': latlng[{Iterator.index}], 'map': map, 'title': province[{Iterator.index}], 'icon': imageProvince});
 	// Draw line
 	lineCoordinates[{Iterator.index}] = [
   		provinceCoord,
@@ -192,23 +191,14 @@ function initialize() {
 	line[{Iterator.index}] = new google.maps.Polyline({
 		'path': lineCoordinates[{Iterator.index}],
 		'icons': [{
-			'icon': lineSymbolTwo,
+			'icon': lineSymbolProvince,
 			'offset': '96%'
 		}],
 		'map': map
 	});
-	line[{Iterator.index}].setOptions(polyOptionsTwo);
+	line[{Iterator.index}].setOptions(polyOptionsProvince);
 </f:for>
 
-	// // Set up and create the infowindow
-	// if (!infoWindow) infoWindow = new google.maps.InfoWindow({});
-	// infoWindow.setOptions({
-	// 	content: infoWindowContent(name, description),
-	// 	pixelOffset: new google.maps.Size(0, 2),
-	// 	position: position
-	// });
-	// // Infowindow-opening event handler
-	// infoWindow.open(map);
 }
 </script>
 
