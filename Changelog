@@ -1,3 +1,7 @@
+2012-12-14 - 0.2.5 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* Added nkwlib-include to provinceController [->GeoCodes]
+	* Removed persistence.storagePid from Typoscript
+
 2012-12-14 - 0.2.4 - Dominic Simm <simm@sub.uni-goettingen.de>
 	* Added fields 'geocode', lat' and 'lng' to province-model
 
