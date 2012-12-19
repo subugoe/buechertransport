@@ -39,11 +39,11 @@ class Tx_Buechertransport_Command_GeocodeCommandController extends Tx_Extbase_MV
 	/**
 	* Geocoder command
 	*
-	* Adds to all cities their geo-coordinates
-	* @param string $msg Message to be printed
+	* Adds to all provinces and cities their geo-coordinates via Google Maps API
+	* @param string $cmd Command to be executed [run, ...]
 	* @return boolean
 	*/
-	public function GeocodeCommand($msg) {
+	public function GeocodeCommand($cmd) {
 		t3lib_div::devLog('Geocode-Task: Successful scheduler call.' , 'buechertransport', -1);
 		$success = false;
 

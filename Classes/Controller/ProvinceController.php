@@ -245,13 +245,13 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 				
 				// Add reachable cities
 				if ($province != NULL)	{
-					t3lib_div::devLog('Import-Task: Province object exists.' , 'buechertransport', -1);
+					// t3lib_div::devLog('Import-Task: Province object exists.' , 'buechertransport', -1);
 					// Does the city exist					
 					if (in_array($line['city'], array_keys($cities)))	{
-						t3lib_div::devLog('Import-Task: City object found.' , 'buechertransport', -1);
+						// t3lib_div::devLog('Import-Task: City object found.' , 'buechertransport', -1);
 						$city = $cities[$line['city']];
 						$province->addReachable($city);
-						t3lib_div::devLog('Import-Task: City ' . $line['city'] . ' added to Reachables.' , 'buechertransport', -1);
+						// t3lib_div::devLog('Import-Task: City ' . $line['city'] . ' added to Reachables.' , 'buechertransport', -1);
 					}
 				}
 				
@@ -291,7 +291,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 	 * @return boolean
 	 */
 	public function geocodeCityAction(Tx_Buechertransport_Command_GeocodeCommandController &$obj) {
-		t3lib_div::devLog('Geocode-Task: Success action call' , 'buechertransport', -1);
+		t3lib_div::devLog('Geocode-Task: Successful action call' , 'buechertransport', -1);
 
 		$success = FALSE;
 		$addresses = array();
@@ -343,7 +343,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 			}
 			t3lib_div::devLog('Geocode-Task: All geocodes retrieved.' , 'buechertransport', -1);
 
-			// Insert transmit datamap into database 
+			// Transmit datamap into database 
 			$tce->stripslashes_values = 0;
 			$tce->start($datamap, array());
 			$tce->process_datamap();
@@ -366,7 +366,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 	 * @return boolean
 	 */
 	public function geocodeProvinceAction(Tx_Buechertransport_Command_GeocodeCommandController &$obj) {
-		t3lib_div::devLog('Geocode-Task: Success action call' , 'buechertransport', -1);
+		t3lib_div::devLog('Geocode-Task: Successful action call' , 'buechertransport', -1);
 
 		$success = FALSE;
 		$addresses = array();
@@ -418,7 +418,7 @@ class Tx_Buechertransport_Controller_ProvinceController extends Tx_Extbase_MVC_C
 			}
 			t3lib_div::devLog('Geocode-Task: All geocodes retrieved.' , 'buechertransport', -1);
 
-			// Insert transmit datamap into database 
+			// Transmit datamap into database 
 			$tce->stripslashes_values = 0;
 			$tce->start($datamap, array());
 			$tce->process_datamap();

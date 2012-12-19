@@ -40,10 +40,10 @@ class Tx_Buechertransport_Command_ImportCommandController extends Tx_Extbase_MVC
 	* Importer command
 	*
 	* Imports all the old csv-data into the database (extbase repositories) 
-	* @param string $msg Message to be printed
+	* @param string $cmd Command to be executed [run, ...]
 	* @return boolean
 	*/
-	public function ImportCommand($msg) {
+	public function ImportCommand($cmd) {
 		t3lib_div::devLog('Import-Task: Successful scheduler call.' , 'buechertransport', -1);
 		$success = false;
 
