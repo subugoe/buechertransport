@@ -10,18 +10,25 @@ Anzeige des Büchertransportdienstes mit seinen Leihverkehrsregionen im Frontend
 
 Installation 
 ============
-* Bilddateien für Fachknoten (Header- und Title-Bild) über Dateimanager in ``/fileadmin/media/bilder/Seitenkopf/`` hochladen
-* Erstellen der Seiten: Neuen Knoten mit Unterseiten anlegen; im globalen Template die Root::PageID des Knotens zu den Fachknoten hinzufügen und TypoScript [Menüs] von unten einbinden
+* Bilddateien für Fachknoten (Header- und Title-Bild) aus EXT/Resources/Public/Images über Dateimanager in ``/fileadmin/media/bilder/Seitenkopf/`` hochladen
+* Anlegen des SysFolder für den Büchertransportdienst und Angabe der SysFolder-ID unter ``plugin.tx_buechertransport.persistence.storagePid = 1800`` in ``Configuration/TypoScript/constants.txt`` oder direkt im Typoscript-Object-Browser
+* Erstellen der Seiten: Neuen Knoten mit Unterseiten anlegen; Knoten sollte versteckt werden mit der Option 'not in menu but with node'; Die Seite, auf der die Extension eingebunden werden soll, muss aus programmier-technischen Gründen eine `Placeholder`-Unterseite haben um das Navigationsmenü der Leihverkehrsregionen anzeigen zu können.
+* Im globalen Template die Root::PageID des Knotens unter ``plugin.tx_buechertransport.node.pageId = 1799`` in ``Configuration/TypoScript/constants.txt`` speichern
+* Im globalen Template das Plugin-Typoscript ``setup.txt`` aus tmpl_sub/Configuration/TypoScript/010_Plugins/Buechertransport direkt nach dem Navigations-Typoscript einbinden
 * Installation der ``buechertransport`` Extension
 * Hinzufügen des Frontend-Plugins auf der entsprechenden Seite
-* Anlegen des SysFolder für den Büchertransportdienst und Angabe der ID ``plugin.tx_buechertransport.persistence.storagePid = 1800`` (z.B.) in ``Configuration/TypoScript/constants.txt``
-* Extbase-Scheduler einrichten: Büchertransport::Import für Datenimport manuell laufen lassen
-* Extbase-Scheduler einrichten: Büchertransport::Geocode für das Laden der Geocodes von Bundesländern und Städten manuell laufen lassen
+* Einrichten der Extbase-Scheduler-Tasks (Extbase CommandController Task), beiden Tasks muss das Argument 'run' übergeben werden.
+** Büchertransport::Import für Datenimport manuell laufen lassen
+** Büchertransport::Geocode für das Laden der Geocodes von Bundesländern und Städten manuell laufen lassen (teilweise mehrfacher Durchlauf nötig, bis ``alle`` Geocodes heruntergeladen wurden)
+
 
 TYPOSCRIPT
 ==========
-includeLibs.user_buechertransport = EXT:buechertransport/Resources/Private/Scripts/BuecherTransportScripts.php
+## EXT:/tmpl_sub/Configuration/TypoScript/constants.txt
+plugin.tx_buechertransport.node.pageId = 1799
+plugin.tx_buechertransport.persistence.storagePid = 1800
 
+## EXT:/tmpl_sub/Configuration/TypoScript/006_BreadCrumbs/setup.txt
 ### Breadcrumb-Navigation: Buechertransport ###
 [globalVar = GP:tx_buechertransport_buechertransport|province > 0]
   lib.rootline.10.special.range = 0|-1
@@ -42,9 +49,11 @@ includeLibs.user_buechertransport = EXT:buechertransport/Resources/Private/Scrip
   }
 [end]
 
+## EXT:/tmpl_sub/Configuration/TypoScript/010_Plugins/Buechertransport/setup.txt
+includeLibs.user_buechertransport = EXT:buechertransport/Resources/Private/Scripts/BuecherTransportScripts.php
 
 ### Buechertransport-Subnavigation ###
-[PIDinRootline = 1799]
+[PIDinRootline = {$plugin.tx_buechertransport.node.pageId}]
 lib.leihVerkehr = TMENU
 lib.leihVerkehr {
   wrap = <ul class="submenu-l2 js">|</ul>  
@@ -95,7 +104,7 @@ lib.leihVerkehr {
 [global]
 
 ##### Büchertransport #######
-[PIDinRootline = 1799]
+[PIDinRootline = {$plugin.tx_buechertransport.node.pageId}]
 lib.navNeu = COA
 lib.navNeu {
   # Setzt obersten Menüpunkt 
