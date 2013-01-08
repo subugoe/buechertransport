@@ -7,3 +7,35 @@
 	width: 100%;
 	height: 600px;
 }
+
+#legend {
+    background: white;
+    border: 1px solid #ccc;
+    border-width: 1px 0px 0px 1px;
+    padding: 10px;
+    font-size: 10px;
+    width: 100px !important;
+    overflow: hidden;
+}
+
+#legend h4 {
+	margin: 0px;
+	line-height: 6px;
+}
+
+#legend img {
+	position: relative;
+	top: 4px;
+	padding-right: 4px;
+}
+
+#legend span {
+	padding-left: 4px;
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+#legend div {
+	line-height: 12px !important;
+	margin: 4px 0 4px 0;
+}

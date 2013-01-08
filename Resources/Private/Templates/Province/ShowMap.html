@@ -50,17 +50,27 @@ var lng = 9.92968990;
 var maptype = google.maps.MapTypeId.ROADMAP;
 var zoom = 6;
 myLatLng = new google.maps.LatLng(lat, lng);
+var customMapStyle = [
+  {
+    "featureType": "administrative.country",
+    "elementType": "labels",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  }
+];
 
 function initialize() {
 	// Set map configuration
 	myOptions = {
 		'zoom': zoom,
 		'center': myLatLng,
-		'mapTypeId': maptype
+		'mapTypeId': maptype,
+		'styles': customMapStyle
 	};
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-	// Render Province centered map
+	// Render Country centered map
 	var geocoder = new google.maps.Geocoder();
 	if (geocoder && geocodeTheCountry) {
 		geocoder.geocode( { 'address': CountryName + " Country" }, function(results, status) {
@@ -84,7 +94,7 @@ function initialize() {
 	// layer = new google.maps.FusionTablesLayer(FT_TableID, FT_Options);
 	// layer.setMap(map);
 
-	// Map presentation with highlighted polygons
+	// Map representation with highlighted polygons
 	layer = new google.maps.FusionTablesLayer({
 	  suppressInfoWindows: true, 
 	  query: {
@@ -111,6 +121,34 @@ function initialize() {
 	  }]
 	});
 	layer.setMap(map);
+
+	// Map presentation with highlighted polygons
+	// layer2 = new google.maps.FusionTablesLayer({
+	//   suppressInfoWindows: true, 
+	//   query: {
+	//     'select': 'kml_4326',
+	//     'from': FT_TableID
+	//   },
+	//   styles: [{
+	//     polygonOptions: {
+	//       'fillColor': "#FFFFFF",
+	//       'fillOpacity': 0.8,
+	//       'strokeColor': "#666666",
+	//       'strokeOpacity': .01,
+	//       'strokeWeight': 0
+	//     }
+	//   },{
+	//     where: "'name_0' = '" + CountryName + "'",
+	//     polygonOptions: {
+	//       'fillColor': "#FFFFFF", 
+	//       'fillOpacity': 0.8,
+	//       'strokeColor': "#1A3771",
+	//       'strokeOpacity': 0.5,
+	//       'strokeWeight': 5,
+	//     }
+	//   }]
+	// });
+	// layer2.setMap(map);
 
 	// Necessary arrays
 	city = []; latlng = []; line = []; lineCoordinates = []; marker = [];
@@ -161,7 +199,7 @@ function initialize() {
 		'path': lineCoordinates[{Iterator.index}],
 		'icons': [{
 			'icon': lineSymbolLib,
-			'offset': '66%'
+			'offset': '96%'
 		}],
 		'map': map
 	});
@@ -199,6 +237,25 @@ function initialize() {
 	line[{Iterator.index}].setOptions(polyOptionsProvince);
 </f:for>
 
+	var styles = [{'name': 'Bundesland', 'icon': imageProvince}, {'name': 'Bibliothek', 'icon': imageLib}, {'name': 'Container-Transport über Länderfrachtzentrum', 'icon': '#F00'}, {'name': 'Container-Transport über HUB Göttingen', 'icon': '#080'}]
+	var legend = document.getElementById('legend');
+	var div = document.createElement('div');
+	div.innerHTML = '<h4>Legende</h4>';
+	legend.appendChild(div);
+	for (var key in styles) {
+		var style = styles[key];
+		var name = style.name;
+		var icon = style.icon;
+		div = document.createElement('div');
+		if (icon.length < 5) { 
+			div.innerHTML = '<span style="color:' + icon + ';">&mdash;</span>' + name;
+		} else {
+			div.innerHTML = '<img src="' + icon + '"> ' + name;
+		}
+		legend.appendChild(div);
+	}	
+	map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+
 }
 </script>
 
@@ -215,6 +272,7 @@ function initialize() {
     	<div id="map_canvas"></div>
 	</td></tr>
 </table>
+<div id="legend"></div>
 
 
 
