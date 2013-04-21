@@ -61,7 +61,7 @@ class user_buechertransport extends tslib_pibase {
   	    $curPage = isset($params['province']) ? intval($params['province']) : -1;
   
 		if(count($menuArr) > 0)	{
-			foreach ($results as $key => $province) {
+            foreach ($results as $key => $province) {
 				$menuArr[$key]['title'] = $province['name'];
 				$menuArr[$key]['id'] = $province['uid'];
 				$menuArr[$key]['uid'] = $menuArr[0]['pid'];	
@@ -75,40 +75,10 @@ class user_buechertransport extends tslib_pibase {
 				// Assumes that last param is cHash
 				preg_match('/^cHash=([a-z0-9]+)/', $urlParameters[count($urlParameters)-1], $reg_result);
 				$menuArr[$key]['cHash'] = $reg_result[1];
-				// foreach ($urlParameters as $key => $param) {
-				// 	// echo $param . "<br>";
-				// 	if (preg_match('/^cHash=([a-z0-9]+)/', $param, $reg_result)
-				// 		$menuArr[$key]['cHash'] = $reg_result[1];
-				// }
 			}
 		}
-
-		// echo count($menuArr) . ' ';
-		// echo "<pre>";
-		// print_r($menuArr);
-		// print_r($conf);
-		// echo "</pre>";
-		// print_r("<br>");
-
+        
 		return $menuArr;
-
-		// // Menue als String
-		// $content = ''; 
-		// foreach ($results as $key => $province) {
-		// 	$link = $this->pi_linkTP($province['name'], array('tx_buechertransport_buechertransport[action]=show&tx_buechertransport_buechertransport[controller]=Province&tx_buechertransport_buechertransport[province]' => $province['uid']), 1);
-		// 	if ($curPage == $province['uid']) {
-		// 		$params = array(
-		// 			'title' => $province['name'],
-		// 			'class' => "submenu-highlight-parent submenu-trigger"
-		// 		);
-		// 		$link = $this->local_cObj->addParams($link, $params);
-		// 		$content .= '<li class="submenu-l1 selected">' . $link . '</li>' . "\n";	
-		// 	}	else {
-		// 		$content .= '<li class="submenu-l1">' . $link . '</li>' . "\n";	
-		// 	}
-		// }
-		// return $content;
-
 	}
 
 	/**
