@@ -25,7 +25,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:for each="{provinces}" as="province">
 		<tr>
 			<td><f:link.action action="show" arguments="{province : province}"> {province.name}</f:link.action></td>
-			<td><f:format.html> {province.description}</f:format.html></td>
+			<td><f:format.html><f:format.crop maxCharacters="128" append="&nbsp; ..."> {province.description}</f:format.crop></f:format.html></td>
 		</tr>
 	</f:for>
 </table>

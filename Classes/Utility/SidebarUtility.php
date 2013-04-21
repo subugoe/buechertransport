@@ -46,15 +46,15 @@ class SidebarUtility extends \TYPO3\CMS\Extbase\Utility\ExtensionUtility {
 	 */
 	public function hookFunc(&$content, &$obj)		 {
 
-		// Overwrite / Extend previous sidemenu-content
-		$content = ''; // $content .= ''		; 
-
 		// Get / Check environment (params)
 		$params = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_buechertransport_buechertransport');
   	    $curPage = isset($params['province']) ? intval($params['province']) : -1;
 
   	    // Is a region selected?
   	    if ($curPage > -1) {
+
+			// Overwrite / Extend previous sidemenu-content
+			$content = '';
 
 			$province = \user_buechertransport::getProvince($curPage);
 			$actions = ''; $locallang = '';
@@ -75,7 +75,9 @@ class SidebarUtility extends \TYPO3\CMS\Extbase\Utility\ExtensionUtility {
 				$link = $obj->pi_linkTP($title, $urlParameters = array('tx_buechertransport_buechertransport[action]' => $action, 'tx_buechertransport_buechertransport[controller]' => 'Province', 'tx_buechertransport_buechertransport[province]' => $province['uid']), $cache = 1, $altPageId = 0);
 				$content .= '<li>' . $link . '</li>' . "\n";
 			}
-
+			
+  	    }	else 	{
+  	    	$content .= '';
   	    }
 
 	}

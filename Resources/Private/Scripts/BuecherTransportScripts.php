@@ -77,7 +77,7 @@ class user_buechertransport extends tslib_pibase {
 				$menuArr[$key]['cHash'] = $reg_result[1];
 			}
 		}
-        
+
 		return $menuArr;
 	}
 
