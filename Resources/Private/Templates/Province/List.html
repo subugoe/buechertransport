@@ -20,19 +20,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<tr>
 		<th><f:translate key="tx_buechertransport_domain_model_province.name" /></th>
 		<th><f:translate key="tx_buechertransport_domain_model_province.description" /></th>
-<!-- 		<th> </th>
-		<th> </th>
- -->	</tr>
+	</tr>
 
 	<f:for each="{provinces}" as="province">
 		<tr>
 			<td><f:link.action action="show" arguments="{province : province}"> {province.name}</f:link.action></td>
-			<td><f:format.html>{province.description}</f:format.html></td>
-<!-- 			<td><f:link.action action="edit" arguments="{province : province}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{province : province}">Delete</f:link.action></td>
- -->		</tr>
+			<td><f:format.html> {province.description}</f:format.html></td>
+		</tr>
 	</f:for>
 </table>
-
-<!-- <f:link.action action="new">New Province</f:link.action> -->
 </f:section>

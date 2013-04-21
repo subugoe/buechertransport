@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-04-18T17:31:50Z" product-name="buechertransport">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_buechertransport_domain_model_province">
+				<source>Province</source>
+				<target>Leihverkehrsregion</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.name">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.description">
+				<source>Description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.geocode">
+				<source>Geocode</source>
+				<target>Koordinaten</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.lat">
+				<source>Lat</source>
+				<target>Breitengrad</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.lng">
+				<source>Lng</source>
+				<target>Längengrad</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.cities">
+				<source>Cities</source>
+				<target>Angeschlossene Städte</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.reachables">
+				<source>Reachables</source>
+				<target>Erreichbare Städte</target>
+			</trans-unit>
+
+			<trans-unit id="tx_buechertransport_domain_model_city">
+				<source>City</source>
+				<target>Stadt</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_city.name">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_city.geocode">
+				<source>Geocode</source>
+				<target>Koordinaten</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_city.lat">
+				<source>Lat</source>
+				<target>Breitengrad</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_city.lng">
+				<source>Lng</source>
+				<target>Längengrad</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_city.libraries">
+				<source>Libraries</source>
+				<target>Angeschlossene Bibliotheken</target>
+			</trans-unit>
+
+			<trans-unit id="tx_buechertransport_domain_model_library">
+				<source>Library</source>
+				<target>Bibliothek</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_library.name">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_library.sigel">
+				<source>Sigel</source>
+				<target>Sigel</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_library.distributioncentre">
+				<source>Distributioncentre</source>
+				<target>Verteilerzentrum</target>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

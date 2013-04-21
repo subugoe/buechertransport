@@ -1,9 +1,10 @@
 <?php
 
+namespace SUB\Buechertransport\Tests;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
  *  			
  *  All rights reserved
  *
@@ -25,7 +26,7 @@
  ***************************************************************/
 
 /**
- * Test case for class Tx_Buechertransport_Domain_Model_City.
+ * Test case for class \SUB\Buechertransport\Domain\Model\City.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,14 +37,14 @@
  *
  * @author Dominic Simm <dominic.simm@sub.uni-goettingen.de>
  */
-class Tx_Buechertransport_Domain_Model_CityTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class CityTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_Buechertransport_Domain_Model_City
+	 * @var \SUB\Buechertransport\Domain\Model\City
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_Buechertransport_Domain_Model_City();
+		$this->fixture = new \SUB\Buechertransport\Domain\Model\City();
 	}
 
 	public function tearDown() {
@@ -121,8 +122,8 @@ class Tx_Buechertransport_Domain_Model_CityTest extends Tx_Extbase_Tests_Unit_Ba
 	/**
 	 * @test
 	 */
-	public function getLibrariesReturnsInitialValueForObjectStorageContainingTx_Buechertransport_Domain_Model_Library() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+	public function getLibrariesReturnsInitialValueForLibrary() { 
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getLibraries()
@@ -132,9 +133,9 @@ class Tx_Buechertransport_Domain_Model_CityTest extends Tx_Extbase_Tests_Unit_Ba
 	/**
 	 * @test
 	 */
-	public function setLibrariesForObjectStorageContainingTx_Buechertransport_Domain_Model_LibrarySetsLibraries() { 
-		$library = new Tx_Buechertransport_Domain_Model_Library();
-		$objectStorageHoldingExactlyOneLibraries = new Tx_Extbase_Persistence_ObjectStorage();
+	public function setLibrariesForObjectStorageContainingLibrarySetsLibraries() { 
+		$library = new \SUB\Buechertransport\Domain\Model\Library();
+		$objectStorageHoldingExactlyOneLibraries = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$objectStorageHoldingExactlyOneLibraries->attach($library);
 		$this->fixture->setLibraries($objectStorageHoldingExactlyOneLibraries);
 
@@ -148,8 +149,8 @@ class Tx_Buechertransport_Domain_Model_CityTest extends Tx_Extbase_Tests_Unit_Ba
 	 * @test
 	 */
 	public function addLibraryToObjectStorageHoldingLibraries() {
-		$library = new Tx_Buechertransport_Domain_Model_Library();
-		$objectStorageHoldingExactlyOneLibrary = new Tx_Extbase_Persistence_ObjectStorage();
+		$library = new \SUB\Buechertransport\Domain\Model\Library();
+		$objectStorageHoldingExactlyOneLibrary = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$objectStorageHoldingExactlyOneLibrary->attach($library);
 		$this->fixture->addLibrary($library);
 
@@ -163,8 +164,8 @@ class Tx_Buechertransport_Domain_Model_CityTest extends Tx_Extbase_Tests_Unit_Ba
 	 * @test
 	 */
 	public function removeLibraryFromObjectStorageHoldingLibraries() {
-		$library = new Tx_Buechertransport_Domain_Model_Library();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$library = new \SUB\Buechertransport\Domain\Model\Library();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$localObjectStorage->attach($library);
 		$localObjectStorage->detach($library);
 		$this->fixture->addLibrary($library);

@@ -1,9 +1,10 @@
 <?php
+namespace SUB\Buechertransport\Controller;
 
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
  *  
  *  All rights reserved
  *
@@ -31,12 +32,13 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_Buechertransport_Controller_CityController extends Tx_Extbase_MVC_Controller_ActionController {
+class CityController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * cityRepository
 	 *
-	 * @var Tx_Buechertransport_Domain_Repository_CityRepository
+	 * @var \SUB\Buechertransport\Domain\Repository\CityRepository
+	 * @inject
 	 */
 	protected $cityRepository;
 
@@ -53,21 +55,21 @@ class Tx_Buechertransport_Controller_CityController extends Tx_Extbase_MVC_Contr
 	/**
 	 * action new
 	 *
-	 * @param $newCity
+	 * @param \SUB\Buechertransport\Domain\Model\City $newCity
 	 * @dontvalidate $newCity
 	 * @return void
 	 */
-	public function newAction(Tx_Buechertransport_Domain_Model_City $newCity = NULL) {
+	public function newAction(\SUB\Buechertransport\Domain\Model\City $newCity = NULL) {
 		$this->view->assign('newCity', $newCity);
 	}
 
 	/**
 	 * action create
 	 *
-	 * @param $newCity
+	 * @param \SUB\Buechertransport\Domain\Model\City $newCity
 	 * @return void
 	 */
-	public function createAction(Tx_Buechertransport_Domain_Model_City $newCity) {
+	public function createAction(\SUB\Buechertransport\Domain\Model\City $newCity) {
 		$this->cityRepository->add($newCity);
 		$this->flashMessageContainer->add('Your new City was created.');
 		$this->redirect('list');
@@ -76,20 +78,20 @@ class Tx_Buechertransport_Controller_CityController extends Tx_Extbase_MVC_Contr
 	/**
 	 * action edit
 	 *
-	 * @param $city
+	 * @param \SUB\Buechertransport\Domain\Model\City $city
 	 * @return void
 	 */
-	public function editAction(Tx_Buechertransport_Domain_Model_City $city) {
+	public function editAction(\SUB\Buechertransport\Domain\Model\City $city) {
 		$this->view->assign('city', $city);
 	}
 
 	/**
 	 * action update
 	 *
-	 * @param $city
+	 * @param \SUB\Buechertransport\Domain\Model\City $city
 	 * @return void
 	 */
-	public function updateAction(Tx_Buechertransport_Domain_Model_City $city) {
+	public function updateAction(\SUB\Buechertransport\Domain\Model\City $city) {
 		$this->cityRepository->update($city);
 		$this->flashMessageContainer->add('Your City was updated.');
 		$this->redirect('list');
@@ -98,23 +100,13 @@ class Tx_Buechertransport_Controller_CityController extends Tx_Extbase_MVC_Contr
 	/**
 	 * action delete
 	 *
-	 * @param $city
+	 * @param \SUB\Buechertransport\Domain\Model\City $city
 	 * @return void
 	 */
-	public function deleteAction(Tx_Buechertransport_Domain_Model_City $city) {
+	public function deleteAction(\SUB\Buechertransport\Domain\Model\City $city) {
 		$this->cityRepository->remove($city);
 		$this->flashMessageContainer->add('Your City was removed.');
 		$this->redirect('list');
-	}
-
-	/**
-	 * injectCityRepository
-	 *
-	 * @param Tx_Buechertransport_Domain_Repository_CityRepository $cityRepository
-	 * @return void
-	 */
-	public function injectCityRepository(Tx_Buechertransport_Domain_Repository_CityRepository $cityRepository) {
-		$this->cityRepository = $cityRepository;
 	}
 
 }

@@ -1,16 +1,16 @@
 <?php
+namespace SUB\Buechertransport\Utility;
 
 /* * *************************************************************
  *  Copyright notice
  *
- *  (c) 2011 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, Goettingen State Library
- *  	
+ *  (c) 2013 Dominic Simm <simm@sub.uni-goettingen.de>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
  *  free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
+ *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
  *
  *  The GNU General Public License can be found at
@@ -24,16 +24,17 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-// require_once(PATH_tslib . 'class.tslib_pibase.php');
+// require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('buechertransport') . 'Resources/Private/Scripts/BuecherTransportScripts.php');
 
 /**
  * Helper-Class to use Sidebar-Hooks
  *
- * @version $Id: SidebarUtility.php 0.1.8 2012-11-30 14:55:19Z simm $
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @author Dominic Simm <simm@sub.uni-goettingen.de>
+ * @package buechertransport
+ * @subpackage utility
  */
-class Tx_Buechertransport_Utility_SidebarUtility extends Tx_Extbase_MVC_Controller_CommandController { 
+
+class SidebarUtility extends \TYPO3\CMS\Extbase\Utility\ExtensionUtility {
     
 	/**
 	 * Generiert die weiteren Links für die Sidebar (nkwsubmenu_2)
@@ -49,13 +50,13 @@ class Tx_Buechertransport_Utility_SidebarUtility extends Tx_Extbase_MVC_Controll
 		$content = ''; // $content .= ''		; 
 
 		// Get / Check environment (params)
-		$params = t3lib_div::_GP('tx_buechertransport_buechertransport');
+		$params = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_buechertransport_buechertransport');
   	    $curPage = isset($params['province']) ? intval($params['province']) : -1;
 
   	    // Is a region selected?
   	    if ($curPage > -1) {
 
-			$province = user_buechertransport::getProvince($curPage);
+			$province = \user_buechertransport::getProvince($curPage);
 			$actions = ''; $locallang = '';
 			if ($params['action'] == 'show') {
 				$actions = array('showReachables', 'showMap');
@@ -70,7 +71,7 @@ class Tx_Buechertransport_Utility_SidebarUtility extends Tx_Extbase_MVC_Controll
 
 			foreach ($actions as $key => $action) {
 				// Generate link
-				$title = Tx_Extbase_Utility_Localization::translate('tx_buechertransport_domain_model_province.' . $locallang[$key], 'buechertransport');
+				$title = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_buechertransport_domain_model_province.' . $locallang[$key], 'buechertransport');
 				$link = $obj->pi_linkTP($title, $urlParameters = array('tx_buechertransport_buechertransport[action]' => $action, 'tx_buechertransport_buechertransport[controller]' => 'Province', 'tx_buechertransport_buechertransport[province]' => $province['uid']), $cache = 1, $altPageId = 0);
 				$content .= '<li>' . $link . '</li>' . "\n";
 			}
@@ -79,6 +80,6 @@ class Tx_Buechertransport_Utility_SidebarUtility extends Tx_Extbase_MVC_Controll
 
 	}
 
-}	
+}
 
 ?>

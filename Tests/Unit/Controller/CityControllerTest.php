@@ -1,9 +1,9 @@
 <?php
-
+namespace SUB\Buechertransport\Tests;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
  *  			
  *  All rights reserved
  *
@@ -36,14 +36,14 @@
  *
  * @author Dominic Simm <dominic.simm@sub.uni-goettingen.de>
  */
-class Tx_Buechertransport_Controller_CityControllerTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class CityControllerTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_Buechertransport_Domain_Model_City
+	 * @var 
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_Buechertransport_Domain_Model_City();
+		$this->fixture = new \SUB\Buechertransport\Domain\Model\City();
 	}
 
 	public function tearDown() {

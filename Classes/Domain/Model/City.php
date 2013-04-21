@@ -1,9 +1,10 @@
 <?php
+namespace SUB\Buechertransport\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
  *  
  *  All rights reserved
  *
@@ -31,19 +32,19 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_AbstractEntity {
+class City extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Province of the City
 	 *
-	 * @var Tx_Buechertransport_Domain_Model_Province
+	 * @var \SUB\Buechertransport\Domain\Model\Province
 	 */
 	protected $province;
 
 	/**
 	 * Name of the City
 	 *
-	 * @var string
+	 * @var \string
 	 * @validate NotEmpty
 	 */
 	protected $name;
@@ -51,35 +52,35 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	/**
 	 * Geocode of the City
 	 *
-	 * @var string
+	 * @var \string
 	 */
 	protected $geocode;
 
 	/**
 	 * Latitude of the City
 	 *
-	 * @var string
+	 * @var \string
 	 */
 	protected $lat;
 
 	/**
 	 * Longitude of the City
 	 *
-	 * @var string
+	 * @var \string
 	 */
 	protected $lng;
 
 	/**
 	 * Related Libraries
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_Library>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\Library>
 	 */
 	protected $libraries;
 
 	/**
 	 * __construct
 	 *
-	 * @return void
+	 * @return City
 	 */
 	public function __construct() {
 		//Do not remove the next line: It would break the functionality
@@ -87,7 +88,7 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	}
 
 	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage properties.
+	 * Initializes all ObjectStorage properties.
 	 *
 	 * @return void
 	 */
@@ -97,13 +98,13 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 		 * It will be rewritten on each save in the extension builder
 		 * You may modify the constructor of this class instead
 		 */
-		$this->libraries = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->libraries = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
 	 * Returns the name
 	 *
-	 * @return string $name
+	 * @return \string $name
 	 */
 	public function getName() {
 		return $this->name;
@@ -112,7 +113,7 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	/**
 	 * Sets the name
 	 *
-	 * @param string $name
+	 * @param \string $name
 	 * @return void
 	 */
 	public function setName($name) {
@@ -120,48 +121,9 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	}
 
 	/**
-	 * Adds a Library
-	 *
-	 * @param Tx_Buechertransport_Domain_Model_Library $library
-	 * @return void
-	 */
-	public function addLibrary(Tx_Buechertransport_Domain_Model_Library $library) {
-		$this->libraries->attach($library);
-	}
-
-	/**
-	 * Removes a Library
-	 *
-	 * @param Tx_Buechertransport_Domain_Model_Library $libraryToRemove The Library to be removed
-	 * @return void
-	 */
-	public function removeLibrary(Tx_Buechertransport_Domain_Model_Library $libraryToRemove) {
-		$this->libraries->detach($libraryToRemove);
-	}
-
-	/**
-	 * Returns the libraries
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_Library> $libraries
-	 */
-	public function getLibraries() {
-		return $this->libraries;
-	}
-
-	/**
-	 * Sets the libraries
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_Library> $libraries
-	 * @return void
-	 */
-	public function setLibraries(Tx_Extbase_Persistence_ObjectStorage $libraries) {
-		$this->libraries = $libraries;
-	}
-
-	/**
 	 * Returns the geocode
 	 *
-	 * @return string $geocode
+	 * @return \string $geocode
 	 */
 	public function getGeocode() {
 		return $this->geocode;
@@ -170,7 +132,7 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	/**
 	 * Sets the geocode
 	 *
-	 * @param string $geocode
+	 * @param \string $geocode
 	 * @return void
 	 */
 	public function setGeocode($geocode) {
@@ -180,7 +142,7 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	/**
 	 * Returns the lat
 	 *
-	 * @return string $lat
+	 * @return \string $lat
 	 */
 	public function getLat() {
 		return $this->lat;
@@ -189,7 +151,7 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	/**
 	 * Sets the lat
 	 *
-	 * @param string $lat
+	 * @param \string $lat
 	 * @return void
 	 */
 	public function setLat($lat) {
@@ -199,7 +161,7 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	/**
 	 * Returns the lng
 	 *
-	 * @return string $lng
+	 * @return \string $lng
 	 */
 	public function getLng() {
 		return $this->lng;
@@ -208,7 +170,7 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	/**
 	 * Sets the lng
 	 *
-	 * @param string $lng
+	 * @param \string $lng
 	 * @return void
 	 */
 	public function setLng($lng) {
@@ -216,9 +178,48 @@ class Tx_Buechertransport_Domain_Model_City extends Tx_Extbase_DomainObject_Abst
 	}
 
 	/**
+	 * Adds a Library
+	 *
+	 * @param \SUB\Buechertransport\Domain\Model\Library $library
+	 * @return void
+	 */
+	public function addLibrary(\SUB\Buechertransport\Domain\Model\Library $library) {
+		$this->libraries->attach($library);
+	}
+
+	/**
+	 * Removes a Library
+	 *
+	 * @param \SUB\Buechertransport\Domain\Model\Library $libraryToRemove The Library to be removed
+	 * @return void
+	 */
+	public function removeLibrary(\SUB\Buechertransport\Domain\Model\Library $libraryToRemove) {
+		$this->libraries->detach($libraryToRemove);
+	}
+
+	/**
+	 * Returns the libraries
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\Library> $libraries
+	 */
+	public function getLibraries() {
+		return $this->libraries;
+	}
+
+	/**
+	 * Sets the libraries
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\Library> $libraries
+	 * @return void
+	 */
+	public function setLibraries(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $libraries) {
+		$this->libraries = $libraries;
+	}
+
+	/**
 	 * Returns the province
 	 *
-	 * @return Tx_Buechertransport_Domain_Model_Province $province
+	 * @return \SUB\Buechertransport\Domain\Model\Province $province
 	 */
 	public function getProvince() {
 		return $this->province;

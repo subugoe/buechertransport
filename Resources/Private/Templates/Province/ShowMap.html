@@ -15,7 +15,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <fed:script src="typo3conf/ext/buechertransport/Resources/Public/Javascript/maps.js" /> -->
 
 <f:section name="main">
-{namespace helper=Tx_Buechertransport_ViewHelpers}
+{namespace helper = SUB\Buechertransport\ViewHelpers}
 
 <link href="{f:uri.resource(path:'CSS/maps.css')}" rel="stylesheet" />
 
@@ -273,8 +273,6 @@ function initialize() {
 	</td></tr>
 </table>
 <div id="legend"></div>
-
-
 
 
 <f:link.action action="list"><f:translate key="tx_buechertransport_template_backToList" /></f:link.action><br />

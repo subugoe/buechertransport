@@ -1,9 +1,10 @@
 <?php
 
+namespace SUB\Buechertransport\Tests;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
  *  			
  *  All rights reserved
  *
@@ -25,7 +26,7 @@
  ***************************************************************/
 
 /**
- * Test case for class Tx_Buechertransport_Domain_Model_Library.
+ * Test case for class \SUB\Buechertransport\Domain\Model\Library.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,14 +37,14 @@
  *
  * @author Dominic Simm <dominic.simm@sub.uni-goettingen.de>
  */
-class Tx_Buechertransport_Domain_Model_LibraryTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class LibraryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_Buechertransport_Domain_Model_Library
+	 * @var \SUB\Buechertransport\Domain\Model\Library
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_Buechertransport_Domain_Model_Library();
+		$this->fixture = new \SUB\Buechertransport\Domain\Model\Library();
 	}
 
 	public function tearDown() {
@@ -87,25 +88,12 @@ class Tx_Buechertransport_Domain_Model_LibraryTest extends Tx_Extbase_Tests_Unit
 	/**
 	 * @test
 	 */
-	public function getDistributioncentreReturnsInitialValueForTx_Buechertransport_Domain_Model_City() { 
-		$this->assertEquals(
-			NULL,
-			$this->fixture->getDistributioncentre()
-		);
-	}
+	public function getDistributioncentreReturnsInitialValueForCity() { }
 
 	/**
 	 * @test
 	 */
-	public function setDistributioncentreForTx_Buechertransport_Domain_Model_CitySetsDistributioncentre() { 
-		$dummyObject = new Tx_Buechertransport_Domain_Model_City();
-		$this->fixture->setDistributioncentre($dummyObject);
-
-		$this->assertSame(
-			$dummyObject,
-			$this->fixture->getDistributioncentre()
-		);
-	}
+	public function setDistributioncentreForCitySetsDistributioncentre() { }
 	
 }
 ?>

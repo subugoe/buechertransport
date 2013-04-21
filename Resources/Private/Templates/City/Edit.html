@@ -16,7 +16,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages />
 
-<f:render partial="FormErrors" />
+<f:render partial="FormErrors" arguments="{object:City}"/>
 
 <f:form action="update" name="city" object="{city}" >
 <f:render partial="City/FormFields" arguments="{city:city}" />

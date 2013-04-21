@@ -1,3 +1,7 @@
+2013-04-21 - 0.3 - Dominic Simm <simm@sub.uni-goettingen.de>
+	* Rewrite for TYPO3 6.0 because of compatibility problems with repositories
+	* Removed t3jquery dependency
+
 2012-12-19 - 0.2.6 - Dominic Simm <simm@sub.uni-goettingen.de>
 	* Added Provinces Bremen (Niedersachsen) and Rheinland (NRW)
 	* Changes in manual.rst

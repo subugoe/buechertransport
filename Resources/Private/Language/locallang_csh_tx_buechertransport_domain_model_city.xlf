@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-04-18T17:31:50Z" product-name="buechertransport">
+		<header/>
+		<body>
+
+			<trans-unit id="name.description">
+				<source>Name of the City</source>
+			</trans-unit>
+			<trans-unit id="geocode.description">
+				<source>Geocode of the City</source>
+			</trans-unit>
+			<trans-unit id="lat.description">
+				<source>Latitude of the City</source>
+			</trans-unit>
+			<trans-unit id="lng.description">
+				<source>Longitude of the City</source>
+			</trans-unit>
+			<trans-unit id="libraries.description">
+				<source>Related Libraries</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

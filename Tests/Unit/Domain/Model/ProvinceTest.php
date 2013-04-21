@@ -1,9 +1,10 @@
 <?php
 
+namespace SUB\Buechertransport\Tests;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
  *  			
  *  All rights reserved
  *
@@ -25,7 +26,7 @@
  ***************************************************************/
 
 /**
- * Test case for class Tx_Buechertransport_Domain_Model_Province.
+ * Test case for class \SUB\Buechertransport\Domain\Model\Province.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -36,14 +37,14 @@
  *
  * @author Dominic Simm <dominic.simm@sub.uni-goettingen.de>
  */
-class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class ProvinceTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var Tx_Buechertransport_Domain_Model_Province
+	 * @var \SUB\Buechertransport\Domain\Model\Province
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new Tx_Buechertransport_Domain_Model_Province();
+		$this->fixture = new \SUB\Buechertransport\Domain\Model\Province();
 	}
 
 	public function tearDown() {
@@ -104,21 +105,16 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	/**
 	 * @test
 	 */
-	public function getLatReturnsInitialValueForFloat() { 
-		$this->assertSame(
-			0.0,
-			$this->fixture->getLat()
-		);
-	}
+	public function getLatReturnsInitialValueForString() { }
 
 	/**
 	 * @test
 	 */
-	public function setLatForFloatSetsLat() { 
-		$this->fixture->setLat(3.14159265);
+	public function setLatForStringSetsLat() { 
+		$this->fixture->setLat('Conceived at T3CON10');
 
 		$this->assertSame(
-			3.14159265,
+			'Conceived at T3CON10',
 			$this->fixture->getLat()
 		);
 	}
@@ -126,21 +122,16 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	/**
 	 * @test
 	 */
-	public function getLngReturnsInitialValueForFloat() { 
-		$this->assertSame(
-			0.0,
-			$this->fixture->getLng()
-		);
-	}
+	public function getLngReturnsInitialValueForString() { }
 
 	/**
 	 * @test
 	 */
-	public function setLngForFloatSetsLng() { 
-		$this->fixture->setLng(3.14159265);
+	public function setLngForStringSetsLng() { 
+		$this->fixture->setLng('Conceived at T3CON10');
 
 		$this->assertSame(
-			3.14159265,
+			'Conceived at T3CON10',
 			$this->fixture->getLng()
 		);
 	}
@@ -148,8 +139,8 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	/**
 	 * @test
 	 */
-	public function getCitiesReturnsInitialValueForObjectStorageContainingTx_Buechertransport_Domain_Model_City() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+	public function getCitiesReturnsInitialValueForCity() { 
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getCities()
@@ -159,9 +150,9 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	/**
 	 * @test
 	 */
-	public function setCitiesForObjectStorageContainingTx_Buechertransport_Domain_Model_CitySetsCities() { 
-		$city = new Tx_Buechertransport_Domain_Model_City();
-		$objectStorageHoldingExactlyOneCities = new Tx_Extbase_Persistence_ObjectStorage();
+	public function setCitiesForObjectStorageContainingCitySetsCities() { 
+		$city = new \SUB\Buechertransport\Domain\Model\City();
+		$objectStorageHoldingExactlyOneCities = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$objectStorageHoldingExactlyOneCities->attach($city);
 		$this->fixture->setCities($objectStorageHoldingExactlyOneCities);
 
@@ -175,8 +166,8 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	 * @test
 	 */
 	public function addCityToObjectStorageHoldingCities() {
-		$city = new Tx_Buechertransport_Domain_Model_City();
-		$objectStorageHoldingExactlyOneCity = new Tx_Extbase_Persistence_ObjectStorage();
+		$city = new \SUB\Buechertransport\Domain\Model\City();
+		$objectStorageHoldingExactlyOneCity = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$objectStorageHoldingExactlyOneCity->attach($city);
 		$this->fixture->addCity($city);
 
@@ -190,8 +181,8 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	 * @test
 	 */
 	public function removeCityFromObjectStorageHoldingCities() {
-		$city = new Tx_Buechertransport_Domain_Model_City();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$city = new \SUB\Buechertransport\Domain\Model\City();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$localObjectStorage->attach($city);
 		$localObjectStorage->detach($city);
 		$this->fixture->addCity($city);
@@ -206,8 +197,8 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	/**
 	 * @test
 	 */
-	public function getReachablesReturnsInitialValueForObjectStorageContainingTx_Buechertransport_Domain_Model_City() { 
-		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+	public function getReachablesReturnsInitialValueForCity() { 
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
 			$this->fixture->getReachables()
@@ -217,9 +208,9 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	/**
 	 * @test
 	 */
-	public function setReachablesForObjectStorageContainingTx_Buechertransport_Domain_Model_CitySetsReachables() { 
-		$reachable = new Tx_Buechertransport_Domain_Model_City();
-		$objectStorageHoldingExactlyOneReachables = new Tx_Extbase_Persistence_ObjectStorage();
+	public function setReachablesForObjectStorageContainingCitySetsReachables() { 
+		$reachable = new \SUB\Buechertransport\Domain\Model\City();
+		$objectStorageHoldingExactlyOneReachables = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$objectStorageHoldingExactlyOneReachables->attach($reachable);
 		$this->fixture->setReachables($objectStorageHoldingExactlyOneReachables);
 
@@ -233,8 +224,8 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	 * @test
 	 */
 	public function addReachableToObjectStorageHoldingReachables() {
-		$reachable = new Tx_Buechertransport_Domain_Model_City();
-		$objectStorageHoldingExactlyOneReachable = new Tx_Extbase_Persistence_ObjectStorage();
+		$reachable = new \SUB\Buechertransport\Domain\Model\City();
+		$objectStorageHoldingExactlyOneReachable = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$objectStorageHoldingExactlyOneReachable->attach($reachable);
 		$this->fixture->addReachable($reachable);
 
@@ -248,8 +239,8 @@ class Tx_Buechertransport_Domain_Model_ProvinceTest extends Tx_Extbase_Tests_Uni
 	 * @test
 	 */
 	public function removeReachableFromObjectStorageHoldingReachables() {
-		$reachable = new Tx_Buechertransport_Domain_Model_City();
-		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
+		$reachable = new \SUB\Buechertransport\Domain\Model\City();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$localObjectStorage->attach($reachable);
 		$localObjectStorage->detach($reachable);
 		$this->fixture->addReachable($reachable);

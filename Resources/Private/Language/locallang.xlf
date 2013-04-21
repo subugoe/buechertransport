@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-04-18T17:31:50Z" product-name="buechertransport">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_buechertransport_domain_model_province">
+				<source>The Province</source>
+				<target>Die Leihverkehrsregion</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.name">
+				<source>Name of the Province</source>
+				<target>Leihverkehrsregion</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.description">
+				<source>Description of the Province</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.geocode">
+				<source>Geocode of the Province</source>
+				<target>Koordinaten</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.lat">
+				<source>Latitude of the Province</source>
+				<target>Breitengrad</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.lng">
+				<source>Longitude of the Province</source>
+				<target>Längengrad</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.cities">
+				<source>Related Cities</source>
+				<target>Angeschlossene Bibliotheken</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.reachables">
+				<source>Related Cities</source>
+				<target>Deutschlandweit erreichbare Bibliotheken</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_province.maps">
+				<source>Transport ways</source>
+				<target>Transportwege</target>
+			</trans-unit>
+
+			
+			<trans-unit id="tx_buechertransport_domain_model_city">
+				<source>The City of the libraries</source>
+				<target>Die Stadt der Bibliotheken</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_city.name">
+				<source>Name of the City</source>
+				<target>Stadt</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_city.geocode">
+				<source>Geocode of the City</source>
+				<target>Koordinaten</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_city.lat">
+				<source>Latitude of the City</source>
+				<target>Breitengrad</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_city.lng">
+				<source>Longitude of the City</source>
+				<target>Längengrad</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_city.libraries">
+				<source>Related Libraries</source>
+				<target>Zugehörige Bibliotheken</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_buechertransport_domain_model_library">
+				<source>The Library</source>
+				<target>Die Bibliothek</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_library.name">
+				<source>Name of the Library</source>
+				<target>Bibliothek</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_library.sigel">
+				<source>Sigel of the Library</source>
+				<target>Sigel</target>
+			</trans-unit>
+			<trans-unit id="tx_buechertransport_domain_model_library.distributioncentre">
+				<source>The related DistributionCentre (City)</source>
+				<target>Verteilerzentrum</target>
+			</trans-unit>
+
+			<trans-unit id="tx_buechertransport_template_backToList">
+				<source>Back to list</source>
+				<target>Zurück zur Übersicht</target>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

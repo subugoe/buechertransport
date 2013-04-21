@@ -3,7 +3,7 @@
 /* * *************************************************************
  *  Copyright notice
  *
- *  (c) 2011 Dominic Simm <simm@sub-goettingen.de>, Goettingen State Library
+ *  (c) 2013 Dominic Simm <simm@sub-goettingen.de>, Goettingen State Library
  *  	
  *  All rights reserved
  *
@@ -86,7 +86,7 @@ class user_buechertransport extends tslib_pibase {
 		// echo count($menuArr) . ' ';
 		// echo "<pre>";
 		// print_r($menuArr);
-		// // print_r($conf);
+		// print_r($conf);
 		// echo "</pre>";
 		// print_r("<br>");
 

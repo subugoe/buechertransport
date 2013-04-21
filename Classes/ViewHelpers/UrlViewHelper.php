@@ -1,9 +1,10 @@
 <?php
+namespace SUB\Buechertransport\ViewHelpers;
 
 /* * *************************************************************
  *  Copyright notice
  *
- *  (c) 2010 Dominic Simm <simm@sub.uni-goettingen.de>
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,11 +25,14 @@
  * ************************************************************* */
 
 /**
- * Klasse zur Modifikation von URL-Parametern
+ * Class to reduce set of reachables to the cities which lie outside the province
  *
- * @author dsimm
+ * @author Dominic Simm <simm@sub.uni-goettingen.de>
+ * @package buechertransport
+ * @subpackage viewhelper
  */
-class Tx_Buechertransport_ViewHelpers_UrlViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+
+class UrlViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Gibt mit '+'-getrennten String zurück

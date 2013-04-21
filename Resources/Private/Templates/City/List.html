@@ -20,6 +20,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<tr>
 		<th><f:translate key="tx_buechertransport_domain_model_city.name" /></th>
 		<th><f:translate key="tx_buechertransport_domain_model_city.geocode" /></th>
+		<th><f:translate key="tx_buechertransport_domain_model_city.lat" /></th>
+		<th><f:translate key="tx_buechertransport_domain_model_city.lng" /></th>
 		<th> </th>
 		<th> </th>
 	</tr>
@@ -28,6 +30,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		<tr>
 			<td><f:link.action action="show" arguments="{city : city}"> {city.name}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{city : city}"> {city.geocode}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{city : city}"> {city.lat}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{city : city}"> {city.lng}</f:link.action></td>
 			<td><f:link.action action="edit" arguments="{city : city}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{city : city}">Delete</f:link.action></td>
 		</tr>

@@ -1,9 +1,10 @@
 <?php
+namespace SUB\Buechertransport\Controller;
 
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
  *  
  *  All rights reserved
  *
@@ -31,12 +32,13 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_Buechertransport_Controller_LibraryController extends Tx_Extbase_MVC_Controller_ActionController {
+class LibraryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * libraryRepository
 	 *
-	 * @var Tx_Buechertransport_Domain_Repository_LibraryRepository
+	 * @var \SUB\Buechertransport\Domain\Repository\LibraryRepository
+	 * @inject
 	 */
 	protected $libraryRepository;
 
@@ -53,21 +55,21 @@ class Tx_Buechertransport_Controller_LibraryController extends Tx_Extbase_MVC_Co
 	/**
 	 * action new
 	 *
-	 * @param $newLibrary
+	 * @param \SUB\Buechertransport\Domain\Model\Library $newLibrary
 	 * @dontvalidate $newLibrary
 	 * @return void
 	 */
-	public function newAction(Tx_Buechertransport_Domain_Model_Library $newLibrary = NULL) {
+	public function newAction(\SUB\Buechertransport\Domain\Model\Library $newLibrary = NULL) {
 		$this->view->assign('newLibrary', $newLibrary);
 	}
 
 	/**
 	 * action create
 	 *
-	 * @param $newLibrary
+	 * @param \SUB\Buechertransport\Domain\Model\Library $newLibrary
 	 * @return void
 	 */
-	public function createAction(Tx_Buechertransport_Domain_Model_Library $newLibrary) {
+	public function createAction(\SUB\Buechertransport\Domain\Model\Library $newLibrary) {
 		$this->libraryRepository->add($newLibrary);
 		$this->flashMessageContainer->add('Your new Library was created.');
 		$this->redirect('list');
@@ -76,20 +78,20 @@ class Tx_Buechertransport_Controller_LibraryController extends Tx_Extbase_MVC_Co
 	/**
 	 * action edit
 	 *
-	 * @param $library
+	 * @param \SUB\Buechertransport\Domain\Model\Library $library
 	 * @return void
 	 */
-	public function editAction(Tx_Buechertransport_Domain_Model_Library $library) {
+	public function editAction(\SUB\Buechertransport\Domain\Model\Library $library) {
 		$this->view->assign('library', $library);
 	}
 
 	/**
 	 * action update
 	 *
-	 * @param $library
+	 * @param \SUB\Buechertransport\Domain\Model\Library $library
 	 * @return void
 	 */
-	public function updateAction(Tx_Buechertransport_Domain_Model_Library $library) {
+	public function updateAction(\SUB\Buechertransport\Domain\Model\Library $library) {
 		$this->libraryRepository->update($library);
 		$this->flashMessageContainer->add('Your Library was updated.');
 		$this->redirect('list');
@@ -98,23 +100,13 @@ class Tx_Buechertransport_Controller_LibraryController extends Tx_Extbase_MVC_Co
 	/**
 	 * action delete
 	 *
-	 * @param $library
+	 * @param \SUB\Buechertransport\Domain\Model\Library $library
 	 * @return void
 	 */
-	public function deleteAction(Tx_Buechertransport_Domain_Model_Library $library) {
+	public function deleteAction(\SUB\Buechertransport\Domain\Model\Library $library) {
 		$this->libraryRepository->remove($library);
 		$this->flashMessageContainer->add('Your Library was removed.');
 		$this->redirect('list');
-	}
-
-	/**
-	 * injectLibraryRepository
-	 *
-	 * @param Tx_Buechertransport_Domain_Repository_LibraryRepository $libraryRepository
-	 * @return void
-	 */
-	public function injectLibraryRepository(Tx_Buechertransport_Domain_Repository_LibraryRepository $libraryRepository) {
-		$this->libraryRepository = $libraryRepository;
 	}
 
 }

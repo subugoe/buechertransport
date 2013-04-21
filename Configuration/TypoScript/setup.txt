@@ -7,6 +7,10 @@ plugin.tx_buechertransport {
 	persistence {
 		storagePid = {$plugin.tx_buechertransport.persistence.storagePid}
 	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
 }
 
 plugin.tx_buechertransport._CSS_DEFAULT_STYLE (

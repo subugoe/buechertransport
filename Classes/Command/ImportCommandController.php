@@ -1,9 +1,10 @@
 <?php
+namespace SUB\Buechertransport\Command;
 
 /* * *************************************************************
  *  Copyright notice
  *
- *  (c) 2010-2011 Dominic Simm <simm@sub.uni-goettingen.de>
+ *  (c) 2013 Dominic Simm <simm@sub.uni-goettingen.de>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -34,7 +35,7 @@
 /**
  * Command Controller with the import command; reads the (old) CSV-data and puts it into the database / repositories
  */
-class Tx_Buechertransport_Command_ImportCommandController extends Tx_Extbase_MVC_Controller_CommandController {
+class ImportCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandController {
  
 	/**
 	* Importer command
@@ -55,7 +56,7 @@ class Tx_Buechertransport_Command_ImportCommandController extends Tx_Extbase_MVC
 		$this->initRepositories();
 		t3lib_div::devLog('Import-Task: Repositories initialized.' , 'buechertransport', -1);
 
-		$provinceObj = t3lib_div::makeInstance('Tx_Buechertransport_Controller_ProvinceController');
+		$provinceObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('SUB\\Buechertransport\\Controller\\ProvinceController');
 		t3lib_div::devLog('Import-Task: ProvinceController instantiated.' , 'buechertransport', -1);
 
 		$success = $provinceObj->importAction(true, $this);
@@ -67,7 +68,7 @@ class Tx_Buechertransport_Command_ImportCommandController extends Tx_Extbase_MVC
 	}
 
 	protected function setupFramework()     {
-		$this->configurationManager = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager');
+		$this->configurationManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
 		t3lib_div::devLog('Import-Task: Configuration-Manager instantiated.' , 'buechertransport', -1);
 		$configuration = array(
 			'extensionName' => 'buechertransport',
@@ -87,10 +88,10 @@ class Tx_Buechertransport_Command_ImportCommandController extends Tx_Extbase_MVC
 	}
 
 	protected function initRepositories() {
-		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
-		$this->provinceRepository = $this->objectManager->get('Tx_Buechertransport_Domain_Repository_ProvinceRepository');
-		$this->cityRepository = $this->objectManager->get('Tx_Buechertransport_Domain_Repository_CityRepository');
-		$this->libraryRepository = $this->objectManager->get('Tx_Buechertransport_Domain_Repository_LibraryRepository');
+		$this->persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\PersistenceManager');
+		$this->provinceRepository = $this->objectManager->get('SUB\\Buechertransport\\Domain\\Repository\\ProvinceRepository');
+		$this->cityRepository = $this->objectManager->get('SUB\\Buechertransport\\Domain\\Repository\\CityRepository');
+		$this->libraryRepository = $this->objectManager->get('SUB\\Buechertransport\\Domain\\Repository\\LibraryRepository');
 	}
    
 }

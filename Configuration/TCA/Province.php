@@ -9,7 +9,7 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, geocode, lat, lng, cities, reachables',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, description, geocode, lat, lng, cities, reachables,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, description, geocode, lat, lng, cities, reachables,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -17,21 +17,21 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 	'columns' => array(
 		'sys_language_uid' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
+			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0)
+					array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1),
+					array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0)
 				),
 			),
 		),
 		'l10n_parent' => array(
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
@@ -47,7 +47,7 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 			),
 		),
 		't3ver_label' => array(
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
+			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -56,7 +56,7 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 		),
 		'hidden' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
 			'config' => array(
 				'type' => 'check',
 			),
@@ -64,7 +64,7 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 		'starttime' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
+			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
 			'config' => array(
 				'type' => 'input',
 				'size' => 13,
@@ -80,7 +80,7 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 		'endtime' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
+			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
 			'config' => array(
 				'type' => 'input',
 				'size' => 13,
@@ -95,7 +95,7 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 		),
 		'name' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xml:tx_buechertransport_domain_model_province.name',
+			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xlf:tx_buechertransport_domain_model_province.name',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -104,7 +104,7 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 		),
 		'description' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xml:tx_buechertransport_domain_model_province.description',
+			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xlf:tx_buechertransport_domain_model_province.description',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -116,16 +116,16 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 						'notNewRecords'=> 1,
 						'RTEonly' => 1,
 						'script' => 'wizard_rte.php',
-						'title' => 'LLL:EXT:cms/locallang_ttc.xml:bodytext.W.RTE',
+						'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
 						'type' => 'script'
 					)
 				)
 			),
-			'defaultExtras' => 'richtext[]',
+			'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
 		),
 		'geocode' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xml:tx_buechertransport_domain_model_province.geocode',
+			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xlf:tx_buechertransport_domain_model_province.geocode',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -134,32 +134,32 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 		),
 		'lat' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xml:tx_buechertransport_domain_model_province.lat',
+			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xlf:tx_buechertransport_domain_model_province.lat',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'double2'
+				'eval' => 'trim'
 			),
 		),
 		'lng' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xml:tx_buechertransport_domain_model_province.lng',
+			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xlf:tx_buechertransport_domain_model_province.lng',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'double2'
+				'eval' => 'trim'
 			),
 		),
 		'cities' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xml:tx_buechertransport_domain_model_province.cities',
+			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xlf:tx_buechertransport_domain_model_province.cities',
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_buechertransport_domain_model_city',
 				'foreign_field' => 'province',
 				'maxitems'      => 9999,
 				'appearance' => array(
-					'collapse' => 0,
+					'collapseAll' => 0,
 					'levelLinksPosition' => 'top',
 					'showSynchronizationLink' => 1,
 					'showPossibleLocalizationRecords' => 1,
@@ -169,7 +169,7 @@ $TCA['tx_buechertransport_domain_model_province'] = array(
 		),
 		'reachables' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xml:tx_buechertransport_domain_model_province.reachables',
+			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xlf:tx_buechertransport_domain_model_province.reachables',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_buechertransport_domain_model_city',

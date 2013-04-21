@@ -1,16 +1,16 @@
 <?php
+namespace SUB\Buechertransport\Utility;
 
 /* * *************************************************************
  *  Copyright notice
  *
- *  (c) 2011 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, Goettingen State Library
- *  	
+ *  (c) 2013 Dominic Simm <simm@sub.uni-goettingen.de>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
  *  free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
+ *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
  *
  *  The GNU General Public License can be found at
@@ -27,11 +27,12 @@
 /**
  * Helper-Class for importing old data
  *
- * @version $Id: ImportUtility.php 0.1.3 2012-11-12 17:38:19Z simm $
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @author Dominic Simm <simm@sub.uni-goettingen.de>
+ * @package buechertransport
+ * @subpackage utility
  */
-class Tx_Buechertransport_Utility_ImportUtility {
+
+class ImportUtility extends \TYPO3\CMS\Extbase\Utility\ExtensionUtility {
     
 	private $path = '';
 
@@ -55,7 +56,7 @@ class Tx_Buechertransport_Utility_ImportUtility {
 		);
 
 	public function __construct() {
-		$this->path = t3lib_extMgm::extPath('buechertransport') . 'Resources/Public/ImportData/';
+		$this->path = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('buechertransport') . 'Resources/Public/ImportData/';
 	}
 
 	public function getCSVFiles() {

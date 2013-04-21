@@ -1,9 +1,10 @@
 <?php
+namespace SUB\Buechertransport\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
  *  
  *  All rights reserved
  *
@@ -31,7 +32,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_Buechertransport_Domain_Repository_CityRepository extends Tx_Extbase_Persistence_Repository {
+class CityRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
 	 * flush

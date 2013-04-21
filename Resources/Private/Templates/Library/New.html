@@ -16,7 +16,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages />
 
-<f:render partial="FormErrors" />
+<f:render partial="FormErrors" arguments="{object:Library}"/>
 
 <f:form action="create"  name="newLibrary" object="{newLibrary}">
 <f:render partial="Library/FormFields" />

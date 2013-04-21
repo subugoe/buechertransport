@@ -1,9 +1,10 @@
 <?php
+namespace SUB\Buechertransport\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
  *  
  *  All rights reserved
  *
@@ -31,19 +32,19 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_AbstractEntity {
+class Library extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * The hosting City (City)
 	 *
-	 * @var Tx_Buechertransport_Domain_Model_City
+	 * @var \SUB\Buechertransport\Domain\Model\City
 	 */
 	protected $city;
 
 	/**
 	 * Name of the Library
 	 *
-	 * @var string
+	 * @var \string
 	 * @validate NotEmpty
 	 */
 	protected $name;
@@ -51,7 +52,7 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	/**
 	 * Sigel of the Library
 	 *
-	 * @var string
+	 * @var \string
 	 * @validate NotEmpty
 	 */
 	protected $sigel;
@@ -59,14 +60,14 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	/**
 	 * The related DistributionCentre (City)
 	 *
-	 * @var Tx_Buechertransport_Domain_Model_City
+	 * @var \SUB\Buechertransport\Domain\Model\City
 	 */
 	protected $distributioncentre;
 
 	/**
 	 * Returns the name
 	 *
-	 * @return string $name
+	 * @return \string $name
 	 */
 	public function getName() {
 		return $this->name;
@@ -75,7 +76,7 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	/**
 	 * Sets the name
 	 *
-	 * @param string $name
+	 * @param \string $name
 	 * @return void
 	 */
 	public function setName($name) {
@@ -85,7 +86,7 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	/**
 	 * Returns the sigel
 	 *
-	 * @return string $sigel
+	 * @return \string $sigel
 	 */
 	public function getSigel() {
 		return $this->sigel;
@@ -94,7 +95,7 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	/**
 	 * Sets the sigel
 	 *
-	 * @param string $sigel
+	 * @param \string $sigel
 	 * @return void
 	 */
 	public function setSigel($sigel) {
@@ -102,28 +103,9 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	}
 
 	/**
-	 * __construct
-	 *
-	 * @return void
-	 */
-	public function __construct() {
-		//Do not remove the next line: It would break the functionality
-		$this->initStorageObjects();
-	}
-
-	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage properties.
-	 *
-	 * @return void
-	 */
-	protected function initStorageObjects() {
-		// empty
-	}
-
-	/**
 	 * Returns the distributioncentre
 	 *
-	 * @return Tx_Buechertransport_Domain_Model_City $distributioncentre
+	 * @return \SUB\Buechertransport\Domain\Model\City $distributioncentre
 	 */
 	public function getDistributioncentre() {
 		return $this->distributioncentre;
@@ -132,17 +114,17 @@ class Tx_Buechertransport_Domain_Model_Library extends Tx_Extbase_DomainObject_A
 	/**
 	 * Sets the distributioncentre
 	 *
-	 * @param Tx_Buechertransport_Domain_Model_City $distributioncentre
+	 * @param \SUB\Buechertransport\Domain\Model\City $distributioncentre
 	 * @return void
 	 */
-	public function setDistributioncentre(Tx_Buechertransport_Domain_Model_City $distributioncentre) {
+	public function setDistributioncentre(\SUB\Buechertransport\Domain\Model\City $distributioncentre) {
 		$this->distributioncentre = $distributioncentre;
 	}
 
 	/**
 	 * Returns the city
 	 *
-	 * @return Tx_Buechertransport_Domain_Model_City $city
+	 * @return \SUB\Buechertransport\Domain\Model\City $city
 	 */
 	public function getCity() {
 		return $this->city;

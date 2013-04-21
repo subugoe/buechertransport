@@ -1,9 +1,10 @@
 <?php
+namespace SUB\Buechertransport\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
+ *  (c) 2013 Dominic Simm <dominic.simm@sub.uni-goettingen.de>, SUB Göttingen
  *  
  *  All rights reserved
  *
@@ -31,12 +32,12 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_AbstractEntity {
+class Province extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Name of the Province
 	 *
-	 * @var string
+	 * @var \string
 	 * @validate NotEmpty
 	 */
 	protected $name;
@@ -44,50 +45,50 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	/**
 	 * Description of the Province
 	 *
-	 * @var string
+	 * @var \string
 	 * @validate NotEmpty
 	 */
 	protected $description;
 
 	/**
-	 * Related Cities
-	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City>
-	 */
-	protected $cities;
-
-	/**
-	 * Related Cities
-	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City>
-	 */
-	protected $reachables;
-
-	/**
 	 * Geocode of the Province
 	 *
-	 * @var string
+	 * @var \string
 	 */
 	protected $geocode;
 
 	/**
 	 * Latitude of the Province
 	 *
-	 * @var float
+	 * @var \string
 	 */
 	protected $lat;
 
 	/**
 	 * Longitude of the Province
 	 *
-	 * @var float
+	 * @var \string
 	 */
 	protected $lng;
 
 	/**
+	 * Related Cities
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\City>
+	 */
+	protected $cities;
+
+	/**
+	 * Related Cities
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\City>
+	 */
+	protected $reachables;
+
+	/**
 	 * __construct
 	 *
-	 * @return void
+	 * @return Province
 	 */
 	public function __construct() {
 		//Do not remove the next line: It would break the functionality
@@ -95,7 +96,7 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	}
 
 	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage properties.
+	 * Initializes all ObjectStorage properties.
 	 *
 	 * @return void
 	 */
@@ -105,15 +106,15 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 		 * It will be rewritten on each save in the extension builder
 		 * You may modify the constructor of this class instead
 		 */
-		$this->cities = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->cities = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		
-		$this->reachables = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->reachables = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
 	 * Returns the name
 	 *
-	 * @return string $name
+	 * @return \string $name
 	 */
 	public function getName() {
 		return $this->name;
@@ -122,7 +123,7 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	/**
 	 * Sets the name
 	 *
-	 * @param string $name
+	 * @param \string $name
 	 * @return void
 	 */
 	public function setName($name) {
@@ -132,7 +133,7 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	/**
 	 * Returns the description
 	 *
-	 * @return string $description
+	 * @return \string $description
 	 */
 	public function getDescription() {
 		return $this->description;
@@ -141,7 +142,7 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	/**
 	 * Sets the description
 	 *
-	 * @param string $description
+	 * @param \string $description
 	 * @return void
 	 */
 	public function setDescription($description) {
@@ -149,29 +150,86 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	}
 
 	/**
-	 * Adds a City
+	 * Returns the geocode
 	 *
-	 * @param Tx_Buechertransport_Domain_Model_City $city
+	 * @return \string $geocode
+	 */
+	public function getGeocode() {
+		return $this->geocode;
+	}
+
+	/**
+	 * Sets the geocode
+	 *
+	 * @param \string $geocode
 	 * @return void
 	 */
-	public function addCity(Tx_Buechertransport_Domain_Model_City $city) {
+	public function setGeocode($geocode) {
+		$this->geocode = $geocode;
+	}
+
+	/**
+	 * Returns the lat
+	 *
+	 * @return \string $lat
+	 */
+	public function getLat() {
+		return $this->lat;
+	}
+
+	/**
+	 * Sets the lat
+	 *
+	 * @param \string $lat
+	 * @return void
+	 */
+	public function setLat($lat) {
+		$this->lat = $lat;
+	}
+
+	/**
+	 * Returns the lng
+	 *
+	 * @return \string $lng
+	 */
+	public function getLng() {
+		return $this->lng;
+	}
+
+	/**
+	 * Sets the lng
+	 *
+	 * @param \string $lng
+	 * @return void
+	 */
+	public function setLng($lng) {
+		$this->lng = $lng;
+	}
+
+	/**
+	 * Adds a City
+	 *
+	 * @param \SUB\Buechertransport\Domain\Model\City $city
+	 * @return void
+	 */
+	public function addCity(\SUB\Buechertransport\Domain\Model\City $city) {
 		$this->cities->attach($city);
 	}
 
 	/**
 	 * Removes a City
 	 *
-	 * @param Tx_Buechertransport_Domain_Model_City $cityToRemove The City to be removed
+	 * @param \SUB\Buechertransport\Domain\Model\City $cityToRemove The City to be removed
 	 * @return void
 	 */
-	public function removeCity(Tx_Buechertransport_Domain_Model_City $cityToRemove) {
+	public function removeCity(\SUB\Buechertransport\Domain\Model\City $cityToRemove) {
 		$this->cities->detach($cityToRemove);
 	}
 
 	/**
 	 * Returns the cities
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $cities
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\City> $cities
 	 */
 	public function getCities() {
 		return $this->cities;
@@ -180,37 +238,37 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	/**
 	 * Sets the cities
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $cities
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\City> $cities
 	 * @return void
 	 */
-	public function setCities(Tx_Extbase_Persistence_ObjectStorage $cities) {
+	public function setCities(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $cities) {
 		$this->cities = $cities;
 	}
 
 	/**
 	 * Adds a City
 	 *
-	 * @param Tx_Buechertransport_Domain_Model_City $reachable
+	 * @param \SUB\Buechertransport\Domain\Model\City $reachable
 	 * @return void
 	 */
-	public function addReachable(Tx_Buechertransport_Domain_Model_City $reachable) {
+	public function addReachable(\SUB\Buechertransport\Domain\Model\City $reachable) {
 		$this->reachables->attach($reachable);
 	}
 
 	/**
 	 * Removes a City
 	 *
-	 * @param Tx_Buechertransport_Domain_Model_City $reachableToRemove The City to be removed
+	 * @param \SUB\Buechertransport\Domain\Model\City $reachableToRemove The City to be removed
 	 * @return void
 	 */
-	public function removeReachable(Tx_Buechertransport_Domain_Model_City $reachableToRemove) {
+	public function removeReachable(\SUB\Buechertransport\Domain\Model\City $reachableToRemove) {
 		$this->reachables->detach($reachableToRemove);
 	}
 
 	/**
 	 * Returns the reachables
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $reachables
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\City> $reachables
 	 */
 	public function getReachables() {
 		return $this->reachables;
@@ -219,21 +277,21 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	/**
 	 * Sets the reachables
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $reachables
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\City> $reachables
 	 * @return void
 	 */
-	public function setReachables(Tx_Extbase_Persistence_ObjectStorage $reachables) {
+	public function setReachables(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $reachables) {
 		$this->reachables = $reachables;
 	}
 
 	/**
 	 * Returns the Distributioncentres of current the Province
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $distCentres
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\City> $distCentres
 	 */
 	public function getLocalDistributionCentres() {
 		$addedCities = array();
-		$distCentres = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$distCentres = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage');
 		foreach ($this->cities as $city) {
 		   	foreach ($city->getLibraries() as $lib) {
 		   		$name = $lib->getDistributioncentre()->getName();
@@ -249,11 +307,11 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	/**
 	 * Returns the Distributioncentres of all reachable Provinces
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $distCentres
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\SUB\Buechertransport\Domain\Model\City> $distCentres
 	 */
 	public function getGlobalDistributionCentres() {
 		$addedCities = array();
-		$distCentres = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$distCentres = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage');
 		foreach ($this->reachables as $city) {
 		   	foreach ($city->getLibraries() as $lib) {
 		   		if ($lib->getDistributioncentre() != NULL) {
@@ -274,12 +332,12 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_City> $cities
 	 */
 	public function getSpecificReachableCities() {
-		// Instatiate Repositories
-		$cityRepository = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Repository_CityRepository');
-		$libraryRepository = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Repository_LibraryRepository');
+		// Instantiate Repositories
+		$cityRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('SUB\\Buechertransport\\Domain\\Repository\\CityRepository');
+		$libraryRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('SUB\\Buechertransport\\Domain\\Repository\\LibraryRepository');
 
 		$city = 'Göttingen';
-		$cities = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		$cities = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage');
 		$cityObj = $cityRepository->findOneByName($city);
 		if ($cityObj != NULL)	{
 			$libs = $libraryRepository->findByDistributioncentre($cityObj);
@@ -296,14 +354,19 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Buechertransport_Domain_Model_Province> $provinces
 	 */
 	public function getSpecificReachableProvinces() {
-		// Instatiate Repositories
-		$cityRepository = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Repository_CityRepository');
-		$libraryRepository = t3lib_div::makeInstance('Tx_Buechertransport_Domain_Repository_LibraryRepository');
+		// Instantiate Repositories
+		\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('SpecificReachableProvinces. Landing' , 'buechertransport', -1);
+		$cityRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('SUB\\Buechertransport\\Domain\\Repository\\CityRepository');
+		$libraryRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('SUB\\Buechertransport\\Domain\\Repository\\LibraryRepository');
+		\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('SpecificReachableProvinces. Init Repos' , 'buechertransport', -1);
 
 		$addedProvinces = array();
 		$city = 'Göttingen';
-		$provinces = t3lib_div::makeInstance('Tx_Extbase_Persistence_ObjectStorage');
+		\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('SpecificReachableProvinces. Init new Object-Storage' , 'buechertransport', -1);
+		$provinces = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage');
+		\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('SpecificReachableProvinces. Select City' , 'buechertransport', -1);
 		$cityObj = $cityRepository->findOneByName($city);
+		\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('SpecificReachableProvinces.' , 'buechertransport', -1);
 		if ($cityObj != NULL)	{
 			$libs = $libraryRepository->findByDistributioncentre($cityObj);
 		   	foreach ($libs as $lib) {
@@ -312,67 +375,9 @@ class Tx_Buechertransport_Domain_Model_Province extends Tx_Extbase_DomainObject_
 			   		$provinces->attach($lib->getCity()->getProvince());
 			   		array_push($name, $addedProvinces);
 		   		}
-
 		   	}
 		}
 		return $provinces;
-	}
-
-	/**
-	 * Returns the geocode
-	 *
-	 * @return string $geocode
-	 */
-	public function getGeocode() {
-		return $this->geocode;
-	}
-
-	/**
-	 * Sets the geocode
-	 *
-	 * @param string $geocode
-	 * @return void
-	 */
-	public function setGeocode($geocode) {
-		$this->geocode = $geocode;
-	}
-
-	/**
-	 * Returns the lat
-	 *
-	 * @return float $lat
-	 */
-	public function getLat() {
-		return $this->lat;
-	}
-
-	/**
-	 * Sets the lat
-	 *
-	 * @param float $lat
-	 * @return void
-	 */
-	public function setLat($lat) {
-		$this->lat = $lat;
-	}
-
-	/**
-	 * Returns the lng
-	 *
-	 * @return float $lng
-	 */
-	public function getLng() {
-		return $this->lng;
-	}
-
-	/**
-	 * Sets the lng
-	 *
-	 * @param float $lng
-	 * @return void
-	 */
-	public function setLng($lng) {
-		$this->lng = $lng;
 	}
 
 }
