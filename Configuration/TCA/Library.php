@@ -111,23 +111,35 @@ $TCA['tx_buechertransport_domain_model_library'] = array(
 				'eval' => 'trim,required'
 			),
 		),
-		'distributioncentre' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xlf:tx_buechertransport_domain_model_library.distributioncentre',
-			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_buechertransport_domain_model_city',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapseAll' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
-			),
-		),
+//		'distributioncentre' => array(
+//			'exclude' => 0,
+//			'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xlf:tx_buechertransport_domain_model_library.distributioncentre',
+//			'config' => array(
+//				'type' => 'inline',
+//				'foreign_table' => 'tx_buechertransport_domain_model_city',
+//				'minitems' => 0,
+//				'maxitems' => 1,
+//				'appearance' => array(
+//					'collapseAll' => 0,
+//					'levelLinksPosition' => 'top',
+//					'showSynchronizationLink' => 1,
+//					'showPossibleLocalizationRecords' => 1,
+//					'showAllLocalizationLink' => 1
+//				),
+//			),
+//		),
+        'distributioncentre' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:buechertransport/Resources/Private/Language/locallang_db.xlf:tx_buechertransport_domain_model_library.distributioncentre',
+            'config' => array(
+                'type' => 'select',
+                'foreign_table' => 'tx_buechertransport_domain_model_city',
+                'size' => 1,
+                'autoSizeMax' => 30,
+                'maxitems' => 1,
+                'multiple' => 0
+            ),
+        ),
 		'city' => array(
 			'config' => array(
 				'type' => 'passthrough',
